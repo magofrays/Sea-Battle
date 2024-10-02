@@ -20,8 +20,8 @@ class Ship{
         Ship(size_t length, std::pair<size_t, size_t> coordinates, bool is_vertical);
         Ship(const Ship &ship);
         Ship& operator = (const Ship& ship);
-        Ship(Ship && ship);
-        Ship& operator = (Ship && ship);
+        Ship(Ship && ship) noexcept;
+        Ship& operator = (Ship && ship) noexcept;
 
         size_t getLen() const;
         std::pair<size_t, size_t> getCoor() const;

@@ -1,7 +1,6 @@
 #include "playField.h"
 
 playField::playField() : size_x(0), size_y(0), ship_manager() {
-    field.resize(size_y, std::vector<cell>(size_x, unknown));
 }
 playField::playField(size_t size_x, size_t size_y)
     : size_x(size_x), size_y(size_y), ship_manager() {

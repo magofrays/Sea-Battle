@@ -1,6 +1,6 @@
 #include "shipManager.h"
 
-shipManager::shipManager(){};
+
 shipManager::shipManager(std::initializer_list<size_t> lengths, 
                     std::initializer_list<std::pair<size_t, size_t>> coordinates_arr, 
                     std::initializer_list<bool> is_vertical_arr){
@@ -28,8 +28,8 @@ shipManager& shipManager::operator = (const shipManager& ship_manager){
     }
     return *this;
 }
-shipManager::shipManager(shipManager && ship_manager):ships(std::move(ship_manager.ships)){}
-shipManager& shipManager::operator = (shipManager && ship_manager){
+shipManager::shipManager(shipManager && ship_manager)noexcept:ships(std::move(ship_manager.ships)){}
+shipManager& shipManager::operator = (shipManager && ship_manager)noexcept{
     if(this != &ship_manager){
         ships = std::move(ship_manager.ships);
     }

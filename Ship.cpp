@@ -13,11 +13,11 @@ Ship& Ship::operator = (const Ship& ship){
     }
     return *this;
 }
-Ship::Ship(Ship && ship) : length(std::move(ship.length)), is_vertical(std::move(ship.is_vertical)){
+Ship::Ship(Ship && ship) noexcept : length(std::move(ship.length)), is_vertical(std::move(ship.is_vertical)){
     coordinates = std::move(ship.coordinates);
     segments = std::move(ship.segments);
 }
-Ship& Ship::operator = (Ship && ship){
+Ship& Ship::operator = (Ship && ship) noexcept{
     if(this != &ship){
         length = std::move(ship.length);
         is_vertical = std::move(ship.is_vertical);
@@ -49,18 +49,16 @@ void Ship::Attack(size_t index){
         case damaged:
             segments[index] = destroyed;
             break;
-        default:
-            break;
     }
 }
 
 bool Ship::isDestroyed(){
-    bool isDestroyed = true;
+    bool is_destroyed = true;
     for(segmentState segment: segments){
         if(segment != destroyed){
-            isDestroyed = false;
+            is_destroyed = false;
             break;
         }
     }
-    return isDestroyed;
+    return is_destroyed;
 }
