@@ -1,9 +1,11 @@
 #include "Ship.h"
 
-
-Ship::Ship(): coordinates({0, 0}), length(0), is_vertical(true){};
 Ship::Ship(size_t length, std::pair<size_t, size_t> coordinates, bool is_vertical)
-: length(length), coordinates(coordinates), is_vertical(is_vertical), segments(length, normal){} 
+: length(length), coordinates(coordinates), is_vertical(is_vertical), segments(length, normal){
+    if(length < 1 || length > 4 ){
+        throw std::invalid_argument("SHIP LENGTH IS BETWEEN 1-4!");
+    }
+} 
 Ship::Ship(const Ship &ship) : length(ship.length), coordinates(ship.coordinates), segments(ship.segments){} // copy construct
 Ship& Ship::operator = (const Ship& ship){ 
     if(this != &ship){
@@ -13,7 +15,7 @@ Ship& Ship::operator = (const Ship& ship){
     }
     return *this;
 }
-Ship::Ship(Ship && ship) noexcept : length(std::move(ship.length)), is_vertical(std::move(ship.is_vertical)){
+Ship::Ship(Ship && ship) noexcept : length(std::move(ship.length)), is_vertical(std::move(ship.is_vertical)) {
     coordinates = std::move(ship.coordinates);
     segments = std::move(ship.segments);
 }

@@ -16,7 +16,7 @@ class Ship{
     std::pair<size_t, size_t> coordinates;
     size_t length;
     public:
-        Ship();
+        Ship() = default;
         Ship(size_t length, std::pair<size_t, size_t> coordinates, bool is_vertical);
         Ship(const Ship &ship);
         Ship& operator = (const Ship& ship);

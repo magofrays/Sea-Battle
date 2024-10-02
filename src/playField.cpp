@@ -49,8 +49,8 @@ shipManager playField::getShipManager() const{
 bool playField::inField(size_t length, std::pair<size_t, size_t>coordinates, bool is_vertical){
     size_t len_subtr_y = is_vertical ? length-1 : 0;
     size_t len_subtr_x = is_vertical ? 0 : length-1;
-    if(0 <= coordinates.first && coordinates.first + len_subtr_x <= size_x && 
-        0 <= coordinates.second && coordinates.second + len_subtr_y <= size_y 
+    if(0 <= coordinates.first && coordinates.first + len_subtr_x <= size_x-1 && 
+        0 <= coordinates.second && coordinates.second + len_subtr_y <= size_y-1 
     ){
         return true;
         }
@@ -84,4 +84,14 @@ void playField::printField(){
         }
         std::cout << "\n";
     }
+}
+
+
+int main(){
+    playField skibidi(5, 5);
+skibidi.addShip(1, {4, 4}, true);
+skibidi.Attack({4, 4});
+std::cout<<skibidi.getShipManager().getShip(0).isDestroyed() << std::endl;
+skibidi.Attack({4,4});
+std::cout<<skibidi.getShipManager().getShip(0).isDestroyed() << std::endl;
 }
