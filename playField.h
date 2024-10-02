@@ -22,9 +22,13 @@ class playField{
         playField(playField && play_field) noexcept;
         playField& operator = (playField && play_field) noexcept;
 
+        shipManager getShipManager() const;
+
         bool inField(size_t length, std::pair<size_t, size_t>coordinates, bool is_vertical);
         void addShip(size_t length, std::pair<size_t, size_t>coordinates, bool is_vertical);
         void Attack(std::pair<size_t, size_t> coordinates);
-        shipManager getShipManager() const;
+        
+       
+        
         void printField();
 };

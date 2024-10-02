@@ -24,9 +24,10 @@ class Ship{
         Ship& operator = (Ship && ship);
 
         size_t getLen() const;
-        std::pair<size_t, size_t> const getCoor() ;
-        bool IsVertical();
-        void Attack(size_t index);
+        std::pair<size_t, size_t> getCoor() const;
+        bool IsVertical() const;
         segmentState getSegment(size_t index) const;
+        
+        void Attack(size_t index);
         bool isDestroyed();
 };

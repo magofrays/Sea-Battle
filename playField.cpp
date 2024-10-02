@@ -43,6 +43,9 @@ playField& playField::operator = (playField && play_field) noexcept {
     return *this;
 }
 
+shipManager playField::getShipManager() const{
+    return ship_manager;
+}
 
 bool playField::inField(size_t length, std::pair<size_t, size_t>coordinates, bool is_vertical){
     size_t len_subtr_y = is_vertical ? length-1 : 0;
@@ -73,10 +76,6 @@ void playField::Attack(std::pair<size_t, size_t> coordinates){
         return;
     }
     throw std::invalid_argument("COORDINATES ARE OUT OF BORDER!");
-}
-
-shipManager playField::getShipManager() const{
-    return ship_manager;
 }
 
 void playField::printField(){

@@ -30,14 +30,16 @@ Ship& Ship::operator = (Ship && ship){
 size_t Ship::getLen() const{
     return length;
 }
-
-std::pair<size_t, size_t> const Ship::getCoor(){
+std::pair<size_t, size_t>  Ship::getCoor() const{
     return coordinates;
 }
-
-bool Ship::IsVertical(){
+bool Ship::IsVertical() const{
     return is_vertical;
 }
+Ship::segmentState Ship::getSegment(size_t index) const{
+    return segments[index];
+}
+
 
 void Ship::Attack(size_t index){
     switch(segments[index]){
@@ -50,10 +52,6 @@ void Ship::Attack(size_t index){
         default:
             break;
     }
-}
-
-Ship::segmentState Ship::getSegment(size_t index) const{
-    return segments[index];
 }
 
 bool Ship::isDestroyed(){

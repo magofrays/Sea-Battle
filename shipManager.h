@@ -12,8 +12,11 @@ class shipManager{
         shipManager(shipManager && ship_manager);
         shipManager& operator = (shipManager && ship_manager);
 
+        Ship getShip(size_t index) const;
+
         bool closeShips(size_t length, std::pair<size_t, size_t>coordinates, bool is_vertical);
         void addShip(size_t length, std::pair<size_t, size_t>coordinates, bool is_vertical);
         bool Attack(std::pair<size_t, size_t> coordinates);
-        Ship getShip(size_t index) const;
+        
+        
 };

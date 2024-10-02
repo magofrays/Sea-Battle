@@ -36,6 +36,10 @@ shipManager& shipManager::operator = (shipManager && ship_manager){
     return *this;
 }
 
+Ship shipManager::getShip(size_t index) const{
+    return ships[index];
+}
+
 bool shipManager::closeShips(size_t length, std::pair<size_t, size_t>coordinates, bool is_vertical){
     size_t len_subtr_x = is_vertical ? length-1 : 0;
     size_t len_subtr_y = is_vertical ? 0 : length-1;
@@ -101,7 +105,5 @@ bool shipManager::Attack(std::pair <size_t, size_t> coordinates){
     }
     return false;
 }
-Ship shipManager::getShip(size_t index) const{
-    return ships[index];
-}
+
 
