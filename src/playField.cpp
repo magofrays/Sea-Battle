@@ -94,4 +94,12 @@ skibidi.Attack({4, 4});
 std::cout<<skibidi.getShipManager().getShip(0).isDestroyed() << std::endl;
 skibidi.Attack({4,4});
 std::cout<<skibidi.getShipManager().getShip(0).isDestroyed() << std::endl;
+
+skibidi.printField();
+std::cout << "----------------\n";
+skibidi.addShip(3, {1,1}, true);
+skibidi.Attack({1, 1});
+skibidi.Attack({1, 2});
+skibidi.Attack({1, 3});
+skibidi.printField();
 }
