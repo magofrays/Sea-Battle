@@ -1,6 +1,6 @@
 #include "Ship.h"
 
-Ship::Ship(size_t length, std::pair<size_t, size_t> coordinates, bool is_vertical)
+Ship::Ship(int length, std::pair<int, int> coordinates, bool is_vertical)
 : length(length), coordinates(coordinates), is_vertical(is_vertical), segments(length, normal){
     if(length < 1 || length > 4 ){
         throw std::invalid_argument("SHIP LENGTH IS BETWEEN 1-4!");
@@ -29,21 +29,21 @@ Ship& Ship::operator = (Ship && ship) noexcept{
     return *this;
 }
 
-size_t Ship::getLen() const{
+int Ship::getLen() const{
     return length;
 }
-std::pair<size_t, size_t>  Ship::getCoor() const{
+std::pair<int, int>  Ship::getCoor() const{
     return coordinates;
 }
 bool Ship::IsVertical() const{
     return is_vertical;
 }
-Ship::segmentState Ship::getSegment(size_t index) const{
+Ship::segmentState Ship::getSegment(int index) const{
     return segments[index];
 }
 
 
-void Ship::Attack(size_t index){
+void Ship::Attack(int index){
     switch(segments[index]){
         case normal:
             segments[index] = damaged;

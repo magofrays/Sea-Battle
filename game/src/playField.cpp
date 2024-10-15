@@ -1,18 +1,10 @@
 #include "playField.h"
 
-playField::playField() : size_x(0), size_y(0), ship_manager() {
-}
-playField::playField(size_t size_x, size_t size_y)
-    : size_x(size_x), size_y(size_y), ship_manager() {
-    field.resize(size_y, std::vector<cell>(size_x, unknown));
-}
-playField::playField(size_t size_x, size_t size_y, 
-            std::initializer_list<size_t> lengths, 
-            std::initializer_list<std::pair<size_t, size_t>> coordinates_arr,
-            std::initializer_list<bool> is_vertical_arr) 
-    : size_x(size_x), size_y(size_y), ship_manager(lengths, coordinates_arr, is_vertical_arr){
-    field.resize(size_y, std::vector<cell>(size_x, unknown));
-}
+
+playField::playField(int size_x, int size_y, shipManager & ship_manager) :
+        size_x(size_x), size_y(size_y), ship_manager(ship_manager) {
+            field.resize(size_y, std::vector<cell>(size_x, unknown));
+        }
 
 playField::playField(const playField &play_field):size_x(play_field.size_x), 
     size_y(play_field.size_y), ship_manager(play_field.ship_manager), field(play_field.field){
@@ -28,7 +20,8 @@ playField& playField::operator = (const playField& play_field){
 }
 playField::playField(playField && play_field) noexcept :size_x(std::move(play_field.size_x)), 
                                               size_y(std::move(play_field.size_y)),
-                                              ship_manager(std::move(play_field.ship_manager)){
+                                              ship_manager(play_field.ship_manager)
+                                            {
     field = std::move(play_field.field);
     play_field.field.clear();
 }
@@ -36,19 +29,19 @@ playField& playField::operator = (playField && play_field) noexcept {
     if(this != &play_field){
         size_x = std::move(play_field.size_x);
         size_y = std::move(play_field.size_y);
-        ship_manager = std::move(play_field.ship_manager);
+        ship_manager = play_field.ship_manager;
         field = std::move(play_field.field);
     }
     return *this;
 }
 
-shipManager playField::getShipManager() const{
+shipManager & playField::getShipManager() const{
     return ship_manager;
 }
 
-bool playField::inField(size_t length, std::pair<size_t, size_t>coordinates, bool is_vertical){
-    size_t len_subtr_y = is_vertical ? length-1 : 0;
-    size_t len_subtr_x = is_vertical ? 0 : length-1;
+bool playField::inField(int length, std::pair<int, int>coordinates, bool is_vertical){
+    int len_subtr_y = is_vertical ? length-1 : 0;
+    int len_subtr_x = is_vertical ? 0 : length-1;
     if(0 <= coordinates.first && coordinates.first + len_subtr_x <= size_x-1 && 
         0 <= coordinates.second && coordinates.second + len_subtr_y <= size_y-1 
     ){
@@ -57,14 +50,14 @@ bool playField::inField(size_t length, std::pair<size_t, size_t>coordinates, boo
     return false;
 }
 
-void playField::addShip(size_t length, std::pair<size_t, size_t>coordinates, bool is_vertical){
+void playField::addShip(int length, std::pair<int, int>coordinates, bool is_vertical){
     if(inField(length, coordinates, is_vertical)){
         return ship_manager.addShip(length, coordinates, is_vertical);
     }
     throw std::invalid_argument("OBJECT IS OUT OF BORDER!");
 }
 
-void playField::Attack(std::pair<size_t, size_t> coordinates){
+void playField::Attack(std::pair<int, int> coordinates){
     if(inField(1, coordinates, true)){
         if(ship_manager.Attack(coordinates)){
             field[coordinates.second][coordinates.first] = ship;
@@ -76,30 +69,27 @@ void playField::Attack(std::pair<size_t, size_t> coordinates){
     }
     throw std::invalid_argument("COORDINATES ARE OUT OF BORDER!");
 }
-
+std::pair<int, int> playField::getSize(){
+    std::pair<int, int> size = {size_x, size_y};
+    return size;
+}
 void playField::printField(){
     for(int y = size_y-1; y != -1; y--){
         for(int x = 0; x != size_x; x++){
-            std::cout << field[y][x] << " ";
+            char ch;
+            if (field[y][x] == unknown){
+                ch = '#';
+            }
+            else if(field[y][x] == ship){
+                ch = 'x';
+            }
+            else{
+                ch = '*';
+            }
+            std::cout << ch << " ";
         }
         std::cout << "\n";
     }
+    std::cout << "\n";
 }
 
-
-int main(){
-    playField skibidi(5, 5);
-skibidi.addShip(1, {4, 4}, true);
-skibidi.Attack({4, 4});
-std::cout<<skibidi.getShipManager().getShip(0).isDestroyed() << std::endl;
-skibidi.Attack({4,4});
-std::cout<<skibidi.getShipManager().getShip(0).isDestroyed() << std::endl;
-
-skibidi.printField();
-std::cout << "----------------\n";
-skibidi.addShip(3, {1,1}, true);
-skibidi.Attack({1, 1});
-skibidi.Attack({1, 2});
-skibidi.Attack({1, 3});
-skibidi.printField();
-}
