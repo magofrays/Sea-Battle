@@ -1,11 +1,4 @@
-#include <vector>
-#include <iostream>
-#include <utility>
-#include <initializer_list>
-#include <cstdlib>
-#include <ctime>
-#include <list>
-#include <cmath>
+#include <bits/stdc++.h>
 
 class Ship{
     enum segmentState{

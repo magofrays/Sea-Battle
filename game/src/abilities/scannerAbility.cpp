@@ -7,6 +7,7 @@ void scannerAbility::setCoordinates(std::pair <int, int> coordinates){
 }
 
 void scannerAbility::apply(playField & play_field){
+    std::cout << "Scanner ability applied!\n";
     shipManager & ship_manager = play_field.getShipManager();
     int count = 0;
     std::pair<int, int> size = play_field.getSize();

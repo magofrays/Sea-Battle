@@ -1,3 +1,4 @@
+#pragma once
 #include "Ship.h"
 
 class shipManager{

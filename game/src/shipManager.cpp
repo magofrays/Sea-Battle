@@ -21,7 +21,7 @@ shipManager::shipManager(std::initializer_list<int> lengths,
     }
     };
 
-shipManager::shipManager(const shipManager &ship_manager):ships(ship_manager.ships){} // конструктор копирования
+shipManager::shipManager(const shipManager &ship_manager):ships(ship_manager.ships){}
 shipManager& shipManager::operator = (const shipManager& ship_manager){
     if(this != &ship_manager){
         ships = ship_manager.ships;
@@ -95,7 +95,6 @@ return close_to_ship;
 
 void shipManager::addShip(int length, std::pair<int, int>coordinates, bool is_vertical){
     if(!closeShips(length, coordinates, is_vertical)){
-        //Ship & ship = Ship(length, coordinates, is_vertical);
         return ships.push_back(Ship(length, coordinates, is_vertical));
     }
     throw std::invalid_argument("SHIP CLOSE TO SHIP OR SHIPS!");

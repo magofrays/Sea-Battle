@@ -69,6 +69,11 @@ void playField::Attack(std::pair<int, int> coordinates){
     }
     throw std::invalid_argument("COORDINATES ARE OUT OF BORDER!");
 }
+
+void playField::setShipManager(shipManager & ship_manager){
+    this->ship_manager = ship_manager;
+}
+
 std::pair<int, int> playField::getSize(){
     std::pair<int, int> size = {size_x, size_y};
     return size;

@@ -98,12 +98,12 @@ src/clean:
 CMakeFiles/seabattle.dir/all:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/seabattle.dir/build.make CMakeFiles/seabattle.dir/depend
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/seabattle.dir/build.make CMakeFiles/seabattle.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/magofrays/Desktop/OOP/Sea-Battle/game/build/CMakeFiles --progress-num=1,2,3,4,5,6,7,8 "Built target seabattle"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/magofrays/Desktop/OOP/Sea-Battle/game/build/CMakeFiles --progress-num=1,2,3,4,5,6,7,8,9,10 "Built target seabattle"
 .PHONY : CMakeFiles/seabattle.dir/all
 
 # Build rule for subdir invocation for target.
 CMakeFiles/seabattle.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/magofrays/Desktop/OOP/Sea-Battle/game/build/CMakeFiles 8
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/magofrays/Desktop/OOP/Sea-Battle/game/build/CMakeFiles 10
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CMakeFiles/seabattle.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/magofrays/Desktop/OOP/Sea-Battle/game/build/CMakeFiles 0
 .PHONY : CMakeFiles/seabattle.dir/rule
