@@ -337,4 +337,9 @@ CMakeFiles/seabattle.dir/src/Game.cpp.o: \
  /home/magofrays/Desktop/OOP/Sea-Battle/game/src/abilities/scannerAbility.h \
  /home/magofrays/Desktop/OOP/Sea-Battle/game/src/abilities/IAbility.h \
  /home/magofrays/Desktop/OOP/Sea-Battle/game/src/abilities/doubleDamageAbility.h \
- /home/magofrays/Desktop/OOP/Sea-Battle/game/src/abilities/shellingAbility.h
+ /home/magofrays/Desktop/OOP/Sea-Battle/game/src/abilities/shellingAbility.h \
+ /home/magofrays/Desktop/OOP/Sea-Battle/game/src/errors/indexOutOfBounds.h \
+ /home/magofrays/Desktop/OOP/Sea-Battle/game/src/errors/invalidShipLength.h \
+ /home/magofrays/Desktop/OOP/Sea-Battle/game/src/errors/objectOutOfBounds.h \
+ /home/magofrays/Desktop/OOP/Sea-Battle/game/src/errors/inputException.h \
+ /home/magofrays/Desktop/OOP/Sea-Battle/game/src/errors/invalidShipPosition.h

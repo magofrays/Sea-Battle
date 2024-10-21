@@ -22,7 +22,7 @@ class playField{
         shipManager & getShipManager() const;
         
         bool inField(int length, std::pair<int, int>coordinates, bool is_vertical);
-        void addShip(int length, std::pair<int, int>coordinates, bool is_vertical);
+        void addShip(Ship ship);
         void Attack(std::pair<int, int> coordinates);
         void setShipManager(shipManager & ship_manager);
 

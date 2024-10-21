@@ -11,8 +11,6 @@ file(REMOVE_RECURSE
   "CMakeFiles/seabattle.dir/src/abilities/scannerAbility.cpp.o.d"
   "CMakeFiles/seabattle.dir/src/abilities/shellingAbility.cpp.o"
   "CMakeFiles/seabattle.dir/src/abilities/shellingAbility.cpp.o.d"
-  "CMakeFiles/seabattle.dir/src/errors/shipLengthException.cpp.o"
-  "CMakeFiles/seabattle.dir/src/errors/shipLengthException.cpp.o.d"
   "CMakeFiles/seabattle.dir/src/playField.cpp.o"
   "CMakeFiles/seabattle.dir/src/playField.cpp.o.d"
   "CMakeFiles/seabattle.dir/src/shipManager.cpp.o"

@@ -273,30 +273,6 @@ src/abilities/shellingAbility.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/seabattle.dir/build.make CMakeFiles/seabattle.dir/src/abilities/shellingAbility.cpp.s
 .PHONY : src/abilities/shellingAbility.cpp.s
 
-src/errors/shipLengthException.o: src/errors/shipLengthException.cpp.o
-.PHONY : src/errors/shipLengthException.o
-
-# target to build an object file
-src/errors/shipLengthException.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/seabattle.dir/build.make CMakeFiles/seabattle.dir/src/errors/shipLengthException.cpp.o
-.PHONY : src/errors/shipLengthException.cpp.o
-
-src/errors/shipLengthException.i: src/errors/shipLengthException.cpp.i
-.PHONY : src/errors/shipLengthException.i
-
-# target to preprocess a source file
-src/errors/shipLengthException.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/seabattle.dir/build.make CMakeFiles/seabattle.dir/src/errors/shipLengthException.cpp.i
-.PHONY : src/errors/shipLengthException.cpp.i
-
-src/errors/shipLengthException.s: src/errors/shipLengthException.cpp.s
-.PHONY : src/errors/shipLengthException.s
-
-# target to generate assembly for a file
-src/errors/shipLengthException.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/seabattle.dir/build.make CMakeFiles/seabattle.dir/src/errors/shipLengthException.cpp.s
-.PHONY : src/errors/shipLengthException.cpp.s
-
 src/playField.o: src/playField.cpp.o
 .PHONY : src/playField.o
 
@@ -372,9 +348,6 @@ help:
 	@echo "... src/abilities/shellingAbility.o"
 	@echo "... src/abilities/shellingAbility.i"
 	@echo "... src/abilities/shellingAbility.s"
-	@echo "... src/errors/shipLengthException.o"
-	@echo "... src/errors/shipLengthException.i"
-	@echo "... src/errors/shipLengthException.s"
 	@echo "... src/playField.o"
 	@echo "... src/playField.i"
 	@echo "... src/playField.s"

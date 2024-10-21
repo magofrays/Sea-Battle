@@ -4,7 +4,7 @@
 # compile CXX with /usr/bin/c++
 CXX_DEFINES = 
 
-CXX_INCLUDES = -I/home/magofrays/Desktop/OOP/Sea-Battle/game/seabattle -I/home/magofrays/Desktop/OOP/Sea-Battle/game/src
+CXX_INCLUDES = -I/home/magofrays/Desktop/OOP/Sea-Battle/game/src
 
 CXX_FLAGS = 
 

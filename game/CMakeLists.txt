@@ -3,5 +3,5 @@ project(SeaBattle)
 set(CMAKE_CXX_STANDARD 17)
 
 add_executable(seabattle)
-include_directories(seabattle src)
+include_directories(src) 
 add_subdirectory(src)

@@ -17,12 +17,14 @@ class Ship{
         Ship& operator = (const Ship& ship);
         Ship(Ship && ship) noexcept;
         Ship& operator = (Ship && ship) noexcept;
+        friend std::istream& operator >> (std::istream& in, Ship& ship);
+        friend std::ostream& operator << (std::ostream& out, Ship& ship);
 
         int getLen() const;
         std::pair<int, int> getCoor() const;
         bool IsVertical() const;
         segmentState getSegment(int index) const;
-        
+
         void Attack(int index);
         bool isDestroyed();
 };
