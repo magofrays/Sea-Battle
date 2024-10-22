@@ -23,8 +23,9 @@ class playField{
         
         bool inField(int length, std::pair<int, int>coordinates, bool is_vertical);
         void addShip(Ship ship);
-        void Attack(std::pair<int, int> coordinates);
+        segmentState getSegmentOrAttack(std::pair<int, int> coordinates, bool to_attack);
         void setShipManager(shipManager & ship_manager);
+        
 
         std::pair<int, int> getSize();
         

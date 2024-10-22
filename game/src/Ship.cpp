@@ -39,10 +39,11 @@ std::istream& operator>>(std::istream& in, Ship& ship) {
     std::string input;
     std::getline(in, input);
     std::stringstream ss(input);
-    int orientation, x, y, length;
-
-    ss >> x >> y >> length >> orientation;
-
+    int orientation = 0, x = 0, y = 0, length = 0;
+    
+    if (!(ss >> x >> y >> length >> orientation) || !ss.eof()){
+        throw inputException();
+    }
     if(length < 1 || length > 4 ){
         throw invalidShipLength(length);
     }
@@ -73,7 +74,7 @@ std::pair<int, int>  Ship::getCoor() const{
 bool Ship::IsVertical() const{
     return is_vertical;
 }
-Ship::segmentState Ship::getSegment(int index) const{
+segmentState Ship::getSegment(int index) const{
     return segments[index];
 }
 

@@ -1,9 +1,10 @@
-CMakeFiles/seabattle.dir/src/Game.cpp.o: \
- /home/magofrays/Desktop/OOP/Sea-Battle/game/src/Game.cpp \
+CMakeFiles/seabattle.dir/src/draw/console/consoleDrawer.cpp.o: \
+ /home/magofrays/Desktop/OOP/Sea-Battle/game/src/draw/console/consoleDrawer.cpp \
  /usr/include/stdc-predef.h \
- /home/magofrays/Desktop/OOP/Sea-Battle/game/src/playField.h \
- /home/magofrays/Desktop/OOP/Sea-Battle/game/src/shipManager.h \
- /home/magofrays/Desktop/OOP/Sea-Battle/game/src/Ship.h \
+ /home/magofrays/Desktop/OOP/Sea-Battle/game/src/draw/console/consoleDrawer.h \
+ /home/magofrays/Desktop/OOP/Sea-Battle/game/src/draw/console/../../playField.h \
+ /home/magofrays/Desktop/OOP/Sea-Battle/game/src/draw/console/../../shipManager.h \
+ /home/magofrays/Desktop/OOP/Sea-Battle/game/src/draw/console/../../Ship.h \
  /usr/include/x86_64-linux-gnu/c++/13/bits/stdc++.h \
  /usr/include/c++/13/cassert \
  /usr/include/x86_64-linux-gnu/c++/13/bits/c++config.h \
@@ -332,15 +333,4 @@ CMakeFiles/seabattle.dir/src/Game.cpp.o: \
  /usr/include/c++/13/shared_mutex /usr/include/c++/13/charconv \
  /usr/include/c++/13/filesystem /usr/include/c++/13/bits/fs_fwd.h \
  /usr/include/c++/13/bits/fs_path.h /usr/include/c++/13/bits/fs_dir.h \
- /usr/include/c++/13/bits/fs_ops.h /usr/include/c++/13/memory_resource \
- /home/magofrays/Desktop/OOP/Sea-Battle/game/src/abilities/abilitiesManager.h \
- /home/magofrays/Desktop/OOP/Sea-Battle/game/src/abilities/scannerAbility.h \
- /home/magofrays/Desktop/OOP/Sea-Battle/game/src/abilities/IAbility.h \
- /home/magofrays/Desktop/OOP/Sea-Battle/game/src/abilities/doubleDamageAbility.h \
- /home/magofrays/Desktop/OOP/Sea-Battle/game/src/abilities/shellingAbility.h \
- /home/magofrays/Desktop/OOP/Sea-Battle/game/src/errors/indexOutOfBounds.h \
- /home/magofrays/Desktop/OOP/Sea-Battle/game/src/errors/invalidShipLength.h \
- /home/magofrays/Desktop/OOP/Sea-Battle/game/src/errors/objectOutOfBounds.h \
- /home/magofrays/Desktop/OOP/Sea-Battle/game/src/errors/inputException.h \
- /home/magofrays/Desktop/OOP/Sea-Battle/game/src/errors/invalidShipPosition.h \
- /home/magofrays/Desktop/OOP/Sea-Battle/game/src/draw/console/consoleDrawer.h
+ /usr/include/c++/13/bits/fs_ops.h /usr/include/c++/13/memory_resource

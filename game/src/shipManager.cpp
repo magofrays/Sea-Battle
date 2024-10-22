@@ -28,8 +28,8 @@ int shipManager::getLen() const{
 }
 
 void shipManager::closeShips(int length, std::pair<int, int>coordinates, bool is_vertical){
-    int len_subtr_x = is_vertical ? length-1 : 0;
-    int len_subtr_y = is_vertical ? 0 : length-1;
+    int len_subtr_y = is_vertical ? length-1 : 0;
+    int len_subtr_x = is_vertical ? 0 : length-1;
     for(Ship & ship: ships){
         if(ship.IsVertical()){
             if(
@@ -85,27 +85,31 @@ bool shipManager::checkPoint(std::pair <int, int> coordinates){
     return false;
 }
 
-bool shipManager::Attack(std::pair <int, int> coordinates){
+segmentState shipManager::getSegmentOrAttack(std::pair <int, int> coordinates, bool to_attack){
     for(Ship &ship: ships){
         if(ship.IsVertical()){
             
             if(coordinates.first == ship.getCoor().first && 
             ship.getCoor().second <= coordinates.second && coordinates.second <= ship.getCoor().second+ship.getLen()-1){
                 int index = coordinates.second - ship.getCoor().second;
-                ship.Attack(index);
-                return true;
+                if(to_attack){
+                    ship.Attack(index);
+                }
+                return ship.getSegment(index);
             }
         }
         else{
             if(coordinates.second == ship.getCoor().second && 
             ship.getCoor().first <= coordinates.first && coordinates.first <= ship.getCoor().first+ship.getLen()-1){
                 int index = coordinates.first - ship.getCoor().first;
-                ship.Attack(index);
-                return true;
+                if(to_attack){
+                    ship.Attack(index);
+                }
+                return ship.getSegment(index);
             }
         }
     }
-    return false;
+    return null;
 }
 
 

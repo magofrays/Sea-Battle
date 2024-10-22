@@ -21,6 +21,6 @@ void shellingAbility::apply(playField & play_field){
     }
 
     std::cout << coordinates.first << " " << coordinates.second << "\n";
-    ship_manager.Attack(coordinates);
+    ship_manager.getSegmentOrAttack(coordinates, true);
     
 }

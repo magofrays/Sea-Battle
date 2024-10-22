@@ -1,11 +1,13 @@
 #include <bits/stdc++.h>
 
-class Ship{
-    enum segmentState{
+enum segmentState{
         normal,
         damaged,
-        destroyed
+        destroyed,
+        null
     };
+
+class Ship{
     std::vector<segmentState> segments;
     bool is_vertical = true;
     std::pair<int, int> coordinates;

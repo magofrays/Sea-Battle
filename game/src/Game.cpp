@@ -1,4 +1,3 @@
-#pragma once
 #include "playField.h"
 #include "abilities/abilitiesManager.h"
 #include "errors/indexOutOfBounds.h"
@@ -6,30 +5,53 @@
 #include "errors/objectOutOfBounds.h"
 #include "errors/inputException.h"
 #include "errors/invalidShipPosition.h"
+#include "draw/console/consoleDrawer.h"
 
-void attack_field(playField playField){
-    for(int i = 0; i != 5; i++){
-        for(int j = 0; j != 5; j++){
-            playField.Attack({j, i});
-        }
-    }
-    playField.printField();
-}
 
 int main(){
-    shipManager ship_manager;
-    playField play_field(5, 5, ship_manager);
     system("clear");
-    for(int i = 0; i != 3; i++){
+    std::cout << "Input sizes of field\n";
+    std::string input;
+    std::getline(std::cin, input);
+    std::stringstream ss(input);
+    int orientation = 0, x = 0, y = 0, length = 0;
+    
+    if (!(ss >> x >> y )|| !ss.eof()){
+        throw inputException();
+    }
+    
+    shipManager ship_manager;
+    playField play_field(x, y, ship_manager);
+    consoleDrawer drawer;
+    system("cls");
+    for(int i = 0; i != 1; i++){
         try{
-            attack_field(play_field);
+            drawer.drawPlayerField(play_field);
             Ship myShip;
             std::cin >> myShip;
             play_field.addShip(myShip);
         }
         catch(invalidShipPosition & e){
             system("clear");
-            std::cerr << e.what();
+            std::cerr << e.what() << "\n";
+            i--;
+            continue;
+        }
+        catch(invalidShipLength & e){
+            system("clear");
+            std::cerr << e.what() << "\n";
+            i--;
+            continue;
+        }
+        catch(inputException & e){
+            system("clear");
+            std::cerr << e.what() << "\n";
+            i--;
+            continue;
+        }
+        catch(objectOutOfBounds & e){
+            system("clear");
+            std::cerr << e.what() << "\n";
             i--;
             continue;
         }

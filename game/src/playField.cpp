@@ -58,18 +58,24 @@ void playField::addShip(Ship ship){
     throw objectOutOfBounds(ship.getCoor());
 }
 
-void playField::Attack(std::pair<int, int> coordinates){
+
+segmentState playField::getSegmentOrAttack(std::pair<int, int> coordinates, bool to_attack){
     if(inField(1, coordinates, true)){
-        if(ship_manager.Attack(coordinates)){
-            field[coordinates.second][coordinates.first] = ship;
+        segmentState segment = ship_manager.getSegmentOrAttack(coordinates, to_attack);
+        if(to_attack){
+            if(segment != null){
+                field[coordinates.second][coordinates.first] = ship;
+            }
+            else{
+                field[coordinates.second][coordinates.first] = empty;
+            }
         }
-        else{
-            field[coordinates.second][coordinates.first] = empty;
-        }
-        return;
+        return segment;
+        
     }
     throw objectOutOfBounds(coordinates);
 }
+
 
 void playField::setShipManager(shipManager & ship_manager){
     this->ship_manager = ship_manager;
