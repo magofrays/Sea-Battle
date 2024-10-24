@@ -1,27 +1,25 @@
 #include "playField.h"
 #include "errors/objectOutOfBounds.h"
 
-playField::playField(int size_x, int size_y, shipManager & ship_manager) :
-        size_x(size_x), size_y(size_y), ship_manager(ship_manager) {
+playField::playField(int size_x, int size_y) :
+        size_x(size_x), size_y(size_y) {
             field.resize(size_y, std::vector<cell>(size_x, unknown));
         }
 
 playField::playField(const playField &play_field):size_x(play_field.size_x), 
-    size_y(play_field.size_y), ship_manager(play_field.ship_manager), field(play_field.field){
+    size_y(play_field.size_y), field(play_field.field){
     }
 
 playField& playField::operator = (const playField& play_field){
     if(this != &play_field){
         size_x = play_field.size_x;
         size_y = play_field.size_y;
-        ship_manager = play_field.ship_manager;
         field = play_field.field;
     }
     return *this;
 }
 playField::playField(playField && play_field) noexcept :size_x(std::move(play_field.size_x)), 
-                                              size_y(std::move(play_field.size_y)),
-                                              ship_manager(play_field.ship_manager)
+                                              size_y(std::move(play_field.size_y))
                                             {
     field = std::move(play_field.field);
     play_field.field.clear();
@@ -30,14 +28,9 @@ playField& playField::operator = (playField && play_field) noexcept {
     if(this != &play_field){
         size_x = std::move(play_field.size_x);
         size_y = std::move(play_field.size_y);
-        ship_manager = play_field.ship_manager;
         field = std::move(play_field.field);
     }
     return *this;
-}
-
-shipManager & playField::getShipManager() const{
-    return ship_manager;
 }
 
 bool playField::inField(int length, std::pair<int, int>coordinates, bool is_vertical){
@@ -51,7 +44,7 @@ bool playField::inField(int length, std::pair<int, int>coordinates, bool is_vert
     return false;
 }
 
-void playField::addShip(Ship ship){
+void playField::addShip(Ship ship, shipManager & ship_manager){
     if(inField(ship.getLen(), ship.getCoor(), ship.IsVertical())){
         return ship_manager.addShip(ship);
     }
@@ -59,7 +52,7 @@ void playField::addShip(Ship ship){
 }
 
 
-segmentState playField::getSegmentOrAttack(std::pair<int, int> coordinates, bool to_attack){
+segmentState playField::getSegmentOrAttack(std::pair<int, int> coordinates, bool to_attack,  shipManager & ship_manager){
     if(inField(1, coordinates, true)){
         segmentState segment = ship_manager.getSegmentOrAttack(coordinates, to_attack);
         if(to_attack){
@@ -74,11 +67,6 @@ segmentState playField::getSegmentOrAttack(std::pair<int, int> coordinates, bool
         
     }
     throw objectOutOfBounds(coordinates);
-}
-
-
-void playField::setShipManager(shipManager & ship_manager){
-    this->ship_manager = ship_manager;
 }
 
 std::pair<int, int> playField::getSize(){

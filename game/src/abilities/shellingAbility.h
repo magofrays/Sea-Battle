@@ -4,5 +4,5 @@
 class shellingAbility : public IAbility{
     public:
         shellingAbility() = default;
-        void apply(playField & play_field);
+        void apply(playField & play_field, shipManager & ship_manager);
 };  

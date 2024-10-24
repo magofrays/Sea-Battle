@@ -4,8 +4,8 @@ doubleDamageAbility::doubleDamageAbility(std::pair<int, int> coordinates) : coor
 void doubleDamageAbility::setCoordinates(std::pair<int, int> coordinates){
     this->coordinates = coordinates;
 }
-void doubleDamageAbility::apply(playField & play_field){
+void doubleDamageAbility::apply(playField & play_field, shipManager & ship_manager){
     std::cout << "Double damage ability applied!\n";
-    play_field.getSegmentOrAttack(coordinates, true);
-    play_field.getSegmentOrAttack(coordinates, true);
+    play_field.getSegmentOrAttack(coordinates, true, ship_manager);
+    play_field.getSegmentOrAttack(coordinates, true, ship_manager);
 }

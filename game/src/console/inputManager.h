@@ -10,5 +10,5 @@ class inputManager{
     public:
         inputManager() = default;
         std::istream& inputShip(std::istream& in, Ship& ship);
-        std::istream& inputPlayField(std::istream& in, playField & playField, shipManager & ship_manager);
+        std::istream& inputPlayField(std::istream& in, playField & playField);
 };

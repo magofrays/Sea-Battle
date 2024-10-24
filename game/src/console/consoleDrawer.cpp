@@ -1,13 +1,13 @@
 #include "consoleDrawer.h"
 
-void consoleDrawer::drawField(playField  & play_field){
+void consoleDrawer::drawField(playField  & play_field, shipManager & ship_manager){
     std::pair<int, int> bounds = play_field.getSize();
 }
-void consoleDrawer::drawPlayerField(playField & play_field){
+void consoleDrawer::drawPlayerField(playField & play_field, shipManager & ship_manager){
     std::pair<int, int> bounds = play_field.getSize();
     for(int y = bounds.second-1; y != -1; y--){
         for(int x = 0; x != bounds.first; x++){
-            segmentState segment = play_field.getSegmentOrAttack({x, y}, false);
+            segmentState segment = play_field.getSegmentOrAttack({x, y}, false, ship_manager);
             char ch;
             if (segment == null){
                 ch = '*';

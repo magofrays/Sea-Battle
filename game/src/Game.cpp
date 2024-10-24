@@ -7,30 +7,18 @@
 
 int main(){
     inputManager input_manager;
-    Ship ship;
-    input_manager.inputShip(std::cin, ship);
-    
-    /*system("clear");
-    std::cout << "Input sizes of field\n";
-    std::string input;
-    std::getline(std::cin, input);
-    std::stringstream ss(input);
-    int orientation = 0, x = 0, y = 0, length = 0;
-    
-    if (!(ss >> x >> y )|| !ss.eof()){
-        throw inputException();
-    }
-    
+    consoleDrawer console_drawer;
     shipManager ship_manager;
-    playField play_field(x, y, ship_manager);
-    consoleDrawer drawer;
+    playField play_field;
     system("clear");
-    for(int i = 0; i != 1; i++){
+    input_manager.inputPlayField(std::cin, play_field);
+    system("clear");
+    for(int i = 0; i != 10; i++){
         try{
-            drawer.drawPlayerField(play_field);
-            Ship myShip;
-            std::cin >> myShip;
-            play_field.addShip(myShip);
+            console_drawer.drawPlayerField(play_field, ship_manager);
+            Ship ship;
+            input_manager.inputShip(std::cin, ship);
+            play_field.addShip(ship, ship_manager);
         }
         catch(invalidShipPosition & e){
             system("clear");
@@ -57,7 +45,5 @@ int main(){
             continue;
         }
         system("clear");
-        
-    }*/
-    
+    }
 } 

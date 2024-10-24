@@ -1,10 +1,8 @@
 #include "shellingAbility.h"
 
-void shellingAbility::apply(playField & play_field){
+void shellingAbility::apply(playField & play_field, shipManager & ship_manager){
     std::cout << "Shelling ability applied!\n";
     std::mt19937 gen(std::random_device{}());
-
-    shipManager & ship_manager = play_field.getShipManager();
     int ships_len = ship_manager.getLen();
     int ship_index = gen() % ships_len;
     Ship ship = ship_manager.getShip(ship_index);

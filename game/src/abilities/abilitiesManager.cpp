@@ -23,10 +23,10 @@ void abilitiesManager::createRandomAbility(){
     }
 }
 
-void abilitiesManager::applyAbility(playField & play_field){
+void abilitiesManager::applyAbility(playField & play_field, shipManager & ship_manager){
     if(abilities.size() > 0){
         auto & lastAbility = abilities.back();
-        lastAbility->apply(play_field);
+        lastAbility->apply(play_field, ship_manager);
         abilities.pop_back();
     }
 }

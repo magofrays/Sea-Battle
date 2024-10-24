@@ -7,6 +7,6 @@ class scannerAbility: public IAbility{
         scannerAbility() = default;
         scannerAbility(std::pair<int, int> coordinates);
         void setCoordinates(std::pair <int, int> coordinates);
-        void apply(playField & play_field);
+        void apply(playField & play_field, shipManager & ship_manager);
         ~scannerAbility() = default;
 };

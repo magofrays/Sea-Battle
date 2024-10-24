@@ -23,7 +23,7 @@ std::istream& inputManager::inputShip(std::istream& in, Ship& ship){
     return in;
 }
 
-std::istream& inputManager::inputPlayField(std::istream& in, playField & play_field, shipManager & ship_manager){
+std::istream& inputManager::inputPlayField(std::istream& in, playField & play_field ){
     std::cout << "Input play field sizes. Format: x_size y_size.\n";
     std::string input;
     std::getline(in, input);
@@ -37,7 +37,7 @@ std::istream& inputManager::inputPlayField(std::istream& in, playField & play_fi
         throw invalidFieldSize();
     }
 
-    play_field = playField(x_size, y_size, ship_manager); 
+    play_field = playField(x_size, y_size); 
     
     return in;
 }

@@ -7,6 +7,6 @@ class doubleDamageAbility: public IAbility{
         doubleDamageAbility() = default;
         doubleDamageAbility(std::pair <int, int> coordinates);
         void setCoordinates(std::pair <int, int> coordinates);
-        void apply(playField & play_field);
+        void apply(playField & play_field, shipManager & ship_manager);
         ~doubleDamageAbility() = default;
 };

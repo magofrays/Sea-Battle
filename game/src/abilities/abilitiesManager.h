@@ -8,5 +8,5 @@ class abilitiesManager{
     public:
         abilitiesManager();
         void createRandomAbility();
-        void applyAbility(playField & play_field);
+        void applyAbility(playField & play_field, shipManager & ship_manager);
 };

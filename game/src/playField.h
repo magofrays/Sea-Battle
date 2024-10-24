@@ -2,30 +2,28 @@
 #include "shipManager.h"
 
 class playField{
-    enum cell{
-        unknown,
-        empty,
-        ship
-    };
-    int size_x;
-    int size_y;
-    shipManager & ship_manager;
-    std::vector<std::vector<cell>> field;
+    public:
+        enum cell{
+            unknown,
+            empty,
+            ship
+        };
+    private:
+        int size_x;
+        int size_y;
+        
+        std::vector<std::vector<cell>> field;   
     public:
         playField() = default;
-        playField(int size_x, int size_y, shipManager & ship_manager);
+        playField(int size_x, int size_y);
         playField(const playField &play_field);
         playField& operator = (const playField& play_field);
         playField(playField && play_field) noexcept;
         playField& operator = (playField && play_field) noexcept;
-
-        shipManager & getShipManager() const;
         
         bool inField(int length, std::pair<int, int>coordinates, bool is_vertical);
-        void addShip(Ship ship);
-        segmentState getSegmentOrAttack(std::pair<int, int> coordinates, bool to_attack);
-        void setShipManager(shipManager & ship_manager);
+        void addShip(Ship ship, shipManager & ship_manager);
+        segmentState getSegmentOrAttack(std::pair<int, int> coordinates, bool to_attack, shipManager & ship_manager);
         
-
         std::pair<int, int> getSize();
 };
