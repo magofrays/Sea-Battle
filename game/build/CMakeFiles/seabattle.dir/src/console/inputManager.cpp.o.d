@@ -1,12 +1,10 @@
-CMakeFiles/seabattle.dir/src/Game.cpp.o: \
- /home/magofrays/Desktop/OOP/Sea-Battle/game/src/Game.cpp \
+CMakeFiles/seabattle.dir/src/console/inputManager.cpp.o: \
+ /home/magofrays/Desktop/OOP/Sea-Battle/game/src/console/inputManager.cpp \
  /usr/include/stdc-predef.h \
- /home/magofrays/Desktop/OOP/Sea-Battle/game/src/abilities/abilitiesManager.h \
- /home/magofrays/Desktop/OOP/Sea-Battle/game/src/abilities/scannerAbility.h \
- /home/magofrays/Desktop/OOP/Sea-Battle/game/src/abilities/IAbility.h \
- /home/magofrays/Desktop/OOP/Sea-Battle/game/src/abilities/../playField.h \
- /home/magofrays/Desktop/OOP/Sea-Battle/game/src/abilities/../shipManager.h \
- /home/magofrays/Desktop/OOP/Sea-Battle/game/src/abilities/../Ship.h \
+ /home/magofrays/Desktop/OOP/Sea-Battle/game/src/console/inputManager.h \
+ /home/magofrays/Desktop/OOP/Sea-Battle/game/src/console/../playField.h \
+ /home/magofrays/Desktop/OOP/Sea-Battle/game/src/console/../shipManager.h \
+ /home/magofrays/Desktop/OOP/Sea-Battle/game/src/console/../Ship.h \
  /usr/include/x86_64-linux-gnu/c++/13/bits/stdc++.h \
  /usr/include/c++/13/cassert \
  /usr/include/x86_64-linux-gnu/c++/13/bits/c++config.h \
@@ -336,10 +334,6 @@ CMakeFiles/seabattle.dir/src/Game.cpp.o: \
  /usr/include/c++/13/filesystem /usr/include/c++/13/bits/fs_fwd.h \
  /usr/include/c++/13/bits/fs_path.h /usr/include/c++/13/bits/fs_dir.h \
  /usr/include/c++/13/bits/fs_ops.h /usr/include/c++/13/memory_resource \
- /home/magofrays/Desktop/OOP/Sea-Battle/game/src/abilities/doubleDamageAbility.h \
- /home/magofrays/Desktop/OOP/Sea-Battle/game/src/abilities/shellingAbility.h \
- /home/magofrays/Desktop/OOP/Sea-Battle/game/src/console/consoleDrawer.h \
- /home/magofrays/Desktop/OOP/Sea-Battle/game/src/console/inputManager.h \
  /home/magofrays/Desktop/OOP/Sea-Battle/game/src/errors/indexOutOfBounds.h \
  /home/magofrays/Desktop/OOP/Sea-Battle/game/src/errors/invalidShipLength.h \
  /home/magofrays/Desktop/OOP/Sea-Battle/game/src/errors/objectOutOfBounds.h \

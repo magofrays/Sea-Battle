@@ -273,29 +273,53 @@ src/abilities/shellingAbility.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/seabattle.dir/build.make CMakeFiles/seabattle.dir/src/abilities/shellingAbility.cpp.s
 .PHONY : src/abilities/shellingAbility.cpp.s
 
-src/draw/console/consoleDrawer.o: src/draw/console/consoleDrawer.cpp.o
-.PHONY : src/draw/console/consoleDrawer.o
+src/console/consoleDrawer.o: src/console/consoleDrawer.cpp.o
+.PHONY : src/console/consoleDrawer.o
 
 # target to build an object file
-src/draw/console/consoleDrawer.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/seabattle.dir/build.make CMakeFiles/seabattle.dir/src/draw/console/consoleDrawer.cpp.o
-.PHONY : src/draw/console/consoleDrawer.cpp.o
+src/console/consoleDrawer.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/seabattle.dir/build.make CMakeFiles/seabattle.dir/src/console/consoleDrawer.cpp.o
+.PHONY : src/console/consoleDrawer.cpp.o
 
-src/draw/console/consoleDrawer.i: src/draw/console/consoleDrawer.cpp.i
-.PHONY : src/draw/console/consoleDrawer.i
+src/console/consoleDrawer.i: src/console/consoleDrawer.cpp.i
+.PHONY : src/console/consoleDrawer.i
 
 # target to preprocess a source file
-src/draw/console/consoleDrawer.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/seabattle.dir/build.make CMakeFiles/seabattle.dir/src/draw/console/consoleDrawer.cpp.i
-.PHONY : src/draw/console/consoleDrawer.cpp.i
+src/console/consoleDrawer.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/seabattle.dir/build.make CMakeFiles/seabattle.dir/src/console/consoleDrawer.cpp.i
+.PHONY : src/console/consoleDrawer.cpp.i
 
-src/draw/console/consoleDrawer.s: src/draw/console/consoleDrawer.cpp.s
-.PHONY : src/draw/console/consoleDrawer.s
+src/console/consoleDrawer.s: src/console/consoleDrawer.cpp.s
+.PHONY : src/console/consoleDrawer.s
 
 # target to generate assembly for a file
-src/draw/console/consoleDrawer.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/seabattle.dir/build.make CMakeFiles/seabattle.dir/src/draw/console/consoleDrawer.cpp.s
-.PHONY : src/draw/console/consoleDrawer.cpp.s
+src/console/consoleDrawer.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/seabattle.dir/build.make CMakeFiles/seabattle.dir/src/console/consoleDrawer.cpp.s
+.PHONY : src/console/consoleDrawer.cpp.s
+
+src/console/inputManager.o: src/console/inputManager.cpp.o
+.PHONY : src/console/inputManager.o
+
+# target to build an object file
+src/console/inputManager.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/seabattle.dir/build.make CMakeFiles/seabattle.dir/src/console/inputManager.cpp.o
+.PHONY : src/console/inputManager.cpp.o
+
+src/console/inputManager.i: src/console/inputManager.cpp.i
+.PHONY : src/console/inputManager.i
+
+# target to preprocess a source file
+src/console/inputManager.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/seabattle.dir/build.make CMakeFiles/seabattle.dir/src/console/inputManager.cpp.i
+.PHONY : src/console/inputManager.cpp.i
+
+src/console/inputManager.s: src/console/inputManager.cpp.s
+.PHONY : src/console/inputManager.s
+
+# target to generate assembly for a file
+src/console/inputManager.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/seabattle.dir/build.make CMakeFiles/seabattle.dir/src/console/inputManager.cpp.s
+.PHONY : src/console/inputManager.cpp.s
 
 src/playField.o: src/playField.cpp.o
 .PHONY : src/playField.o
@@ -372,9 +396,12 @@ help:
 	@echo "... src/abilities/shellingAbility.o"
 	@echo "... src/abilities/shellingAbility.i"
 	@echo "... src/abilities/shellingAbility.s"
-	@echo "... src/draw/console/consoleDrawer.o"
-	@echo "... src/draw/console/consoleDrawer.i"
-	@echo "... src/draw/console/consoleDrawer.s"
+	@echo "... src/console/consoleDrawer.o"
+	@echo "... src/console/consoleDrawer.i"
+	@echo "... src/console/consoleDrawer.s"
+	@echo "... src/console/inputManager.o"
+	@echo "... src/console/inputManager.i"
+	@echo "... src/console/inputManager.s"
 	@echo "... src/playField.o"
 	@echo "... src/playField.i"
 	@echo "... src/playField.s"

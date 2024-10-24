@@ -28,6 +28,4 @@ class playField{
         
 
         std::pair<int, int> getSize();
-        
-        void printField();
 };

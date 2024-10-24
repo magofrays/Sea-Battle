@@ -85,23 +85,3 @@ std::pair<int, int> playField::getSize(){
     std::pair<int, int> size = {size_x, size_y};
     return size;
 }
-void playField::printField(){
-    for(int y = size_y-1; y != -1; y--){
-        for(int x = 0; x != size_x; x++){
-            char ch;
-            if (field[y][x] == unknown){
-                ch = '#';
-            }
-            else if(field[y][x] == ship){
-                ch = 'x';
-            }
-            else{
-                ch = '*';
-            }
-            std::cout << ch << " ";
-        }
-        std::cout << "\n";
-    }
-    std::cout << "\n";
-}
-

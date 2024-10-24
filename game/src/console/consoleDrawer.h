@@ -1,5 +1,5 @@
 #pragma once
-#include "../../playField.h"
+#include "../playField.h"
 
 class consoleDrawer{
     public:

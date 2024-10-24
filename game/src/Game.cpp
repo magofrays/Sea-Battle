@@ -1,15 +1,16 @@
-#include "playField.h"
+//#include "playField.h"
 #include "abilities/abilitiesManager.h"
-#include "errors/indexOutOfBounds.h"
-#include "errors/invalidShipLength.h"
-#include "errors/objectOutOfBounds.h"
-#include "errors/inputException.h"
-#include "errors/invalidShipPosition.h"
-#include "draw/console/consoleDrawer.h"
+
+#include "console/consoleDrawer.h"
+#include "console/inputManager.h"
 
 
 int main(){
-    system("clear");
+    inputManager input_manager;
+    Ship ship;
+    input_manager.inputShip(std::cin, ship);
+    
+    /*system("clear");
     std::cout << "Input sizes of field\n";
     std::string input;
     std::getline(std::cin, input);
@@ -23,7 +24,7 @@ int main(){
     shipManager ship_manager;
     playField play_field(x, y, ship_manager);
     consoleDrawer drawer;
-    system("cls");
+    system("clear");
     for(int i = 0; i != 1; i++){
         try{
             drawer.drawPlayerField(play_field);
@@ -57,6 +58,6 @@ int main(){
         }
         system("clear");
         
-    }
+    }*/
     
 } 
