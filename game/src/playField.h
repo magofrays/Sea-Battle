@@ -3,16 +3,22 @@
 
 class playField{
     public:
-        enum cell{
-            unknown,
-            empty,
-            ship
-        };
+        class Cell{
+        public:
+            enum cellState{
+                unknown,
+                empty,
+                ship
+            };
+            std::shared_ptr<Ship::Segment> segment;
+            cellState state;
+            Cell():segment(nullptr), state(unknown){}
+            void Attack();
+    };
+
     private:
-        int size_x;
-        int size_y;
-        
-        std::vector<std::vector<cell>> field;   
+        box2d area;
+        std::vector<std::vector<Cell>> field;   
     public:
         playField() = default;
         playField(int size_x, int size_y);
@@ -21,9 +27,9 @@ class playField{
         playField(playField && play_field) noexcept;
         playField& operator = (playField && play_field) noexcept;
         
-        bool inField(int length, std::pair<int, int>coordinates, bool is_vertical);
-        void addShip(Ship ship, shipManager & ship_manager);
-        segmentState getSegmentOrAttack(std::pair<int, int> coordinates, bool to_attack, shipManager & ship_manager);
+        void placeShip(std::shared_ptr<Ship> ship, shipManager & ship_manager);
         
-        std::pair<int, int> getSize();
+        box2d getArea() const;
+        Cell & getCell(int x, int y);
+        void Attack(int x, int y);
 };

@@ -177,102 +177,6 @@ src/Ship.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/seabattle.dir/build.make CMakeFiles/seabattle.dir/src/Ship.cpp.s
 .PHONY : src/Ship.cpp.s
 
-src/abilities/abilitiesManager.o: src/abilities/abilitiesManager.cpp.o
-.PHONY : src/abilities/abilitiesManager.o
-
-# target to build an object file
-src/abilities/abilitiesManager.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/seabattle.dir/build.make CMakeFiles/seabattle.dir/src/abilities/abilitiesManager.cpp.o
-.PHONY : src/abilities/abilitiesManager.cpp.o
-
-src/abilities/abilitiesManager.i: src/abilities/abilitiesManager.cpp.i
-.PHONY : src/abilities/abilitiesManager.i
-
-# target to preprocess a source file
-src/abilities/abilitiesManager.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/seabattle.dir/build.make CMakeFiles/seabattle.dir/src/abilities/abilitiesManager.cpp.i
-.PHONY : src/abilities/abilitiesManager.cpp.i
-
-src/abilities/abilitiesManager.s: src/abilities/abilitiesManager.cpp.s
-.PHONY : src/abilities/abilitiesManager.s
-
-# target to generate assembly for a file
-src/abilities/abilitiesManager.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/seabattle.dir/build.make CMakeFiles/seabattle.dir/src/abilities/abilitiesManager.cpp.s
-.PHONY : src/abilities/abilitiesManager.cpp.s
-
-src/abilities/doubleDamageAbility.o: src/abilities/doubleDamageAbility.cpp.o
-.PHONY : src/abilities/doubleDamageAbility.o
-
-# target to build an object file
-src/abilities/doubleDamageAbility.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/seabattle.dir/build.make CMakeFiles/seabattle.dir/src/abilities/doubleDamageAbility.cpp.o
-.PHONY : src/abilities/doubleDamageAbility.cpp.o
-
-src/abilities/doubleDamageAbility.i: src/abilities/doubleDamageAbility.cpp.i
-.PHONY : src/abilities/doubleDamageAbility.i
-
-# target to preprocess a source file
-src/abilities/doubleDamageAbility.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/seabattle.dir/build.make CMakeFiles/seabattle.dir/src/abilities/doubleDamageAbility.cpp.i
-.PHONY : src/abilities/doubleDamageAbility.cpp.i
-
-src/abilities/doubleDamageAbility.s: src/abilities/doubleDamageAbility.cpp.s
-.PHONY : src/abilities/doubleDamageAbility.s
-
-# target to generate assembly for a file
-src/abilities/doubleDamageAbility.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/seabattle.dir/build.make CMakeFiles/seabattle.dir/src/abilities/doubleDamageAbility.cpp.s
-.PHONY : src/abilities/doubleDamageAbility.cpp.s
-
-src/abilities/scannerAbility.o: src/abilities/scannerAbility.cpp.o
-.PHONY : src/abilities/scannerAbility.o
-
-# target to build an object file
-src/abilities/scannerAbility.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/seabattle.dir/build.make CMakeFiles/seabattle.dir/src/abilities/scannerAbility.cpp.o
-.PHONY : src/abilities/scannerAbility.cpp.o
-
-src/abilities/scannerAbility.i: src/abilities/scannerAbility.cpp.i
-.PHONY : src/abilities/scannerAbility.i
-
-# target to preprocess a source file
-src/abilities/scannerAbility.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/seabattle.dir/build.make CMakeFiles/seabattle.dir/src/abilities/scannerAbility.cpp.i
-.PHONY : src/abilities/scannerAbility.cpp.i
-
-src/abilities/scannerAbility.s: src/abilities/scannerAbility.cpp.s
-.PHONY : src/abilities/scannerAbility.s
-
-# target to generate assembly for a file
-src/abilities/scannerAbility.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/seabattle.dir/build.make CMakeFiles/seabattle.dir/src/abilities/scannerAbility.cpp.s
-.PHONY : src/abilities/scannerAbility.cpp.s
-
-src/abilities/shellingAbility.o: src/abilities/shellingAbility.cpp.o
-.PHONY : src/abilities/shellingAbility.o
-
-# target to build an object file
-src/abilities/shellingAbility.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/seabattle.dir/build.make CMakeFiles/seabattle.dir/src/abilities/shellingAbility.cpp.o
-.PHONY : src/abilities/shellingAbility.cpp.o
-
-src/abilities/shellingAbility.i: src/abilities/shellingAbility.cpp.i
-.PHONY : src/abilities/shellingAbility.i
-
-# target to preprocess a source file
-src/abilities/shellingAbility.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/seabattle.dir/build.make CMakeFiles/seabattle.dir/src/abilities/shellingAbility.cpp.i
-.PHONY : src/abilities/shellingAbility.cpp.i
-
-src/abilities/shellingAbility.s: src/abilities/shellingAbility.cpp.s
-.PHONY : src/abilities/shellingAbility.s
-
-# target to generate assembly for a file
-src/abilities/shellingAbility.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/seabattle.dir/build.make CMakeFiles/seabattle.dir/src/abilities/shellingAbility.cpp.s
-.PHONY : src/abilities/shellingAbility.cpp.s
-
 src/console/consoleDrawer.o: src/console/consoleDrawer.cpp.o
 .PHONY : src/console/consoleDrawer.o
 
@@ -296,30 +200,6 @@ src/console/consoleDrawer.s: src/console/consoleDrawer.cpp.s
 src/console/consoleDrawer.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/seabattle.dir/build.make CMakeFiles/seabattle.dir/src/console/consoleDrawer.cpp.s
 .PHONY : src/console/consoleDrawer.cpp.s
-
-src/console/inputManager.o: src/console/inputManager.cpp.o
-.PHONY : src/console/inputManager.o
-
-# target to build an object file
-src/console/inputManager.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/seabattle.dir/build.make CMakeFiles/seabattle.dir/src/console/inputManager.cpp.o
-.PHONY : src/console/inputManager.cpp.o
-
-src/console/inputManager.i: src/console/inputManager.cpp.i
-.PHONY : src/console/inputManager.i
-
-# target to preprocess a source file
-src/console/inputManager.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/seabattle.dir/build.make CMakeFiles/seabattle.dir/src/console/inputManager.cpp.i
-.PHONY : src/console/inputManager.cpp.i
-
-src/console/inputManager.s: src/console/inputManager.cpp.s
-.PHONY : src/console/inputManager.s
-
-# target to generate assembly for a file
-src/console/inputManager.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/seabattle.dir/build.make CMakeFiles/seabattle.dir/src/console/inputManager.cpp.s
-.PHONY : src/console/inputManager.cpp.s
 
 src/playField.o: src/playField.cpp.o
 .PHONY : src/playField.o
@@ -384,24 +264,9 @@ help:
 	@echo "... src/Ship.o"
 	@echo "... src/Ship.i"
 	@echo "... src/Ship.s"
-	@echo "... src/abilities/abilitiesManager.o"
-	@echo "... src/abilities/abilitiesManager.i"
-	@echo "... src/abilities/abilitiesManager.s"
-	@echo "... src/abilities/doubleDamageAbility.o"
-	@echo "... src/abilities/doubleDamageAbility.i"
-	@echo "... src/abilities/doubleDamageAbility.s"
-	@echo "... src/abilities/scannerAbility.o"
-	@echo "... src/abilities/scannerAbility.i"
-	@echo "... src/abilities/scannerAbility.s"
-	@echo "... src/abilities/shellingAbility.o"
-	@echo "... src/abilities/shellingAbility.i"
-	@echo "... src/abilities/shellingAbility.s"
 	@echo "... src/console/consoleDrawer.o"
 	@echo "... src/console/consoleDrawer.i"
 	@echo "... src/console/consoleDrawer.s"
-	@echo "... src/console/inputManager.o"
-	@echo "... src/console/inputManager.i"
-	@echo "... src/console/inputManager.s"
 	@echo "... src/playField.o"
 	@echo "... src/playField.i"
 	@echo "... src/playField.s"

@@ -2,6 +2,7 @@ CMakeFiles/seabattle.dir/src/Ship.cpp.o: \
  /home/magofrays/Desktop/OOP/Sea-Battle/game/src/Ship.cpp \
  /usr/include/stdc-predef.h \
  /home/magofrays/Desktop/OOP/Sea-Battle/game/src/Ship.h \
+ /home/magofrays/Desktop/OOP/Sea-Battle/game/src/utilities/vector2d.h \
  /usr/include/x86_64-linux-gnu/c++/13/bits/stdc++.h \
  /usr/include/c++/13/cassert \
  /usr/include/x86_64-linux-gnu/c++/13/bits/c++config.h \

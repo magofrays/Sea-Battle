@@ -1,49 +1,28 @@
-//#include "playField.h"
-#include "abilities/abilitiesManager.h"
+#include "playField.h"
+//#include "abilities/abilitiesManager.h"
 
 #include "console/consoleDrawer.h"
-#include "console/inputManager.h"
+//#include "console/inputManager.h"
+#include "errors/invalidShipPosition.h"
 
 
 int main(){
-    inputManager input_manager;
     consoleDrawer console_drawer;
+    playField play_field(5, 5);
     shipManager ship_manager;
-    playField play_field;
-    system("clear");
-    input_manager.inputPlayField(std::cin, play_field);
-    system("clear");
-    for(int i = 0; i != 10; i++){
-        try{
-            console_drawer.drawPlayerField(play_field, ship_manager);
-            Ship ship;
-            input_manager.inputShip(std::cin, ship);
-            play_field.addShip(ship, ship_manager);
-        }
-        catch(invalidShipPosition & e){
-            system("clear");
-            std::cerr << e.what() << "\n";
-            i--;
-            continue;
-        }
-        catch(invalidShipLength & e){
-            system("clear");
-            std::cerr << e.what() << "\n";
-            i--;
-            continue;
-        }
-        catch(inputException & e){
-            system("clear");
-            std::cerr << e.what() << "\n";
-            i--;
-            continue;
-        }
-        catch(objectOutOfBounds & e){
-            system("clear");
-            std::cerr << e.what() << "\n";
-            i--;
-            continue;
-        }
-        system("clear");
+    std::shared_ptr<Ship> ship_ptr = std::make_shared<Ship>(4, std::make_pair(0, 0), true);
+    
+    
+    try{
+        play_field.placeShip(ship_ptr, ship_manager);
+        ship_ptr = std::make_shared<Ship>(3, std::make_pair(2,1), false);
+        play_field.placeShip(ship_ptr, ship_manager);
+    
+    }catch(invalidShipPosition & e){
+        std::cout << e.what();
     }
-} 
+    console_drawer.drawField(play_field, false);
+    play_field.Attack(0, 1);
+    play_field.Attack(0, 1);
+    console_drawer.drawField(play_field, false);
+}

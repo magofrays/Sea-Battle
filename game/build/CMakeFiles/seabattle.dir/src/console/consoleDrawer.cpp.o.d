@@ -5,6 +5,7 @@ CMakeFiles/seabattle.dir/src/console/consoleDrawer.cpp.o: \
  /home/magofrays/Desktop/OOP/Sea-Battle/game/src/console/../playField.h \
  /home/magofrays/Desktop/OOP/Sea-Battle/game/src/console/../shipManager.h \
  /home/magofrays/Desktop/OOP/Sea-Battle/game/src/console/../Ship.h \
+ /home/magofrays/Desktop/OOP/Sea-Battle/game/src/console/../utilities/vector2d.h \
  /usr/include/x86_64-linux-gnu/c++/13/bits/stdc++.h \
  /usr/include/c++/13/cassert \
  /usr/include/x86_64-linux-gnu/c++/13/bits/c++config.h \

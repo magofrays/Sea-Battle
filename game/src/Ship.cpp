@@ -2,98 +2,67 @@
 #include "errors/invalidShipLength.h"
 #include "errors/inputException.h"
 
+
+void Ship::Segment::Attack(){
+    switch(state){
+        case Ship::Segment::normal:
+            state = Ship::Segment::damaged;
+            break;
+        case Ship::Segment::damaged:
+            state = Ship::Segment::destroyed;
+    }
+}
+
 Ship::Ship(int length, std::pair<int, int> coordinates, bool is_vertical)
-: length(length), coordinates(coordinates), is_vertical(is_vertical), segments(length, normal){
+: length(length), is_vertical(is_vertical){
     if(length < 1 || length > 4 ){
         throw invalidShipLength(length);
     }
+    box2d area;
+    area.min_point = point2d(coordinates.first, coordinates.second);
+    
+    if(is_vertical){
+        area.max_point = point2d(coordinates.first, coordinates.second+length);
+        
+    }
+    else{
+        area.max_point = point2d(coordinates.first+length, coordinates.second);
+    }
+    this->area = area;
+    for(int i = 0; i != length; i++){
+        segments.push_back(std::make_shared<Segment>());
+    }
 } 
-Ship::Ship(const Ship &ship) : length(ship.length), coordinates(ship.coordinates), 
+Ship::Ship(const Ship &ship) : length(ship.length), area(area),
                                segments(ship.segments), is_vertical(ship.is_vertical){} 
 
-Ship& Ship::operator = (const Ship& ship){ 
+Ship& Ship::operator = (const Ship & ship){ 
     if(this != &ship){
         is_vertical = ship.is_vertical;
         length = ship.length;
-        coordinates = ship.coordinates;
+        area = ship.area;
         segments = ship.segments;
     }
     return *this;
-}
-Ship::Ship(Ship && ship) noexcept : length(std::move(ship.length)), is_vertical(std::move(ship.is_vertical)) {
-    coordinates = std::move(ship.coordinates);
-    segments = std::move(ship.segments);
-}
-Ship& Ship::operator = (Ship && ship) noexcept{
-    if(this != &ship){
-        length = std::move(ship.length);
-        is_vertical = std::move(ship.is_vertical);
-        coordinates = std::move(ship.coordinates);
-        segments = std::move(ship.segments);
-        }
-    return *this;
-}
-
-std::istream& operator>>(std::istream& in, Ship& ship) {
-    std::cout << "Input format: coordinates (x y), ship length, orientation (0 horizontal, 1 vertical).\n";
-    std::string input;
-    std::getline(in, input);
-    std::stringstream ss(input);
-    int orientation = 0, x = 0, y = 0, length = 0;
-    
-    if (!(ss >> x >> y >> length >> orientation) || !ss.eof()){
-        throw inputException();
-    }
-    if(length < 1 || length > 4 ){
-        throw invalidShipLength(length);
-    }
-    bool is_vertical = (orientation == 1); 
-    if (!is_vertical && orientation != 0) {
-        throw inputException(); 
-    }
-
-    ship = Ship(length, {x, y}, is_vertical); 
-    
-    return in;
-}
-
-std::ostream& operator << (std::ostream& out, Ship& ship){
-    std::string output = "Ship " + std::to_string(ship.getLen()) + " segments long, located " 
-            + (ship.IsVertical() ? "vertically":"horizontally") + " at (" + std::to_string(ship.getCoor().first) + ", "
-            + std::to_string(ship.getCoor().second) + ")\n";
-    out << output;
-    return out;
 }
 
 int Ship::getLen() const{
     return length;
 }
-std::pair<int, int>  Ship::getCoor() const{
-    return coordinates;
+box2d Ship::getArea() const{
+    return area;
 }
 bool Ship::IsVertical() const{
     return is_vertical;
 }
-segmentState Ship::getSegment(int index) const{
-    return segments[index];
-}
-
-
-void Ship::Attack(int index){
-    switch(segments[index]){
-        case normal:
-            segments[index] = damaged;
-            break;
-        case damaged:
-            segments[index] = destroyed;
-            break;
-    }
+std::vector<std::shared_ptr<Ship::Segment>> & Ship::getSegments(){
+    return segments;
 }
 
 bool Ship::isDestroyed(){
     bool is_destroyed = true;
-    for(segmentState segment: segments){
-        if(segment != destroyed){
+    for(std::shared_ptr<Segment> & segment: segments){
+        if( (*segment).state != Segment::destroyed){
             is_destroyed = false;
             break;
         }

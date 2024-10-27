@@ -97,66 +97,10 @@ CMakeFiles/seabattle.dir/src/Ship.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/seabattle.dir/src/Ship.cpp.s"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/magofrays/Desktop/OOP/Sea-Battle/game/src/Ship.cpp -o CMakeFiles/seabattle.dir/src/Ship.cpp.s
 
-CMakeFiles/seabattle.dir/src/abilities/abilitiesManager.cpp.o: CMakeFiles/seabattle.dir/flags.make
-CMakeFiles/seabattle.dir/src/abilities/abilitiesManager.cpp.o: /home/magofrays/Desktop/OOP/Sea-Battle/game/src/abilities/abilitiesManager.cpp
-CMakeFiles/seabattle.dir/src/abilities/abilitiesManager.cpp.o: CMakeFiles/seabattle.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/magofrays/Desktop/OOP/Sea-Battle/game/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/seabattle.dir/src/abilities/abilitiesManager.cpp.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/seabattle.dir/src/abilities/abilitiesManager.cpp.o -MF CMakeFiles/seabattle.dir/src/abilities/abilitiesManager.cpp.o.d -o CMakeFiles/seabattle.dir/src/abilities/abilitiesManager.cpp.o -c /home/magofrays/Desktop/OOP/Sea-Battle/game/src/abilities/abilitiesManager.cpp
-
-CMakeFiles/seabattle.dir/src/abilities/abilitiesManager.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/seabattle.dir/src/abilities/abilitiesManager.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/magofrays/Desktop/OOP/Sea-Battle/game/src/abilities/abilitiesManager.cpp > CMakeFiles/seabattle.dir/src/abilities/abilitiesManager.cpp.i
-
-CMakeFiles/seabattle.dir/src/abilities/abilitiesManager.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/seabattle.dir/src/abilities/abilitiesManager.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/magofrays/Desktop/OOP/Sea-Battle/game/src/abilities/abilitiesManager.cpp -o CMakeFiles/seabattle.dir/src/abilities/abilitiesManager.cpp.s
-
-CMakeFiles/seabattle.dir/src/abilities/doubleDamageAbility.cpp.o: CMakeFiles/seabattle.dir/flags.make
-CMakeFiles/seabattle.dir/src/abilities/doubleDamageAbility.cpp.o: /home/magofrays/Desktop/OOP/Sea-Battle/game/src/abilities/doubleDamageAbility.cpp
-CMakeFiles/seabattle.dir/src/abilities/doubleDamageAbility.cpp.o: CMakeFiles/seabattle.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/magofrays/Desktop/OOP/Sea-Battle/game/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/seabattle.dir/src/abilities/doubleDamageAbility.cpp.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/seabattle.dir/src/abilities/doubleDamageAbility.cpp.o -MF CMakeFiles/seabattle.dir/src/abilities/doubleDamageAbility.cpp.o.d -o CMakeFiles/seabattle.dir/src/abilities/doubleDamageAbility.cpp.o -c /home/magofrays/Desktop/OOP/Sea-Battle/game/src/abilities/doubleDamageAbility.cpp
-
-CMakeFiles/seabattle.dir/src/abilities/doubleDamageAbility.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/seabattle.dir/src/abilities/doubleDamageAbility.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/magofrays/Desktop/OOP/Sea-Battle/game/src/abilities/doubleDamageAbility.cpp > CMakeFiles/seabattle.dir/src/abilities/doubleDamageAbility.cpp.i
-
-CMakeFiles/seabattle.dir/src/abilities/doubleDamageAbility.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/seabattle.dir/src/abilities/doubleDamageAbility.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/magofrays/Desktop/OOP/Sea-Battle/game/src/abilities/doubleDamageAbility.cpp -o CMakeFiles/seabattle.dir/src/abilities/doubleDamageAbility.cpp.s
-
-CMakeFiles/seabattle.dir/src/abilities/scannerAbility.cpp.o: CMakeFiles/seabattle.dir/flags.make
-CMakeFiles/seabattle.dir/src/abilities/scannerAbility.cpp.o: /home/magofrays/Desktop/OOP/Sea-Battle/game/src/abilities/scannerAbility.cpp
-CMakeFiles/seabattle.dir/src/abilities/scannerAbility.cpp.o: CMakeFiles/seabattle.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/magofrays/Desktop/OOP/Sea-Battle/game/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/seabattle.dir/src/abilities/scannerAbility.cpp.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/seabattle.dir/src/abilities/scannerAbility.cpp.o -MF CMakeFiles/seabattle.dir/src/abilities/scannerAbility.cpp.o.d -o CMakeFiles/seabattle.dir/src/abilities/scannerAbility.cpp.o -c /home/magofrays/Desktop/OOP/Sea-Battle/game/src/abilities/scannerAbility.cpp
-
-CMakeFiles/seabattle.dir/src/abilities/scannerAbility.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/seabattle.dir/src/abilities/scannerAbility.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/magofrays/Desktop/OOP/Sea-Battle/game/src/abilities/scannerAbility.cpp > CMakeFiles/seabattle.dir/src/abilities/scannerAbility.cpp.i
-
-CMakeFiles/seabattle.dir/src/abilities/scannerAbility.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/seabattle.dir/src/abilities/scannerAbility.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/magofrays/Desktop/OOP/Sea-Battle/game/src/abilities/scannerAbility.cpp -o CMakeFiles/seabattle.dir/src/abilities/scannerAbility.cpp.s
-
-CMakeFiles/seabattle.dir/src/abilities/shellingAbility.cpp.o: CMakeFiles/seabattle.dir/flags.make
-CMakeFiles/seabattle.dir/src/abilities/shellingAbility.cpp.o: /home/magofrays/Desktop/OOP/Sea-Battle/game/src/abilities/shellingAbility.cpp
-CMakeFiles/seabattle.dir/src/abilities/shellingAbility.cpp.o: CMakeFiles/seabattle.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/magofrays/Desktop/OOP/Sea-Battle/game/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object CMakeFiles/seabattle.dir/src/abilities/shellingAbility.cpp.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/seabattle.dir/src/abilities/shellingAbility.cpp.o -MF CMakeFiles/seabattle.dir/src/abilities/shellingAbility.cpp.o.d -o CMakeFiles/seabattle.dir/src/abilities/shellingAbility.cpp.o -c /home/magofrays/Desktop/OOP/Sea-Battle/game/src/abilities/shellingAbility.cpp
-
-CMakeFiles/seabattle.dir/src/abilities/shellingAbility.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/seabattle.dir/src/abilities/shellingAbility.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/magofrays/Desktop/OOP/Sea-Battle/game/src/abilities/shellingAbility.cpp > CMakeFiles/seabattle.dir/src/abilities/shellingAbility.cpp.i
-
-CMakeFiles/seabattle.dir/src/abilities/shellingAbility.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/seabattle.dir/src/abilities/shellingAbility.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/magofrays/Desktop/OOP/Sea-Battle/game/src/abilities/shellingAbility.cpp -o CMakeFiles/seabattle.dir/src/abilities/shellingAbility.cpp.s
-
 CMakeFiles/seabattle.dir/src/console/consoleDrawer.cpp.o: CMakeFiles/seabattle.dir/flags.make
 CMakeFiles/seabattle.dir/src/console/consoleDrawer.cpp.o: /home/magofrays/Desktop/OOP/Sea-Battle/game/src/console/consoleDrawer.cpp
 CMakeFiles/seabattle.dir/src/console/consoleDrawer.cpp.o: CMakeFiles/seabattle.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/magofrays/Desktop/OOP/Sea-Battle/game/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building CXX object CMakeFiles/seabattle.dir/src/console/consoleDrawer.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/magofrays/Desktop/OOP/Sea-Battle/game/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/seabattle.dir/src/console/consoleDrawer.cpp.o"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/seabattle.dir/src/console/consoleDrawer.cpp.o -MF CMakeFiles/seabattle.dir/src/console/consoleDrawer.cpp.o.d -o CMakeFiles/seabattle.dir/src/console/consoleDrawer.cpp.o -c /home/magofrays/Desktop/OOP/Sea-Battle/game/src/console/consoleDrawer.cpp
 
 CMakeFiles/seabattle.dir/src/console/consoleDrawer.cpp.i: cmake_force
@@ -167,24 +111,10 @@ CMakeFiles/seabattle.dir/src/console/consoleDrawer.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/seabattle.dir/src/console/consoleDrawer.cpp.s"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/magofrays/Desktop/OOP/Sea-Battle/game/src/console/consoleDrawer.cpp -o CMakeFiles/seabattle.dir/src/console/consoleDrawer.cpp.s
 
-CMakeFiles/seabattle.dir/src/console/inputManager.cpp.o: CMakeFiles/seabattle.dir/flags.make
-CMakeFiles/seabattle.dir/src/console/inputManager.cpp.o: /home/magofrays/Desktop/OOP/Sea-Battle/game/src/console/inputManager.cpp
-CMakeFiles/seabattle.dir/src/console/inputManager.cpp.o: CMakeFiles/seabattle.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/magofrays/Desktop/OOP/Sea-Battle/game/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Building CXX object CMakeFiles/seabattle.dir/src/console/inputManager.cpp.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/seabattle.dir/src/console/inputManager.cpp.o -MF CMakeFiles/seabattle.dir/src/console/inputManager.cpp.o.d -o CMakeFiles/seabattle.dir/src/console/inputManager.cpp.o -c /home/magofrays/Desktop/OOP/Sea-Battle/game/src/console/inputManager.cpp
-
-CMakeFiles/seabattle.dir/src/console/inputManager.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/seabattle.dir/src/console/inputManager.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/magofrays/Desktop/OOP/Sea-Battle/game/src/console/inputManager.cpp > CMakeFiles/seabattle.dir/src/console/inputManager.cpp.i
-
-CMakeFiles/seabattle.dir/src/console/inputManager.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/seabattle.dir/src/console/inputManager.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/magofrays/Desktop/OOP/Sea-Battle/game/src/console/inputManager.cpp -o CMakeFiles/seabattle.dir/src/console/inputManager.cpp.s
-
 CMakeFiles/seabattle.dir/src/playField.cpp.o: CMakeFiles/seabattle.dir/flags.make
 CMakeFiles/seabattle.dir/src/playField.cpp.o: /home/magofrays/Desktop/OOP/Sea-Battle/game/src/playField.cpp
 CMakeFiles/seabattle.dir/src/playField.cpp.o: CMakeFiles/seabattle.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/magofrays/Desktop/OOP/Sea-Battle/game/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_9) "Building CXX object CMakeFiles/seabattle.dir/src/playField.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/magofrays/Desktop/OOP/Sea-Battle/game/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/seabattle.dir/src/playField.cpp.o"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/seabattle.dir/src/playField.cpp.o -MF CMakeFiles/seabattle.dir/src/playField.cpp.o.d -o CMakeFiles/seabattle.dir/src/playField.cpp.o -c /home/magofrays/Desktop/OOP/Sea-Battle/game/src/playField.cpp
 
 CMakeFiles/seabattle.dir/src/playField.cpp.i: cmake_force
@@ -198,7 +128,7 @@ CMakeFiles/seabattle.dir/src/playField.cpp.s: cmake_force
 CMakeFiles/seabattle.dir/src/shipManager.cpp.o: CMakeFiles/seabattle.dir/flags.make
 CMakeFiles/seabattle.dir/src/shipManager.cpp.o: /home/magofrays/Desktop/OOP/Sea-Battle/game/src/shipManager.cpp
 CMakeFiles/seabattle.dir/src/shipManager.cpp.o: CMakeFiles/seabattle.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/magofrays/Desktop/OOP/Sea-Battle/game/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_10) "Building CXX object CMakeFiles/seabattle.dir/src/shipManager.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/magofrays/Desktop/OOP/Sea-Battle/game/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/seabattle.dir/src/shipManager.cpp.o"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/seabattle.dir/src/shipManager.cpp.o -MF CMakeFiles/seabattle.dir/src/shipManager.cpp.o.d -o CMakeFiles/seabattle.dir/src/shipManager.cpp.o -c /home/magofrays/Desktop/OOP/Sea-Battle/game/src/shipManager.cpp
 
 CMakeFiles/seabattle.dir/src/shipManager.cpp.i: cmake_force
@@ -213,12 +143,7 @@ CMakeFiles/seabattle.dir/src/shipManager.cpp.s: cmake_force
 seabattle_OBJECTS = \
 "CMakeFiles/seabattle.dir/src/Game.cpp.o" \
 "CMakeFiles/seabattle.dir/src/Ship.cpp.o" \
-"CMakeFiles/seabattle.dir/src/abilities/abilitiesManager.cpp.o" \
-"CMakeFiles/seabattle.dir/src/abilities/doubleDamageAbility.cpp.o" \
-"CMakeFiles/seabattle.dir/src/abilities/scannerAbility.cpp.o" \
-"CMakeFiles/seabattle.dir/src/abilities/shellingAbility.cpp.o" \
 "CMakeFiles/seabattle.dir/src/console/consoleDrawer.cpp.o" \
-"CMakeFiles/seabattle.dir/src/console/inputManager.cpp.o" \
 "CMakeFiles/seabattle.dir/src/playField.cpp.o" \
 "CMakeFiles/seabattle.dir/src/shipManager.cpp.o"
 
@@ -227,17 +152,12 @@ seabattle_EXTERNAL_OBJECTS =
 
 seabattle: CMakeFiles/seabattle.dir/src/Game.cpp.o
 seabattle: CMakeFiles/seabattle.dir/src/Ship.cpp.o
-seabattle: CMakeFiles/seabattle.dir/src/abilities/abilitiesManager.cpp.o
-seabattle: CMakeFiles/seabattle.dir/src/abilities/doubleDamageAbility.cpp.o
-seabattle: CMakeFiles/seabattle.dir/src/abilities/scannerAbility.cpp.o
-seabattle: CMakeFiles/seabattle.dir/src/abilities/shellingAbility.cpp.o
 seabattle: CMakeFiles/seabattle.dir/src/console/consoleDrawer.cpp.o
-seabattle: CMakeFiles/seabattle.dir/src/console/inputManager.cpp.o
 seabattle: CMakeFiles/seabattle.dir/src/playField.cpp.o
 seabattle: CMakeFiles/seabattle.dir/src/shipManager.cpp.o
 seabattle: CMakeFiles/seabattle.dir/build.make
 seabattle: CMakeFiles/seabattle.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/home/magofrays/Desktop/OOP/Sea-Battle/game/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_11) "Linking CXX executable seabattle"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/home/magofrays/Desktop/OOP/Sea-Battle/game/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Linking CXX executable seabattle"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/seabattle.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.

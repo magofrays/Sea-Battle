@@ -1,32 +1,35 @@
-#include <bits/stdc++.h>
-
-enum segmentState{
-        normal,
-        damaged,
-        destroyed,
-        null
-    };
+#pragma once
+#include "utilities/vector2d.h"
 
 class Ship{
-    std::vector<segmentState> segments;
-    bool is_vertical = true;
-    std::pair<int, int> coordinates;
-    int length;
     public:
-        Ship() = default;
+        class Segment{
+            public:
+                enum segmentState{
+                    normal,
+                    damaged,
+                    destroyed,
+                };
+                segmentState state;
+                Segment():state(normal){}
+                void Attack();
+        };
+
+    private:
+        std::vector<std::shared_ptr<Segment>> segments;
+        bool is_vertical = true;
+        box2d area;
+        int length;
+    public:
         Ship(int length, std::pair<int, int> coordinates, bool is_vertical);
         Ship(const Ship &ship);
         Ship& operator = (const Ship& ship);
-        Ship(Ship && ship) noexcept;
-        Ship& operator = (Ship && ship) noexcept;
-        friend std::istream& operator >> (std::istream& in, Ship& ship);
-        friend std::ostream& operator << (std::ostream& out, Ship& ship);
 
         int getLen() const;
-        std::pair<int, int> getCoor() const;
+        box2d getArea() const;
         bool IsVertical() const;
-        segmentState getSegment(int index) const;
+        std::vector<std::shared_ptr<Segment>> & getSegments();
 
-        void Attack(int index);
+        //void Attack(int index);
         bool isDestroyed();
 };

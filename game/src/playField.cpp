@@ -1,75 +1,84 @@
 #include "playField.h"
 #include "errors/objectOutOfBounds.h"
+#include "errors/invalidShipPosition.h"
 
-playField::playField(int size_x, int size_y) :
-        size_x(size_x), size_y(size_y) {
-            field.resize(size_y, std::vector<cell>(size_x, unknown));
+
+void playField::Cell::Attack(){
+    if(!segment){
+        state = playField::Cell::empty;
+    }
+    else{
+        state = playField::Cell::ship;
+        (*segment).Attack();
+    }
+}
+
+playField::playField(int size_x, int size_y)
+        {
+            box2d area(point2d(0, 0), point2d(size_x, size_y));
+            this->area = area;
+            field.resize(size_y, std::vector<Cell>(size_x)) ;
         }
 
-playField::playField(const playField &play_field):size_x(play_field.size_x), 
-    size_y(play_field.size_y), field(play_field.field){
+playField::playField(const playField &play_field):area(play_field.area), field(play_field.field){
     }
 
 playField& playField::operator = (const playField& play_field){
     if(this != &play_field){
-        size_x = play_field.size_x;
-        size_y = play_field.size_y;
+        area = play_field.area;
         field = play_field.field;
     }
     return *this;
 }
-playField::playField(playField && play_field) noexcept :size_x(std::move(play_field.size_x)), 
-                                              size_y(std::move(play_field.size_y))
+playField::playField(playField && play_field) noexcept :area(std::move(play_field.area))
                                             {
     field = std::move(play_field.field);
     play_field.field.clear();
 }
 playField& playField::operator = (playField && play_field) noexcept {
     if(this != &play_field){
-        size_x = std::move(play_field.size_x);
-        size_y = std::move(play_field.size_y);
+        area = std::move(play_field.area);
         field = std::move(play_field.field);
     }
     return *this;
 }
 
-bool playField::inField(int length, std::pair<int, int>coordinates, bool is_vertical){
-    int len_subtr_y = is_vertical ? length-1 : 0;
-    int len_subtr_x = is_vertical ? 0 : length-1;
-    if(0 <= coordinates.first && coordinates.first + len_subtr_x <= size_x-1 && 
-        0 <= coordinates.second && coordinates.second + len_subtr_y <= size_y-1 
-    ){
-        return true;
-        }
-    return false;
-}
-
-void playField::addShip(Ship ship, shipManager & ship_manager){
-    if(inField(ship.getLen(), ship.getCoor(), ship.IsVertical())){
-        return ship_manager.addShip(ship);
-    }
-    throw objectOutOfBounds(ship.getCoor());
-}
-
-
-segmentState playField::getSegmentOrAttack(std::pair<int, int> coordinates, bool to_attack,  shipManager & ship_manager){
-    if(inField(1, coordinates, true)){
-        segmentState segment = ship_manager.getSegmentOrAttack(coordinates, to_attack);
-        if(to_attack){
-            if(segment != null){
-                field[coordinates.second][coordinates.first] = ship;
-            }
-            else{
-                field[coordinates.second][coordinates.first] = empty;
+void playField::placeShip(std::shared_ptr<Ship> ship, shipManager & ship_manager){
+    box2d ship_area = (*ship).getArea();
+    if( area.contains(ship_area) && !(ship_manager.shipIntersection( ship_area )) ){
+        ship_manager.addShip(ship);
+        auto segments = (*ship).getSegments();
+        if((*ship).IsVertical()){
+            
+            int x = ship_area.min_point.x; int y_min = ship_area.min_point.y;
+            
+            for(int y = y_min; y != ship_area.max_point.y; y++){
+                field[y][x].segment = segments[y-y_min];
             }
         }
-        return segment;
-        
+        else{
+            int y = ship_area.min_point.y; int x_min = ship_area.min_point.x;
+            for(int x = x_min; x != ship_area.max_point.x; x++){
+                field[y][x].segment = segments[x-x_min];
+            }
+        }
     }
-    throw objectOutOfBounds(coordinates);
+    else{
+        throw invalidShipPosition();
+    }
 }
 
-std::pair<int, int> playField::getSize(){
-    std::pair<int, int> size = {size_x, size_y};
-    return size;
+box2d playField::getArea() const{
+    return area;
 }
+
+playField::Cell & playField::getCell(int x, int y){
+    return field[y][x];
+}
+
+void playField::Attack(int x, int y){
+    if(!(area.contains(point2d(x, y)))){
+        throw objectOutOfBounds({x, y});
+    }
+    (field[y][x]).Attack();
+};
