@@ -1,8 +1,10 @@
 #pragma once
 #include "../playField.h"
 
+class Player;
 class IAbility{
     public:
-        virtual void apply(playField & play_field, shipManager & ship_manager) = 0;
-        virtual ~IAbility() = default;
+        virtual void apply() = 0;
+        virtual void setPlayer(Player * player) = 0;
+        virtual ~IAbility() {}
 };

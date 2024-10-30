@@ -1,34 +1,41 @@
-#include "consoleDrawer.h"
-
-void consoleDrawer::drawField(playField & play_field, bool fog){
+#include "outputManager.h"
+outputManager::outputManager(std::ostream & os): os(os){
+}
+void outputManager::drawMessage(std::string message){
+    os << message;
+}
+void outputManager::drawField(playField & play_field, bool fog){
     box2d field_area = play_field.getArea();
     for(int y = field_area.max_point.y-1; y != field_area.min_point.y-1; --y){
         for(int x = 0; x != field_area.max_point.x; x++){
             playField::Cell cell = play_field.getCell(x, y);
             if(fog){
                 if(cell.state == playField::Cell::unknown){
-                    std::cout << "# ";
+                    os << "# ";
                 }
                 else{
                     if(cell.state == playField::Cell::empty){
-                        std::cout << "- ";
+                        os << "- ";
                     }
                     else{
-                        std::cout << (*(cell.segment)).state << " ";
+                        os << (*(cell.segment)).state << " ";
                     }
                 }
             }
             else{
                 if(!(cell.segment)){
-                    std::cout << "- ";
+                    os << "- ";
                 }
                 else{
-                    std::cout << (*(cell.segment)).state << " ";
+                    os << (*(cell.segment)).state << " ";
                 }
             }
         }
-        std::cout << "\n";
+        os << "\n";
     }
-    std::cout << "\n";
+    os << "\n";
+}
 
+void outputManager::update(){
+    system("clear");
 }

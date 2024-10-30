@@ -1,10 +1,10 @@
 class objectOutOfBounds : public std::exception {
-    std::pair<int, int> coordinates;
+    point2d coordinates;
     std::string msg;
     public:
-        objectOutOfBounds(std::pair<int, int> coordinates) : coordinates(coordinates) {
-            msg = "Object located at (" + std::to_string(coordinates.first) +
-                ", " + std::to_string(coordinates.second) + ") is out of bounds!\n";
+        objectOutOfBounds(point2d coordinates) : coordinates(coordinates) {
+            msg = "Object located at (" + std::to_string(coordinates.x) +
+                ", " + std::to_string(coordinates.y) + ") is out of bounds!\n";
         }
 
         const char * what() const noexcept override {

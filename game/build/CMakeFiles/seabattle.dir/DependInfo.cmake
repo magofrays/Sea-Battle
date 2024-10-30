@@ -9,8 +9,15 @@ set(CMAKE_DEPENDS_LANGUAGES
 # The set of dependency files which are needed:
 set(CMAKE_DEPENDS_DEPENDENCY_FILES
   "/home/magofrays/Desktop/OOP/Sea-Battle/game/src/Game.cpp" "CMakeFiles/seabattle.dir/src/Game.cpp.o" "gcc" "CMakeFiles/seabattle.dir/src/Game.cpp.o.d"
+  "/home/magofrays/Desktop/OOP/Sea-Battle/game/src/Player.cpp" "CMakeFiles/seabattle.dir/src/Player.cpp.o" "gcc" "CMakeFiles/seabattle.dir/src/Player.cpp.o.d"
   "/home/magofrays/Desktop/OOP/Sea-Battle/game/src/Ship.cpp" "CMakeFiles/seabattle.dir/src/Ship.cpp.o" "gcc" "CMakeFiles/seabattle.dir/src/Ship.cpp.o.d"
-  "/home/magofrays/Desktop/OOP/Sea-Battle/game/src/console/consoleDrawer.cpp" "CMakeFiles/seabattle.dir/src/console/consoleDrawer.cpp.o" "gcc" "CMakeFiles/seabattle.dir/src/console/consoleDrawer.cpp.o.d"
+  "/home/magofrays/Desktop/OOP/Sea-Battle/game/src/abilities/abilitiesManager.cpp" "CMakeFiles/seabattle.dir/src/abilities/abilitiesManager.cpp.o" "gcc" "CMakeFiles/seabattle.dir/src/abilities/abilitiesManager.cpp.o.d"
+  "/home/magofrays/Desktop/OOP/Sea-Battle/game/src/abilities/doubleDamageAbility.cpp" "CMakeFiles/seabattle.dir/src/abilities/doubleDamageAbility.cpp.o" "gcc" "CMakeFiles/seabattle.dir/src/abilities/doubleDamageAbility.cpp.o.d"
+  "/home/magofrays/Desktop/OOP/Sea-Battle/game/src/abilities/scannerAbility.cpp" "CMakeFiles/seabattle.dir/src/abilities/scannerAbility.cpp.o" "gcc" "CMakeFiles/seabattle.dir/src/abilities/scannerAbility.cpp.o.d"
+  "/home/magofrays/Desktop/OOP/Sea-Battle/game/src/abilities/shellingAbility.cpp" "CMakeFiles/seabattle.dir/src/abilities/shellingAbility.cpp.o" "gcc" "CMakeFiles/seabattle.dir/src/abilities/shellingAbility.cpp.o.d"
+  "/home/magofrays/Desktop/OOP/Sea-Battle/game/src/console/input/inputManager.cpp" "CMakeFiles/seabattle.dir/src/console/input/inputManager.cpp.o" "gcc" "CMakeFiles/seabattle.dir/src/console/input/inputManager.cpp.o.d"
+  "/home/magofrays/Desktop/OOP/Sea-Battle/game/src/console/output/outputManager.cpp" "CMakeFiles/seabattle.dir/src/console/output/outputManager.cpp.o" "gcc" "CMakeFiles/seabattle.dir/src/console/output/outputManager.cpp.o.d"
+  "/home/magofrays/Desktop/OOP/Sea-Battle/game/src/main.cpp" "CMakeFiles/seabattle.dir/src/main.cpp.o" "gcc" "CMakeFiles/seabattle.dir/src/main.cpp.o.d"
   "/home/magofrays/Desktop/OOP/Sea-Battle/game/src/playField.cpp" "CMakeFiles/seabattle.dir/src/playField.cpp.o" "gcc" "CMakeFiles/seabattle.dir/src/playField.cpp.o.d"
   "/home/magofrays/Desktop/OOP/Sea-Battle/game/src/shipManager.cpp" "CMakeFiles/seabattle.dir/src/shipManager.cpp.o" "gcc" "CMakeFiles/seabattle.dir/src/shipManager.cpp.o.d"
   )

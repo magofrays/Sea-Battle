@@ -1,36 +1,40 @@
 #include "scannerAbility.h"
+#include "../Player.h"
+#include "../console/input/inputManager.h"
+#include "../console/output/outputManager.h"
 
-scannerAbility::scannerAbility(std::pair<int, int> coordinates): coordinates(coordinates){}
 
-void scannerAbility::setCoordinates(std::pair <int, int> coordinates){
-    this->coordinates = coordinates;
-}
-
-void scannerAbility::apply(playField & play_field, shipManager & ship_manager){
-    std::cout << "Scanner ability applied!\n";
+void scannerAbility::apply(){
+    playField & play_field = player->play_field;
+    inputManager & input = player->input_manager;
+    outputManager & output = player->output_manager;
+    point2d coordinates;
+    output.drawMessage("Input coordinates for scan.Format:\nx y(coordinates)\n");
+    input.inputCoordinates(coordinates);
+    if(!(play_field.getArea().contains(box2d(coordinates, coordinates+point2d(1, 1)))) ){
+        throw objectOutOfBounds(coordinates);
+    }
     int count = 0;
-    std::pair<int, int> size = play_field.getSize();
-    if(
-        coordinates.first < 0 || size.first < coordinates.first ||
-        coordinates.second < 0 || size.second < coordinates.second
-        ){
-            throw std::invalid_argument("COORDINATES ARE OUT OF BORDER!");
-        }
-    
-    for(int i = 0; i != 2; i ++){
-        for(int j = 0; j != 2; j++){
-            if(ship_manager.checkPoint({coordinates.first+i, coordinates.second+j})){
-                count++;
+    for(int x = 0; x != 2; ++x){
+        for(int y = 0; y != 2; ++y){
+            if(play_field.getCell(coordinates.x + x, coordinates.y+y).segment){
+                count += 1;
             }
         }
     }
-    if(count == 1){
-        std::cout << "DETECTED " << count << " SEGMENT OF A SHIP!\n";
-    }
-    else if(count > 0){
-        std::cout << "DETECTED " << count << " SEGMENTS OF A SHIP!\n";
+    if(count == 0){
+        output.drawMessage("No segments in the area were found!\n");
     }
     else{
-        std::cout << "NO SHIPS IN AREA\n";
+        if(count == 1){
+            output.drawMessage("1 segment in the area was found!\n");
+        }
+        else{
+            output.drawMessage("2 segments in the area were found!\n");
+            }
     }
+}
+
+void scannerAbility::setPlayer(Player * player){
+    this->player = player;
 }

@@ -334,5 +334,4 @@ CMakeFiles/seabattle.dir/src/playField.cpp.o: \
  /usr/include/c++/13/filesystem /usr/include/c++/13/bits/fs_fwd.h \
  /usr/include/c++/13/bits/fs_path.h /usr/include/c++/13/bits/fs_dir.h \
  /usr/include/c++/13/bits/fs_ops.h /usr/include/c++/13/memory_resource \
- /home/magofrays/Desktop/OOP/Sea-Battle/game/src/errors/objectOutOfBounds.h \
- /home/magofrays/Desktop/OOP/Sea-Battle/game/src/errors/invalidShipPosition.h
+ /home/magofrays/Desktop/OOP/Sea-Battle/game/src/errors/objectOutOfBounds.h

@@ -1,11 +1,14 @@
 #include "doubleDamageAbility.h"
+#include "../Player.h"
+#include "../console/output/outputManager.h"
 
-doubleDamageAbility::doubleDamageAbility(std::pair<int, int> coordinates) : coordinates(coordinates){}
-void doubleDamageAbility::setCoordinates(std::pair<int, int> coordinates){
-    this->coordinates = coordinates;
+void doubleDamageAbility::apply(){
+    player->double_damage = true;
+    outputManager & output = player->output_manager;
+    output.drawMessage("Double damage ability applied!\n");
+    output.drawMessage("Now you can damage any segment twice!\n");
 }
-void doubleDamageAbility::apply(playField & play_field, shipManager & ship_manager){
-    std::cout << "Double damage ability applied!\n";
-    play_field.getSegmentOrAttack(coordinates, true, ship_manager);
-    play_field.getSegmentOrAttack(coordinates, true, ship_manager);
+
+void doubleDamageAbility::setPlayer(Player * player){
+    this->player = player;
 }

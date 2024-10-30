@@ -2,7 +2,10 @@
 #include "IAbility.h"
 
 class shellingAbility : public IAbility{
+    private:
+        Player * player;
     public:
-        shellingAbility() = default;
-        void apply(playField & play_field, shipManager & ship_manager);
+        shellingAbility(): player(nullptr){}
+        void apply();
+        void setPlayer(Player * player);
 };  

@@ -7,6 +7,7 @@ CMakeFiles/seabattle.dir/src/abilities/abilitiesManager.cpp.o: \
  /home/magofrays/Desktop/OOP/Sea-Battle/game/src/abilities/../playField.h \
  /home/magofrays/Desktop/OOP/Sea-Battle/game/src/abilities/../shipManager.h \
  /home/magofrays/Desktop/OOP/Sea-Battle/game/src/abilities/../Ship.h \
+ /home/magofrays/Desktop/OOP/Sea-Battle/game/src/abilities/../utilities/vector2d.h \
  /usr/include/x86_64-linux-gnu/c++/13/bits/stdc++.h \
  /usr/include/c++/13/cassert \
  /usr/include/x86_64-linux-gnu/c++/13/bits/c++config.h \
@@ -336,6 +337,6 @@ CMakeFiles/seabattle.dir/src/abilities/abilitiesManager.cpp.o: \
  /usr/include/c++/13/filesystem /usr/include/c++/13/bits/fs_fwd.h \
  /usr/include/c++/13/bits/fs_path.h /usr/include/c++/13/bits/fs_dir.h \
  /usr/include/c++/13/bits/fs_ops.h /usr/include/c++/13/memory_resource \
- /home/magofrays/Desktop/OOP/Sea-Battle/game/src/abilities/../utilities/vector2d.h \
+ /home/magofrays/Desktop/OOP/Sea-Battle/game/src/abilities/../errors/objectOutOfBounds.h \
  /home/magofrays/Desktop/OOP/Sea-Battle/game/src/abilities/doubleDamageAbility.h \
  /home/magofrays/Desktop/OOP/Sea-Battle/game/src/abilities/shellingAbility.h

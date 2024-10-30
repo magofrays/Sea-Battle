@@ -2,11 +2,9 @@
 #include "IAbility.h"
 
 class scannerAbility: public IAbility{
-    std::pair<int, int> coordinates;
+    Player * player;
     public:
-        scannerAbility() = default;
-        scannerAbility(std::pair<int, int> coordinates);
-        void setCoordinates(std::pair <int, int> coordinates);
-        void apply(playField & play_field, shipManager & ship_manager);
-        ~scannerAbility() = default;
+        scannerAbility(): player(nullptr){}
+        void apply();
+        void setPlayer(Player * player);
 };

@@ -6,5 +6,5 @@ CXX_DEFINES =
 
 CXX_INCLUDES = -I/home/magofrays/Desktop/OOP/Sea-Battle/game/src
 
-CXX_FLAGS = 
+CXX_FLAGS = -fsanitize=address
 

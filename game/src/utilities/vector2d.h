@@ -63,25 +63,21 @@ class box2d{
         {
             return point.x >= min_point.x &&
                    point.y >= min_point.y &&
-                   point.x <  max_point.x &&
-                   point.y <  max_point.y;
+                   point.x <=  max_point.x &&
+                   point.y <=  max_point.y;
         }
     
     bool contains(box2d box) const
         {
-            return box.min_point.x >= min_point.x &&
-                   box.min_point.y >= min_point.y &&
-                   box.max_point.x <= max_point.x &&
-                   box.max_point.y <= max_point.y;
+            return contains(box.min_point) && contains(box.max_point);
         }
 
     bool intersects(box2d box) const
         {
-            return (box.max_point.x > min_point.x) && (max_point.x > box.min_point.x) &&
-                   (box.max_point.y > min_point.y) && (max_point.y > box.min_point.y);
+            return contains(box.min_point) || contains(box.max_point);
         }
 
-    box2d intersection(box2d box) const //founds area that belongs to both areas
+    box2d intersection(box2d box) const
         {
             box2d res = box2d(
                 point2d(std::max(min_point.x, box.min_point.x), std::max(min_point.y, box.min_point.y)),
