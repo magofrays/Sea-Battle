@@ -64,13 +64,13 @@ void playField::placeShip(std::shared_ptr<Ship> ship, shipManager & ship_manager
             
             int x = ship_area.min_point.x; int y_min = ship_area.min_point.y;
             
-            for(int y = y_min; y != ship_area.max_point.y+1; y++){
+            for(int y = y_min; y != ship_area.max_point.y; y++){
                 field[y][x].segment = segments[y-y_min];
             }
         }
         else{
             int y = ship_area.min_point.y; int x_min = ship_area.min_point.x;
-            for(int x = x_min; x != ship_area.max_point.x+1; x++){
+            for(int x = x_min; x != ship_area.max_point.x; x++){
                 field[y][x].segment = segments[x-x_min];
             }
         }
@@ -90,9 +90,9 @@ playField::Cell playField::getCell(int x, int y){
     return field[y][x];
 }
 
-void playField::Attack(point2d coordinates, bool sneak){
+void playField::Attack(point2d coordinates, bool not_sneak){
     if(!(area.contains(coordinates))){
         throw objectOutOfBounds(coordinates);
     }
-    (field[coordinates.y][coordinates.x]).Attack(sneak);
+    (field[coordinates.y][coordinates.x]).Attack(not_sneak);
 };

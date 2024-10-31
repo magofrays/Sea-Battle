@@ -1,13 +1,12 @@
 #include "Player.h"
 
-void Player::getOpponent(playField * play_field, shipManager * ship_manager){
-    opponent_play_field = play_field;
-    opponent_ship_manager = ship_manager;
+void Player::getOpponent(Player * player){
+    opponent_play_field = &(player->play_field);
+    opponent_ship_manager = &(player->ship_manager);
 }
 
 
 void Player::placeShip(){
-    while(true){
         try{
             output_manager.drawMessage("Input ship. Format:\nx y l o(coordinates, length, orientation(1 vertical, 0 horizontal))\n");
             std::shared_ptr<Ship> ship = std::make_shared<Ship>();
@@ -31,8 +30,6 @@ void Player::placeShip(){
             output_manager.update();
             output_manager.drawMessage(e.what());
         }
-        break;
-    }
 }
 
 void Player::useAbility(){

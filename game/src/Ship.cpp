@@ -19,11 +19,11 @@ Ship::Ship(int length, point2d coordinates, bool is_vertical)
     area.min_point = coordinates;
     
     if(is_vertical){
-        area.max_point = point2d(coordinates.x, coordinates.y+length-1);
+        area.max_point = point2d(coordinates.x+1, coordinates.y+length);
         
     }
     else{
-        area.max_point = point2d(coordinates.x+length-1, coordinates.y);
+        area.max_point = point2d(coordinates.x+length, coordinates.y+1);
     }
     this->area = area;
     for(int i = 0; i != length; i++){

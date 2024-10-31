@@ -1,4 +1,13 @@
+#pragma once
 #include <bits/stdc++.h>
+/*#include <iostream>
+#include <vector>
+#include <algorithm>
+#include <memory>
+#include <queue>
+#include <random>
+#include <string>
+#include <sstream>*/
 class point2d{
     public:
     int x; int y;
@@ -63,8 +72,8 @@ class box2d{
         {
             return point.x >= min_point.x &&
                    point.y >= min_point.y &&
-                   point.x <=  max_point.x &&
-                   point.y <=  max_point.y;
+                   point.x < max_point.x &&
+                   point.y < max_point.y;
         }
     
     bool contains(box2d box) const
@@ -75,17 +84,5 @@ class box2d{
     bool intersects(box2d box) const
         {
             return contains(box.min_point) || contains(box.max_point);
-        }
-
-    box2d intersection(box2d box) const
-        {
-            box2d res = box2d(
-                point2d(std::max(min_point.x, box.min_point.x), std::max(min_point.y, box.min_point.y)),
-                point2d(std::min(max_point.x, box.max_point.x), std::min(max_point.y, box.max_point.y))
-            );
-
-            if (res.max_point.x < res.min_point.x || res.max_point.y < res.min_point.y)
-                return box2d();
-            return res;
         }
 };

@@ -9,7 +9,7 @@
 
 class Player{
         
-        public:
+        
             abilitiesManager abilities_manager;
     
             playField * opponent_play_field;
@@ -21,12 +21,16 @@ class Player{
             shipManager ship_manager;
        
             bool double_damage;
-            
+        public:
             Player(inputManager & im, outputManager & om):input_manager(im), output_manager(om), double_damage(false){}
             
             
-            void getOpponent(playField * play_field, shipManager * ship_manager);
+            void getOpponent(Player * player);
             void placeShip();
             void Attack();
             void useAbility();
+            friend class Game;
+            friend class doubleDamageAbility;
+            friend class scannerAbility;
+            friend class shellingAbility;
     };

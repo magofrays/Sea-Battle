@@ -1,0 +1,382 @@
+@startuml
+class "std::pair<int,int>" as C_0006524010458157121833
+class C_0006524010458157121833 {
+__
+}
+class "std::shared_ptr<Ship::Segment>" as C_0011898429847568957638
+class C_0011898429847568957638 {
+__
+}
+class "std::vector<std::shared_ptr<Ship::Segment>>" as C_0005137471544809756671
+class C_0005137471544809756671 {
+__
+}
+class "std::string" as C_0001275076681856179721
+class C_0001275076681856179721 {
+__
+}
+class "std::shared_ptr<Ship>" as C_0011971345971339369468
+class C_0011971345971339369468 {
+__
+}
+class "std::vector<std::shared_ptr<Ship>>" as C_0011309305146689019070
+class C_0011309305146689019070 {
+__
+}
+class "std::vector<playField::Cell>" as C_0013708649365368278982
+class C_0013708649365368278982 {
+__
+}
+class "std::vector<std::vector<playField::Cell>>" as C_0015470587853006496964
+class C_0015470587853006496964 {
+__
+}
+class "std::basic_istream<char>" as C_0005505409806480479128
+class C_0005505409806480479128 {
+__
+}
+class "std::basic_ostream<char>" as C_0012782362847443494988
+class C_0012782362847443494988 {
+__
+}
+class "std::shared_ptr<IAbility>" as C_0017293865924678141607
+class C_0017293865924678141607 {
+__
+}
+class "std::queue<std::shared_ptr<IAbility>>" as C_0000927818017758117099
+class C_0000927818017758117099 {
+__
+}
+class "point2d" as C_0008811565138490693412
+class C_0008811565138490693412 {
++point2d() : void
++point2d(int x, int y) : void
++point2d(std::pair<int,int> coordinates) : void
++point2d(const point2d & point) : void
+..
++operator=(const point2d & point) : point2d &
++operator=(point2d && point) : point2d &
+..
++operator*(int k) const : point2d
++operator+(point2d v) const : point2d
++operator+=(point2d v) : void
++operator-(point2d v) const : point2d
++operator-=(point2d v) : void
++operator/(int det) const : point2d
+__
++x : int
++y : int
+}
+class "box2d" as C_0003276583972331131429
+class C_0003276583972331131429 {
++box2d() : void
++box2d(point2d min_point, point2d max_point) : void
++box2d(const box2d & box) : void
++box2d(box2d && box) : void
+..
++operator=(const box2d & box) : box2d &
++operator=(box2d && box) : box2d &
+..
++contains(point2d point) const : bool
++contains(box2d box) const : bool
++intersects(box2d box) const : bool
+__
++max_point : point2d
++min_point : point2d
+}
+class "Ship" as C_0014529657433315016423
+class C_0014529657433315016423 {
++Ship() = default : void
++Ship(int length, point2d coordinates, bool is_vertical) : void
++Ship(const Ship & ship) : void
+..
++operator=(const Ship & ship) : Ship &
++operator=(Ship && ship) : Ship &
+..
++IsVertical() const : bool
++getArea() const : box2d
++getLen() const : int
++getSegments() : std::vector<std::shared_ptr<Segment>> &
++isDestroyed() : bool
+__
+-area : box2d
+-is_vertical : bool
+-length : int
+-segments : std::vector<std::shared_ptr<Segment>>
+}
+class "Ship::Segment" as C_0000674658759292391449
+class C_0000674658759292391449 {
++Attack() : void
++Segment() : void
+__
++state : segmentState
+}
+enum "Ship::Segment::segmentState" as C_0002525743222311119146
+enum C_0002525743222311119146 {
+normal
+damaged
+destroyed
+}
+class "invalidShipLength" as C_0011842997067663358767
+class C_0011842997067663358767 {
++invalidShipLength(int length) : void
+..
++what() const noexcept : const char *
+__
+-length : int
+-msg : std::string
+}
+class "shipManager" as C_0009950070490733851683
+class C_0009950070490733851683 {
++shipManager() = default : void
++shipManager(const shipManager & ship_manager) : void
+..
++operator=(const shipManager & ship_manager) : shipManager &
+..
++addShip(std::shared_ptr<Ship> ship) : void
++allShipsDestroyed() : bool
++checkDestroyedShips() : bool
++getLen() const : int
++shipIntersection(box2d ship_area) : bool
+__
+-destroyed_ships : int
+-ships : std::vector<std::shared_ptr<Ship>>
+}
+class "invalidShipPosition" as C_0002711233589939379544
+class C_0002711233589939379544 {
++invalidShipPosition() : void
+..
++what() const noexcept : const char *
+__
+-msg : std::string
+}
+class "objectOutOfBounds" as C_0016288775769628282457
+class C_0016288775769628282457 {
++objectOutOfBounds(point2d coordinates) : void
+..
++what() const noexcept : const char *
+__
+-coordinates : point2d
+-msg : std::string
+}
+class "playField" as C_0002718641478943956868
+class C_0002718641478943956868 {
++playField() = default : void
++playField(int size_x, int size_y) : void
++playField(point2d size) : void
++playField(const playField & play_field) : void
++playField(playField && play_field) noexcept : void
+..
++operator=(const playField & play_field) : playField &
++operator=(playField && play_field) noexcept : playField &
+..
++Attack(point2d coordinates, bool sneak) : void
++getArea() const : box2d
++getCell(int x, int y) : Cell
++placeShip(std::shared_ptr<Ship> ship, shipManager & ship_manager) : void
+__
+-area : box2d
+-field : std::vector<std::vector<Cell>>
+}
+class "playField::Cell" as C_0012382187627966550024
+class C_0012382187627966550024 {
++Attack(bool change_state) : void
++Cell() : void
+__
++segment : std::shared_ptr<Ship::Segment>
++state : cellState
+}
+enum "playField::Cell::cellState" as C_0001015552162007637433
+enum C_0001015552162007637433 {
+unknown
+empty
+ship
+}
+class "invalidFieldSize" as C_0006266520075800295074
+class C_0006266520075800295074 {
++invalidFieldSize() : void
+..
++what() const noexcept : const char *
+__
+-msg : std::string
+}
+abstract "IAbility" as C_0009994077994353547300
+abstract C_0009994077994353547300 {
++~IAbility() : void
+..
+{abstract} +apply() = 0 : void
+{abstract} +setPlayer(Player * player) = 0 : void
+__
+}
+class "inputManager" as C_0005702333270269120294
+class C_0005702333270269120294 {
++inputManager(std::istream & is) : void
+..
++inputAction(char & c) : void
++inputCoordinates(point2d & coordinates) : void
++inputShip(std::shared_ptr<Ship> ship) : void
+__
+-is : std::istream &
+}
+class "inputException" as C_0014977310728180813786
+class C_0014977310728180813786 {
++inputException() : void
+..
++what() const noexcept : const char *
+__
+-msg : std::string
+}
+class "outputManager" as C_0015802359033708762580
+class C_0015802359033708762580 {
++outputManager(std::ostream & os) : void
+..
++drawField(playField & play_field, bool fog) : void
++drawMessage(std::string message) : void
++update() : void
+__
+-os : std::ostream &
+}
+class "scannerAbility" as C_0016468253632855503069
+class C_0016468253632855503069 {
++scannerAbility() : void
+..
++apply() : void
++setPlayer(Player * player) : void
+__
+-player : Player *
+}
+class "doubleDamageAbility" as C_0005510779157418003060
+class C_0005510779157418003060 {
++doubleDamageAbility() : void
+..
++apply() : void
++setPlayer(Player * player) : void
+__
+-player : Player *
+}
+class "shellingAbility" as C_0016160228652830484330
+class C_0016160228652830484330 {
++shellingAbility() : void
+..
++apply() : void
++setPlayer(Player * player) : void
+__
+-player : Player *
+}
+class "abilitiesManager" as C_0007274270597269336837
+class C_0007274270597269336837 {
++abilitiesManager() : void
+..
++applyAbility(Player * player) : void
++createRandomAbility() : void
+__
+-abilities : std::queue<std::shared_ptr<IAbility>>
+}
+class "noAbilitiesException" as C_0011430010922026392300
+class C_0011430010922026392300 {
++noAbilitiesException() : void
+..
++what() const noexcept : const char *
+__
+-msg : std::string
+}
+class "Player" as C_0003605716991605700936
+class C_0003605716991605700936 {
++Player(inputManager & im, outputManager & om) : void
+..
++Attack() : void
++getOpponent(Player * player) : void
++placeShip() : void
++useAbility() : void
+__
+-abilities_manager : abilitiesManager
+-double_damage : bool
+-input_manager : inputManager &
+-opponent_play_field : playField *
+-opponent_ship_manager : shipManager *
+-output_manager : outputManager &
+-play_field : playField
+-ship_manager : shipManager
+}
+class "Game" as C_0017470460303031448044
+class C_0017470460303031448044 {
++Game() : void
+..
++Play() : void
++Setup() : void
+__
+-im : inputManager
+-om : outputManager
+-player : Player
+}
+C_0008811565138490693412 ..> C_0006524010458157121833
+C_0003276583972331131429 o-- C_0008811565138490693412 : +min_point
+C_0003276583972331131429 o-- C_0008811565138490693412 : +max_point
+C_0014529657433315016423 ..> C_0008811565138490693412
+C_0014529657433315016423 ..> C_0000674658759292391449
+C_0014529657433315016423 o-- C_0005137471544809756671 : -segments
+C_0014529657433315016423 o-- C_0003276583972331131429 : -area
+C_0014529657433315016423 <.. C_0005702333270269120294 : +<<friend>>
+C_0000674658759292391449 --+ C_0014529657433315016423
+C_0000674658759292391449 o-- C_0002525743222311119146 : +state
+C_0002525743222311119146 --+ C_0000674658759292391449
+C_0011842997067663358767 o-- C_0001275076681856179721 : -msg
+C_0009950070490733851683 ..> C_0003276583972331131429
+C_0009950070490733851683 ..> C_0011971345971339369468
+C_0009950070490733851683 ..> C_0014529657433315016423
+C_0009950070490733851683 o-- C_0011309305146689019070 : -ships
+C_0002711233589939379544 o-- C_0001275076681856179721 : -msg
+C_0016288775769628282457 o-- C_0008811565138490693412 : -coordinates
+C_0016288775769628282457 o-- C_0001275076681856179721 : -msg
+C_0002718641478943956868 ..> C_0008811565138490693412
+C_0002718641478943956868 ..> C_0011971345971339369468
+C_0002718641478943956868 ..> C_0014529657433315016423
+C_0002718641478943956868 ..> C_0009950070490733851683
+C_0002718641478943956868 ..> C_0012382187627966550024
+C_0002718641478943956868 o-- C_0003276583972331131429 : -area
+C_0002718641478943956868 o-- C_0015470587853006496964 : -field
+C_0012382187627966550024 --+ C_0002718641478943956868
+C_0012382187627966550024 --> C_0011898429847568957638 : +segment
+C_0012382187627966550024 --> C_0000674658759292391449 : +segment
+C_0012382187627966550024 o-- C_0001015552162007637433 : +state
+C_0001015552162007637433 --+ C_0012382187627966550024
+C_0006266520075800295074 o-- C_0001275076681856179721 : -msg
+C_0009994077994353547300 ..> C_0003605716991605700936
+C_0005702333270269120294 ..> C_0008811565138490693412
+C_0005702333270269120294 ..> C_0011971345971339369468
+C_0005702333270269120294 ..> C_0014529657433315016423
+C_0005702333270269120294 --> C_0005505409806480479128 : -is
+C_0014977310728180813786 o-- C_0001275076681856179721 : -msg
+C_0015802359033708762580 ..> C_0002718641478943956868
+C_0015802359033708762580 ..> C_0001275076681856179721
+C_0015802359033708762580 --> C_0012782362847443494988 : -os
+C_0016468253632855503069 --> C_0003605716991605700936 : -player
+C_0009994077994353547300 <|-- C_0016468253632855503069
+
+C_0005510779157418003060 --> C_0003605716991605700936 : -player
+C_0009994077994353547300 <|-- C_0005510779157418003060
+
+C_0016160228652830484330 --> C_0003605716991605700936 : -player
+C_0009994077994353547300 <|-- C_0016160228652830484330
+
+C_0007274270597269336837 ..> C_0003605716991605700936
+C_0007274270597269336837 o-- C_0000927818017758117099 : -abilities
+C_0011430010922026392300 o-- C_0001275076681856179721 : -msg
+C_0003605716991605700936 o-- C_0007274270597269336837 : -abilities_manager
+C_0003605716991605700936 --> C_0002718641478943956868 : -opponent_play_field
+C_0003605716991605700936 --> C_0009950070490733851683 : -opponent_ship_manager
+C_0003605716991605700936 --> C_0005702333270269120294 : -input_manager
+C_0003605716991605700936 --> C_0015802359033708762580 : -output_manager
+C_0003605716991605700936 o-- C_0002718641478943956868 : -play_field
+C_0003605716991605700936 o-- C_0009950070490733851683 : -ship_manager
+C_0003605716991605700936 <.. C_0016160228652830484330 : +<<friend>>
+C_0003605716991605700936 <.. C_0016468253632855503069 : +<<friend>>
+C_0003605716991605700936 <.. C_0005510779157418003060 : +<<friend>>
+C_0003605716991605700936 <.. C_0017470460303031448044 : +<<friend>>
+C_0017470460303031448044 o-- C_0005702333270269120294 : -im
+C_0017470460303031448044 o-- C_0015802359033708762580 : -om
+C_0017470460303031448044 o-- C_0003605716991605700936 : -player
+
+'Generated with clang-uml, version 0.5.5
+'LLVM version Ubuntu clang version 18.1.3 (1ubuntu1)
+@enduml

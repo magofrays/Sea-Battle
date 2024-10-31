@@ -14,13 +14,6 @@ void inputManager::inputCoordinates(point2d & coordinates){
     coordinates.y = y;
 }
 
-void inputManager::inputPlayField(playField & play_field){
-    point2d size;
-    inputCoordinates(size);
-    playField new_field(size);
-    play_field = new_field;
-}
-
 void inputManager::inputShip(std::shared_ptr<Ship> ship){
     std::string input;
     std::getline(is, input);

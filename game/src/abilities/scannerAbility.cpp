@@ -9,10 +9,15 @@ void scannerAbility::apply(){
     inputManager & input = player->input_manager;
     outputManager & output = player->output_manager;
     point2d coordinates;
-    output.drawMessage("Input coordinates for scan.Format:\nx y(coordinates)\n");
+    while(true){
+    output.drawMessage("Input coordinates for scan. Format:\nx y(coordinates)\n");
     input.inputCoordinates(coordinates);
-    if(!(play_field.getArea().contains(box2d(coordinates, coordinates+point2d(1, 1)))) ){
-        throw objectOutOfBounds(coordinates);
+    if(!(play_field.getArea().contains(box2d(coordinates, coordinates+point2d(2, 2)))) ){
+        output.update();
+        output.drawMessage(objectOutOfBounds(coordinates).what());
+        }
+        else{
+        break;}
     }
     int count = 0;
     for(int x = 0; x != 2; ++x){

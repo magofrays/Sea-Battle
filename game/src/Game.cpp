@@ -5,7 +5,10 @@ void Game::Setup(){
     while(true){
     try{
         om.drawMessage("Input Field. Format:\nw h(width, height)\n");
-        im.inputPlayField(player.play_field);
+        point2d size;
+        im.inputCoordinates(size);
+        playField new_field(size);
+        player.play_field = new_field;
         break;
         }
         catch(invalidFieldSize & e){
@@ -23,26 +26,30 @@ void Game::Setup(){
 }
 
 void Game::Play(){
-    
-    player.getOpponent(&player.play_field, &player.ship_manager);
+    player.getOpponent(&player);
     while(true){
         
-        om.drawField(*(player.opponent_play_field), true);
-        om.drawMessage("Choose action:\nu - use ability, then attack\na - attack\n");
+        
         char c;
         while(true){
             try{
+                om.drawField(*(player.opponent_play_field), true);
+                om.drawMessage("Choose action:\nu - use ability, then attack\na - attack\n");
                 im.inputAction(c);
                 break;
                 }
             catch(inputException & e){
+                om.update();
                 om.drawMessage(e.what());
             }
         }
+        om.update();
+        om.drawField(*(player.opponent_play_field), true);
         switch(c){
             case 'u':
                 player.useAbility();
             case 'a':
+                om.drawMessage("Input coordinates for Attack\n");
                 player.Attack();
         }
         if(player.opponent_ship_manager->allShipsDestroyed()){

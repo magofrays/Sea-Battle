@@ -1,11 +1,10 @@
 #include "shipManager.h"
-//#include "errors/indexOutOfBounds.h"
-//#include "errors/invalidShipPosition.h"
 
-shipManager::shipManager(const shipManager &ship_manager):ships(ship_manager.ships){}
+shipManager::shipManager(const shipManager &ship_manager):ships(ship_manager.ships), destroyed_ships(ship_manager.destroyed_ships){}
 shipManager& shipManager::operator = (const shipManager& ship_manager){
     if(this != &ship_manager){
         ships = ship_manager.ships;
+        destroyed_ships = ship_manager.destroyed_ships;
     }
     return *this;
 }
@@ -18,8 +17,6 @@ bool shipManager::shipIntersection(box2d ship_area){
     for(auto & ship: ships){
         
         box2d area = ship->getArea();
-        area.min_point -= point2d(1, 1);
-        area.max_point += point2d(1, 1);
         if(area.intersects(ship_area)){
             return true;
         }

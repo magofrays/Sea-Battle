@@ -1,3 +1,5 @@
+#pragma once
+#include "../utilities/vector2d.h"
 class objectOutOfBounds : public std::exception {
     point2d coordinates;
     std::string msg;

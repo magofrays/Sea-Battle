@@ -1,0 +1,74 @@
+[
+{
+  "directory": "/home/magofrays/Desktop/OOP/Sea-Battle/game/build",
+  "command": "/usr/bin/c++  -I/home/magofrays/Desktop/OOP/Sea-Battle/game/src -fsanitize=address -o CMakeFiles/seabattle.dir/src/Game.cpp.o -c /home/magofrays/Desktop/OOP/Sea-Battle/game/src/Game.cpp",
+  "file": "/home/magofrays/Desktop/OOP/Sea-Battle/game/src/Game.cpp",
+  "output": "CMakeFiles/seabattle.dir/src/Game.cpp.o"
+},
+{
+  "directory": "/home/magofrays/Desktop/OOP/Sea-Battle/game/build",
+  "command": "/usr/bin/c++  -I/home/magofrays/Desktop/OOP/Sea-Battle/game/src -fsanitize=address -o CMakeFiles/seabattle.dir/src/Player.cpp.o -c /home/magofrays/Desktop/OOP/Sea-Battle/game/src/Player.cpp",
+  "file": "/home/magofrays/Desktop/OOP/Sea-Battle/game/src/Player.cpp",
+  "output": "CMakeFiles/seabattle.dir/src/Player.cpp.o"
+},
+{
+  "directory": "/home/magofrays/Desktop/OOP/Sea-Battle/game/build",
+  "command": "/usr/bin/c++  -I/home/magofrays/Desktop/OOP/Sea-Battle/game/src -fsanitize=address -o CMakeFiles/seabattle.dir/src/Ship.cpp.o -c /home/magofrays/Desktop/OOP/Sea-Battle/game/src/Ship.cpp",
+  "file": "/home/magofrays/Desktop/OOP/Sea-Battle/game/src/Ship.cpp",
+  "output": "CMakeFiles/seabattle.dir/src/Ship.cpp.o"
+},
+{
+  "directory": "/home/magofrays/Desktop/OOP/Sea-Battle/game/build",
+  "command": "/usr/bin/c++  -I/home/magofrays/Desktop/OOP/Sea-Battle/game/src -fsanitize=address -o CMakeFiles/seabattle.dir/src/abilities/abilitiesManager.cpp.o -c /home/magofrays/Desktop/OOP/Sea-Battle/game/src/abilities/abilitiesManager.cpp",
+  "file": "/home/magofrays/Desktop/OOP/Sea-Battle/game/src/abilities/abilitiesManager.cpp",
+  "output": "CMakeFiles/seabattle.dir/src/abilities/abilitiesManager.cpp.o"
+},
+{
+  "directory": "/home/magofrays/Desktop/OOP/Sea-Battle/game/build",
+  "command": "/usr/bin/c++  -I/home/magofrays/Desktop/OOP/Sea-Battle/game/src -fsanitize=address -o CMakeFiles/seabattle.dir/src/abilities/doubleDamageAbility.cpp.o -c /home/magofrays/Desktop/OOP/Sea-Battle/game/src/abilities/doubleDamageAbility.cpp",
+  "file": "/home/magofrays/Desktop/OOP/Sea-Battle/game/src/abilities/doubleDamageAbility.cpp",
+  "output": "CMakeFiles/seabattle.dir/src/abilities/doubleDamageAbility.cpp.o"
+},
+{
+  "directory": "/home/magofrays/Desktop/OOP/Sea-Battle/game/build",
+  "command": "/usr/bin/c++  -I/home/magofrays/Desktop/OOP/Sea-Battle/game/src -fsanitize=address -o CMakeFiles/seabattle.dir/src/abilities/scannerAbility.cpp.o -c /home/magofrays/Desktop/OOP/Sea-Battle/game/src/abilities/scannerAbility.cpp",
+  "file": "/home/magofrays/Desktop/OOP/Sea-Battle/game/src/abilities/scannerAbility.cpp",
+  "output": "CMakeFiles/seabattle.dir/src/abilities/scannerAbility.cpp.o"
+},
+{
+  "directory": "/home/magofrays/Desktop/OOP/Sea-Battle/game/build",
+  "command": "/usr/bin/c++  -I/home/magofrays/Desktop/OOP/Sea-Battle/game/src -fsanitize=address -o CMakeFiles/seabattle.dir/src/abilities/shellingAbility.cpp.o -c /home/magofrays/Desktop/OOP/Sea-Battle/game/src/abilities/shellingAbility.cpp",
+  "file": "/home/magofrays/Desktop/OOP/Sea-Battle/game/src/abilities/shellingAbility.cpp",
+  "output": "CMakeFiles/seabattle.dir/src/abilities/shellingAbility.cpp.o"
+},
+{
+  "directory": "/home/magofrays/Desktop/OOP/Sea-Battle/game/build",
+  "command": "/usr/bin/c++  -I/home/magofrays/Desktop/OOP/Sea-Battle/game/src -fsanitize=address -o CMakeFiles/seabattle.dir/src/console/input/inputManager.cpp.o -c /home/magofrays/Desktop/OOP/Sea-Battle/game/src/console/input/inputManager.cpp",
+  "file": "/home/magofrays/Desktop/OOP/Sea-Battle/game/src/console/input/inputManager.cpp",
+  "output": "CMakeFiles/seabattle.dir/src/console/input/inputManager.cpp.o"
+},
+{
+  "directory": "/home/magofrays/Desktop/OOP/Sea-Battle/game/build",
+  "command": "/usr/bin/c++  -I/home/magofrays/Desktop/OOP/Sea-Battle/game/src -fsanitize=address -o CMakeFiles/seabattle.dir/src/console/output/outputManager.cpp.o -c /home/magofrays/Desktop/OOP/Sea-Battle/game/src/console/output/outputManager.cpp",
+  "file": "/home/magofrays/Desktop/OOP/Sea-Battle/game/src/console/output/outputManager.cpp",
+  "output": "CMakeFiles/seabattle.dir/src/console/output/outputManager.cpp.o"
+},
+{
+  "directory": "/home/magofrays/Desktop/OOP/Sea-Battle/game/build",
+  "command": "/usr/bin/c++  -I/home/magofrays/Desktop/OOP/Sea-Battle/game/src -fsanitize=address -o CMakeFiles/seabattle.dir/src/main.cpp.o -c /home/magofrays/Desktop/OOP/Sea-Battle/game/src/main.cpp",
+  "file": "/home/magofrays/Desktop/OOP/Sea-Battle/game/src/main.cpp",
+  "output": "CMakeFiles/seabattle.dir/src/main.cpp.o"
+},
+{
+  "directory": "/home/magofrays/Desktop/OOP/Sea-Battle/game/build",
+  "command": "/usr/bin/c++  -I/home/magofrays/Desktop/OOP/Sea-Battle/game/src -fsanitize=address -o CMakeFiles/seabattle.dir/src/playField.cpp.o -c /home/magofrays/Desktop/OOP/Sea-Battle/game/src/playField.cpp",
+  "file": "/home/magofrays/Desktop/OOP/Sea-Battle/game/src/playField.cpp",
+  "output": "CMakeFiles/seabattle.dir/src/playField.cpp.o"
+},
+{
+  "directory": "/home/magofrays/Desktop/OOP/Sea-Battle/game/build",
+  "command": "/usr/bin/c++  -I/home/magofrays/Desktop/OOP/Sea-Battle/game/src -fsanitize=address -o CMakeFiles/seabattle.dir/src/shipManager.cpp.o -c /home/magofrays/Desktop/OOP/Sea-Battle/game/src/shipManager.cpp",
+  "file": "/home/magofrays/Desktop/OOP/Sea-Battle/game/src/shipManager.cpp",
+  "output": "CMakeFiles/seabattle.dir/src/shipManager.cpp.o"
+}
+]

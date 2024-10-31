@@ -1,0 +1,18 @@
+diagrams:
+  chaos-diagram:
+    type: class
+    glob:
+      - game/src/*.cpp
+      - game/src/*.h
+      - game/src/abilities/*.cpp
+      - game/src/abilities/*.h
+      - game/src/console/*.cpp
+      - game/src/console/*.h
+      - game/src/console/input/*.cpp
+      - game/src/console/input/*.h
+      - game/src/console/output/*.cpp
+      - game/src/console/output/*.h
+      - game/src/errors/*.h
+      - game/src/utilities/*.h
+    generate_template_argument_dependencies: false
+compilation_database_dir: game/build
