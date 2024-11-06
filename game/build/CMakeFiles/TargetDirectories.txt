@@ -1,5 +1,0 @@
-/home/magofrays/Desktop/OOP/Sea-Battle/game/build/CMakeFiles/seabattle.dir
-/home/magofrays/Desktop/OOP/Sea-Battle/game/build/CMakeFiles/edit_cache.dir
-/home/magofrays/Desktop/OOP/Sea-Battle/game/build/CMakeFiles/rebuild_cache.dir
-/home/magofrays/Desktop/OOP/Sea-Battle/game/build/src/CMakeFiles/edit_cache.dir
-/home/magofrays/Desktop/OOP/Sea-Battle/game/build/src/CMakeFiles/rebuild_cache.dir
