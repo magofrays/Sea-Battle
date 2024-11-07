@@ -1,12 +1,12 @@
-#include "Player.h"
+#include "humanPlayer.h"
 
-void Player::getOpponent(Player * player){
+void humanPlayer::getOpponent(Player * player){
     opponent_play_field = &(player->play_field);
     opponent_ship_manager = &(player->ship_manager);
 }
 
 
-void Player::placeShip(){
+void humanPlayer::placeShip(){
         try{
             output_manager.drawMessage("Input ship. Format:\nx y l o(coordinates, length, orientation(1 vertical, 0 horizontal))\n");
             std::shared_ptr<Ship> ship = std::make_shared<Ship>();
@@ -32,7 +32,7 @@ void Player::placeShip(){
         }
 }
 
-void Player::useAbility(){
+void humanPlayer::useAbility(){
     try{
         abilities_manager.applyAbility(this);
     }
@@ -44,7 +44,7 @@ void Player::useAbility(){
     }
     
 }
-void Player::Attack(){
+void humanPlayer::Attack(){
     while(true){
     try{
         point2d coordinates;

@@ -1,8 +1,8 @@
 #include "shellingAbility.h"
-#include "../Player.h"
+#include "../humanPlayer.h"
 #include "../console/output/outputManager.h"
 
-void shellingAbility::apply(Player * player){
+void shellingAbility::apply(humanPlayer * player){
     playField * play_field = player->opponent_play_field;
     outputManager & output = player->output_manager;
     shipManager * ship_manager = player->opponent_ship_manager;

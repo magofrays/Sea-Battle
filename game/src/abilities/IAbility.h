@@ -1,9 +1,9 @@
 #pragma once
 #include "../playField.h"
 
-class Player;
+class humanPlayer;
 class IAbility{
     public:
-        virtual void apply(Player * player) = 0;
+        virtual void apply(humanPlayer * player) = 0;
         virtual ~IAbility() {}
 };

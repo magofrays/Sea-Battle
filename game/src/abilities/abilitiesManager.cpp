@@ -28,7 +28,7 @@ void abilitiesManager::createRandomAbility(){
     }
 }
 
-void abilitiesManager::applyAbility(Player * player){
+void abilitiesManager::applyAbility(humanPlayer * player){
     if(abilities.size()  <= 0){
         throw noAbilitiesException();
         }

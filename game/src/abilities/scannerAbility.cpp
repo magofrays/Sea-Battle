@@ -1,10 +1,10 @@
 #include "scannerAbility.h"
-#include "../Player.h"
+#include "../humanPlayer.h"
 #include "../console/input/inputManager.h"
 #include "../console/output/outputManager.h"
 
 
-void scannerAbility::apply(Player * player){
+void scannerAbility::apply(humanPlayer * player){
     playField & play_field = player->play_field;
     inputManager & input = player->input_manager;
     outputManager & output = player->output_manager;

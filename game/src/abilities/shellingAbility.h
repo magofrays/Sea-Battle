@@ -3,5 +3,5 @@
 
 class shellingAbility : public IAbility{
     public:
-        void apply(Player * player);
+        void apply(humanPlayer * player);
 };  
