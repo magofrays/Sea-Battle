@@ -91,7 +91,7 @@ playField::Cell playField::getCell(int x, int y){
 }
 
 void playField::Attack(point2d coordinates, bool not_sneak){
-    if(!(area.contains(coordinates))){
+    if(!(area.contains(box2d(coordinates, coordinates+point2d(1, 1)) ))){
         throw objectOutOfBounds(coordinates);
     }
     (field[coordinates.y][coordinates.x]).Attack(not_sneak);

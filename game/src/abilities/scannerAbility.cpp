@@ -4,7 +4,7 @@
 #include "../console/output/outputManager.h"
 
 
-void scannerAbility::apply(){
+void scannerAbility::apply(Player * player){
     playField & play_field = player->play_field;
     inputManager & input = player->input_manager;
     outputManager & output = player->output_manager;
@@ -38,8 +38,4 @@ void scannerAbility::apply(){
             output.drawMessage("2 segments in the area were found!\n");
             }
     }
-}
-
-void scannerAbility::setPlayer(Player * player){
-    this->player = player;
 }

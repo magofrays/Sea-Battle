@@ -33,8 +33,7 @@ void abilitiesManager::applyAbility(Player * player){
         throw noAbilitiesException();
         }
     std::shared_ptr<IAbility> last_ability = abilities.front();
-    last_ability->setPlayer(player);
-    last_ability->apply();
+    last_ability->apply(player);
     abilities.pop();
     
 

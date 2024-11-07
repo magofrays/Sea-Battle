@@ -1,13 +1,12 @@
 #pragma once
-#include <bits/stdc++.h>
-/*#include <iostream>
+#include <iostream>
 #include <vector>
 #include <algorithm>
 #include <memory>
 #include <queue>
 #include <random>
 #include <string>
-#include <sstream>*/
+#include <sstream>
 class point2d{
     public:
     int x; int y;
@@ -72,8 +71,8 @@ class box2d{
         {
             return point.x >= min_point.x &&
                    point.y >= min_point.y &&
-                   point.x < max_point.x &&
-                   point.y < max_point.y;
+                   point.x <= max_point.x &&
+                   point.y <= max_point.y;
         }
     
     bool contains(box2d box) const

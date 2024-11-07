@@ -1,6 +1,5 @@
 #pragma once
 #include "shipManager.h"
-#include "errors/objectOutOfBounds.h"
 
 class playField{
     public:
@@ -34,15 +33,4 @@ class playField{
         box2d getArea() const;
         Cell getCell(int x, int y);
         void Attack(point2d coordinates, bool sneak);
-};
-
-class invalidFieldSize: public std::exception{
-    std::string msg;
-    public:
-        invalidFieldSize(){
-            msg = "Field size is below 1!\n";
-        }
-        const char * what()  const noexcept override{
-            return msg.c_str();
-        }
 };

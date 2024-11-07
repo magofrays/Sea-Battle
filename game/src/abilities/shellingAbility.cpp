@@ -2,7 +2,7 @@
 #include "../Player.h"
 #include "../console/output/outputManager.h"
 
-void shellingAbility::apply(){
+void shellingAbility::apply(Player * player){
     playField * play_field = player->opponent_play_field;
     outputManager & output = player->output_manager;
     shipManager * ship_manager = player->opponent_ship_manager;
@@ -21,8 +21,4 @@ void shellingAbility::apply(){
     
     play_field->Attack(point2d(x, y), false);
     output.drawMessage("One of the ships was attacked!\n");
-}
-
-void shellingAbility::setPlayer(Player * player){
-    this->player = player;
 }
