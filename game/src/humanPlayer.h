@@ -8,11 +8,9 @@
 class humanPlayer: public Player{
     point2d pointer;
     abilitiesManager abilities_manager;
-    inputManager & input_manager;
-    outputManager & output_manager;
     bool double_damage;
     public:
-            humanPlayer(inputManager & im, outputManager & om):input_manager(im), output_manager(om), double_damage(false){}
+            humanPlayer(): double_damage(false){}
             void getOpponent(Player * player);
             void placeShip();
             void Attack();
