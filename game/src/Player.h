@@ -11,9 +11,8 @@ class Player: public messageHandler{
         playField play_field;
         shipManager ship_manager;
     
-        template <typename T>
-        void Handle(Message<T> message){
-            handler->Handle(message);
+        void Handle(std::unique_ptr<Message> message){
+            handler->Handle(message->clone());
         }
         void setNext(messageHandler * handler){
             this->handler = handler;

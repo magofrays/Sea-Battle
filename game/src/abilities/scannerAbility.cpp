@@ -1,23 +1,19 @@
 #include "scannerAbility.h"
 #include "../humanPlayer.h"
-#include "../console/input/inputManager.h"
-#include "../console/output/outputManager.h"
+#include "../messages/textMessage.h"
 
+abilityInfo scannerAbility::info(){
+    abilityInfo info;
+    info.name = "Scanner";
+    info.need_input = true;
+    return info;
+}
 
 void scannerAbility::apply(humanPlayer * player){
     playField & play_field = player->play_field;
-    inputManager & input = player->input_manager;
-    outputManager & output = player->output_manager;
-    point2d coordinates;
-    while(true){
-    output.drawMessage("Input coordinates for scan. Format:\nx y(coordinates)\n");
-    input.inputCoordinates(coordinates);
+    point2d coordinates = player->pointer;
     if(!(play_field.getArea().contains(box2d(coordinates, coordinates+point2d(2, 2)))) ){
-        output.update();
-        output.drawMessage(objectOutOfBounds(coordinates).what());
-        }
-        else{
-        break;}
+            throw objectOutOfBounds(coordinates);
     }
     int count = 0;
     for(int x = 0; x != 2; ++x){
@@ -28,14 +24,14 @@ void scannerAbility::apply(humanPlayer * player){
         }
     }
     if(count == 0){
-        output.drawMessage("No segments in the area were found!\n");
+        player->Handle(textMessage("No segments in the area were found!\n").clone());
     }
     else{
         if(count == 1){
-            output.drawMessage("1 segment in the area was found!\n");
+            player->Handle(textMessage("1 segment in the area was found!\n").clone());
         }
         else{
-            output.drawMessage("2 segments in the area were found!\n");
+            player->Handle(textMessage("2 segments in the area were found!\n").clone());
             }
     }
 }

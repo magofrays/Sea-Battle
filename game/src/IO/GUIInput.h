@@ -1,12 +1,11 @@
+#pragma once
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_ttf.h>
 #include "gameInput.h"
-#include "../messages/Message.h"
 
 class GUIInput: public gameInput{
-    Action transformKey(SDL_Keycode key);
-    Message update();
+    Key transformKey(SDL_Keycode key);
+    void update();
     
-    template <typename T>
-    void Handle(Message<T> message);
+    void Handle(std::unique_ptr<Message> message);
 };

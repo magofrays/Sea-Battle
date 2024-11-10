@@ -3,17 +3,18 @@
 #include <SDL2/SDL_ttf.h>
 #include "gameOutput.h"
 #include "../utilities/settings.h"
+#include "../utilities/vector2d.h"
 
 class GUIOutput : public gameOutput{
     SDL_Window * window;
     SDL_Renderer * renderer;
+    TTF_Font* font;
     public:
         GUIOutput();
-        void drawField(point2d coordinates, playField & field);
-        void drawPointer(point2d & pointer);
-        void drawText(std::string text);
+        void drawField(playField & field);
+        void drawPointer(point2d & pointer){}
+        void drawText(point2d coors, std::string text);
         ~GUIOutput();
 
-        template <typename T>
-        void Handle(Message<T> message);
+        void Handle(std::unique_ptr<Message> message);
 };

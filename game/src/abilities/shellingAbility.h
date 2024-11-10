@@ -3,5 +3,6 @@
 
 class shellingAbility : public IAbility{
     public:
+        abilityInfo info();
         void apply(humanPlayer * player);
 };  

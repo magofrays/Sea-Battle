@@ -1,12 +1,15 @@
+#pragma once
 #include "../messages/messageHandler.h"
+#include "../messages/keyMessage.h"
+
 class gameInput: public messageHandler{
-    messageHandler * handler;
+    protected:
+        messageHandler * handler;
     public:
-        virtual Message update() = 0;
+        virtual void update() = 0;
         
-        template <typename T>
-        virtual void Handle(Message<T> message) = 0;
+        virtual void Handle(std::unique_ptr<Message> message) = 0;
         void setNext(messageHandler * handler){
             this->handler = handler;
         }
-}
+};

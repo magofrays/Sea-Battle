@@ -1,10 +1,11 @@
+#pragma once
 #include "../humanPlayer.h"
-#include "../gui/guiOutput.h"
 #include "gameState.h"
-#include "../messages/messageChain.h"
+#include "../messages/messageHandler.h"
+#include "../messages/keyMessage.h"
 #include "../IO/gameInput.h"
 #include "../IO/gameOutput.h"
-#include "../states/setupState.h"
+#include "../states/setupFieldState.h"
 
 class Game: public messageHandler{
     std::shared_ptr<gameState> state;
@@ -20,7 +21,7 @@ class Game: public messageHandler{
         void execute();
         
         template <typename T>
-        void Handle(Message<T> message);
+        void Handle(std::unique_ptr<Message> message);
         void setNext(messageHandler * handler);
 
 };

@@ -10,6 +10,6 @@ class abilitiesManager{
     public:
         abilitiesManager();
         void createRandomAbility();
-        void applyAbility(humanPlayer * player);
+        std::shared_ptr<IAbility> getAbility();
 };
 

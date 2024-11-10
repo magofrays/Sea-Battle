@@ -1,12 +1,18 @@
 #include "doubleDamageAbility.h"
 #include "../humanPlayer.h"
-#include "../console/output/outputManager.h"
+#include "../messages/textMessage.h"
+
+abilityInfo doubleDamageAbility::info(){
+    abilityInfo info;
+    info.name = "DoubleDamage";
+    info.need_input = false;
+    return info;
+}
 
 void doubleDamageAbility::apply(humanPlayer * player){
     player->double_damage = true;
-    outputManager & output = player->output_manager;
-    output.drawMessage("Double damage ability applied!\n");
-    output.drawMessage("Now you can damage any segment twice!\n");
+    player->Handle(textMessage("Double damage ability applied!\n").clone());
+    player->Handle(textMessage("Now you can damage any segment twice!\n").clone());
 }
 
 

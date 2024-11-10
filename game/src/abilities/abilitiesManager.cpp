@@ -28,13 +28,11 @@ void abilitiesManager::createRandomAbility(){
     }
 }
 
-void abilitiesManager::applyAbility(humanPlayer * player){
+std::shared_ptr<IAbility> abilitiesManager::getAbility(){
     if(abilities.size()  <= 0){
         throw noAbilitiesException();
         }
     std::shared_ptr<IAbility> last_ability = abilities.front();
-    last_ability->apply(player);
     abilities.pop();
-    
-
+    return last_ability;
 }

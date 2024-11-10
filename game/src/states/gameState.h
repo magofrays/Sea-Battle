@@ -1,3 +1,4 @@
+#pragma once
 #include "../messages/messageHandler.h"
 class Game;
 class gameState: public messageHandler{
@@ -11,8 +12,7 @@ class gameState: public messageHandler{
         virtual void execute() = 0;
         virtual ~gameState() {}
 
-        template <typename T>
-        virtual void Handle(Message<T> message) = 0;
+        virtual void Handle(std::unique_ptr<Message> message) = 0;
         void setNext(messageHandler * handler){
             this->handler = handler;
         }
