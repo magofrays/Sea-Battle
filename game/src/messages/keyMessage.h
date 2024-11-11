@@ -15,6 +15,7 @@ enum class Key{
 
 struct keyMessage: public Message{
     Key info;   
+    keyMessage(Key info): info(info){}
     std::unique_ptr<Message> clone(){
         return std::make_unique<keyMessage>(*this);
     }

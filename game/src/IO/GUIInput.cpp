@@ -1,4 +1,5 @@
 #include "GUIInput.h"
+#include "../messages/textMessage.h"
 
 Key GUIInput::transformKey(SDL_Keycode key){
     switch (key) {
@@ -21,19 +22,18 @@ Key GUIInput::transformKey(SDL_Keycode key){
 
 void GUIInput::update(){
     SDL_Event event;
-    std::unique_ptr<keyMessage> key = std::make_unique<keyMessage>();
+    
     while (SDL_PollEvent(&event) != 0){
         switch(event.type){
             case SDL_QUIT:
-                key->info = Key::quit;
+                Handle(keyMessage(Key::quit).clone());
                 break;
             case SDL_KEYDOWN:
-                key->info = transformKey(event.key.keysym.sym);
+                Handle(keyMessage(transformKey(event.key.keysym.sym)).clone());
         }
     }
-    Handle(key->clone());
 }
 
 void GUIInput::Handle(std::unique_ptr<Message> message){
-    handler->Handle(message->clone());
+    handler->Handle(std::move(message));
 }

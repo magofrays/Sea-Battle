@@ -10,7 +10,10 @@ class Player: public messageHandler{
         shipManager * opponent_ship_manager;
         playField play_field;
         shipManager ship_manager;
-    
+
+        void setField(playField field){
+            play_field = field;
+        }
         void Handle(std::unique_ptr<Message> message){
             handler->Handle(message->clone());
         }

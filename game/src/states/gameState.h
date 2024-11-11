@@ -1,14 +1,15 @@
 #pragma once
+#include "../utilities/vector2d.h"
 #include "../messages/messageHandler.h"
+
 class Game;
 class gameState: public messageHandler{
-    messageHandler * handler;
     protected:
-        Game & game; 
+        messageHandler * handler;
+        Game * game; 
     public:
-        void setGame(Game & game){
-            this->game = game;
-        }
+        gameState(Game * game): game(game) {}
+        void setGame(Game * game);
         virtual void execute() = 0;
         virtual ~gameState() {}
 

@@ -8,7 +8,7 @@
 #include "../states/setupFieldState.h"
 
 class Game: public messageHandler{
-    std::shared_ptr<gameState> state;
+    gameState * state;
     messageHandler * handler;
     
     public:
@@ -16,12 +16,12 @@ class Game: public messageHandler{
         humanPlayer player;
         
         Game(messageHandler * handler);
-        Game(std::shared_ptr<gameState> state, messageHandler * handler);
-        void Game::setState(gameState & state);
+        Game(gameState * state, messageHandler * handler);
+        void setState(gameState * state);
         void execute();
+        ~Game();
         
-        template <typename T>
         void Handle(std::unique_ptr<Message> message);
         void setNext(messageHandler * handler);
-
+        
 };

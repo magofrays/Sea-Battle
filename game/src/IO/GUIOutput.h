@@ -11,10 +11,12 @@ class GUIOutput : public gameOutput{
     TTF_Font* font;
     public:
         GUIOutput();
-        void drawField(playField & field);
-        void drawPointer(point2d & pointer){}
-        void drawText(point2d coors, std::string text);
+        void drawField(playField & field, fieldPosition position);
+        void drawPointer(point2d pointer){}
+        void drawText(point2d coordinates, std::string text);
         ~GUIOutput();
 
         void Handle(std::unique_ptr<Message> message);
+
+        void update();
 };
