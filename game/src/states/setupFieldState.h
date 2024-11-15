@@ -10,5 +10,5 @@ class setupFieldState: public gameState {
     void execute();
 
     void Handle(std::unique_ptr<Message> message);
-    void createField();
+    void end();
 };

@@ -15,7 +15,7 @@ class Player: public messageHandler{
             play_field = field;
         }
         void Handle(std::unique_ptr<Message> message){
-            handler->Handle(message->clone());
+            handler->Handle(std::move(message));
         }
         void setNext(messageHandler * handler){
             this->handler = handler;

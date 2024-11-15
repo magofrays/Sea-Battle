@@ -1,4 +1,5 @@
 #include "playField.h"
+#include "utilities/settings.h"
 void playField::Cell::Attack(bool change_state){
     if(!segment){
         if(change_state){
@@ -15,8 +16,8 @@ void playField::Cell::Attack(bool change_state){
 
 playField::playField(int size_x, int size_y)
 {
-    if(size_x < 1 || size_y < 1){
-        throw invalidFieldSize();
+    if(size_x < 1 || size_y < 1 || size_x > seabattle::MAX_FIELD_SIZE || size_y > seabattle::MAX_FIELD_SIZE){
+        throw invalidFieldSize(size_x, size_y);
     }
     box2d area(point2d(0, 0), point2d(size_x, size_y));
     this->area = area;
@@ -25,7 +26,7 @@ playField::playField(int size_x, int size_y)
 
 playField::playField(point2d size){
     if(size.x < 1 || size.y < 1){
-        throw invalidFieldSize();
+        throw invalidFieldSize(size.x, size.y);
     }
     box2d area(point2d(0, 0), size);
     this->area = area;

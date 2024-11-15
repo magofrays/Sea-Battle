@@ -24,7 +24,6 @@ void Game::setState(gameState * state){
 }
 
 void Game::execute(){
-    //Handle(textMessage("I'M GAME", point2d(10, 0)).clone());
     state->execute();
 }
 
