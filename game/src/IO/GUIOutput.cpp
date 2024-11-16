@@ -1,4 +1,5 @@
 #include "GUIOutput.h"
+#include <filesystem>
 
 GUIOutput::GUIOutput(){
     if (SDL_Init(SDL_INIT_VIDEO) != 0) {
@@ -16,6 +17,21 @@ GUIOutput::GUIOutput(){
     renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC);
     SDL_SetRenderDrawColor(renderer, 131, 148, 196, 255);
     SDL_RenderClear(renderer);
+    big_font = TTF_OpenFont(seabattle::FONT_DIR, seabattle::BIG_FONT_SIZE);
+    if (big_font == nullptr) {
+        std::cerr<< std::filesystem::current_path().string() << TTF_GetError() << "\n";
+        throw std::runtime_error("Failed to create font");
+    }
+    medium_font = TTF_OpenFont(seabattle::FONT_DIR, seabattle::MEDIUM_FONT_SIZE);
+    if (medium_font == nullptr) {
+        std::cerr<< std::filesystem::current_path().string() << TTF_GetError() << "\n";
+        throw std::runtime_error("Failed to create font");
+    }
+    small_font = TTF_OpenFont(seabattle::FONT_DIR, seabattle::SMALL_FONT_SIZE);
+    if (small_font == nullptr) {
+        std::cerr<< std::filesystem::current_path().string() << TTF_GetError() << "\n";
+        throw std::runtime_error("Failed to create font");
+    }
 }
 
 void GUIOutput::drawField(std::string field_name, playField & field, fieldPosition position, bool fog, bool draw_pointer){
@@ -96,39 +112,60 @@ void GUIOutput::drawField(std::string field_name, playField & field, fieldPositi
             SDL_SetRenderDrawColor(renderer, 32, 32, 32, 100);
             SDL_RenderDrawRect(renderer, &cell);
             SDL_RenderDrawRect(renderer, &outline);
-            point2d field_indent(0, 0);
+            point2d field_indent(10, 0);
             point2d name_coordinates = point2d(field_outline.w/2+field_outline.x, field_outline.h+field_outline.y) + field_indent;
-            this->drawText(field_name, name_coordinates, seabattle::FIELD_FONT_SIZE, {255, 255, 255, 255}, true);
+            this->drawText(field_name, name_coordinates, medium, {255, 255, 255, 255}, true);
             if(draw_pointer){
-                this->drawPointer(size_cell, coordinates);
+                this->drawPointer(size_cell, coordinates, size.max_point);
             }
 
         }
     }
 }
 
-void GUIOutput::drawPointer(int size_cell, point2d coordinates){
-    for(int x = pointer.info.min_point.x; x != pointer.info.max_point.x+1; x++){
-        for(int y = pointer.info.min_point.y; y != pointer.info.max_point.y+1; y++){
-            
+void GUIOutput::drawPointer(int size_cell, point2d coordinates, point2d field_size){
+    point2d pointer_coordinates = pointer.coordinates;
+    pointer_coordinates.y = std::abs(pointer_coordinates.y - field_size.y);
+    SDL_Color color = seabattle::POINTER_COLOR;
+    for(int x = pointer.area.min_point.x; x != pointer.area.max_point.x+1; x++){
+        for(int y = pointer.area.min_point.y; y != pointer.area.max_point.y+1; y++){
+            point2d cell_coordinates = (pointer_coordinates + point2d(x, y)) * size_cell;
+            SDL_Rect cell = {.x = coordinates.x + cell_coordinates.x, .y = coordinates.y + cell_coordinates.y, .w = size_cell, .h = size_cell};
+            SDL_SetRenderDrawColor(renderer, color.r, color.g, color.b, color.a);
+            SDL_RenderFillRect(renderer, &cell);
+            SDL_SetRenderDrawColor(renderer, 32, 32, 32, 100);
+            SDL_RenderDrawRect(renderer, &cell);
         }
     }
 }
-        
 
 
-SDL_Rect GUIOutput::drawText(std::string text, point2d coordinates, int font_size, 
+
+SDL_Rect GUIOutput::drawText(std::string text, point2d coordinates, fontSize font_size, 
                         SDL_Color color, bool is_centered){
+    TTF_Font * font;
+    switch(font_size){
+        case big:
+            font = big_font;
+            break;
+        case medium:
+            font = medium_font;
+            break;
+        case small:
+            font = small_font;
+    }
+
     if(text.size() != 0){
-        TTF_Font * font = TTF_OpenFont(seabattle::FONT_DIR, font_size);
+        
         SDL_Surface* textSurface = TTF_RenderText_Solid(font, text.c_str(), color);
         if (textSurface == nullptr) {
-            std::cerr << "Failed to create text surface: " << TTF_GetError() << "\n";
+            std::cerr << TTF_GetError();
+            throw std::runtime_error("Failed to create text surface");
         }
         SDL_Texture* textTexture = SDL_CreateTextureFromSurface(renderer, textSurface);
         if (textTexture == nullptr) {
-            std::cerr << "Failed to create texture from surface: " << SDL_GetError() << "\n";
-            SDL_FreeSurface(textSurface);
+            std::cerr << TTF_GetError();
+            throw std::runtime_error("Failed to create texture from surface");
         }
         
         SDL_Rect renderQuad = {coordinates.x, coordinates.y, textSurface->w, textSurface->h};
@@ -138,11 +175,10 @@ SDL_Rect GUIOutput::drawText(std::string text, point2d coordinates, int font_siz
         SDL_RenderCopy(renderer, textTexture, nullptr, &renderQuad);
         SDL_DestroyTexture(textTexture); 
         SDL_FreeSurface(textSurface);
-        TTF_CloseFont(font);
         return renderQuad;
     }
     else{
-        throw std::runtime_error("zero length");
+        throw std::runtime_error("zero length text");
     }
 }
 
@@ -173,7 +209,7 @@ void GUIOutput::redirectText(Text text, textPosition position){
 void GUIOutput::drawTitle(){
     point2d top_indent(0, 10);
     point2d coordinates = point2d(seabattle::WIDTH/2, 0) + top_indent;
-    this->drawText(title.msg, coordinates, seabattle::TITLE_FONT_SIZE, title.color, true);
+    this->drawText(title.msg, coordinates, big, title.color, true);
 }
 
 void GUIOutput::drawLog(){
@@ -181,10 +217,10 @@ void GUIOutput::drawLog(){
     point2d coordinates = point2d(seabattle::WIDTH/4, seabattle::HEIGHT) + bottom_indent;
     for(int i = 0; i != seabattle::LOG_LENGTH; i++){
         if(log[i].msg.size() != 0){
-            SDL_Rect outline = {coordinates.x-3, coordinates.y, seabattle::WIDTH/2, seabattle::LOG_FONT_SIZE};
+            SDL_Rect outline = {coordinates.x-3, coordinates.y, seabattle::WIDTH/2, seabattle::SMALL_FONT_SIZE};
             SDL_SetRenderDrawColor(renderer, 70, 70, 70, 100);
             SDL_RenderFillRect(renderer, &outline);
-            SDL_Rect renderQuad = this->drawText(log[i].msg, coordinates, seabattle::LOG_FONT_SIZE, log[i].color);
+            SDL_Rect renderQuad = this->drawText(log[i].msg, coordinates, small, log[i].color);
             
             
             coordinates -= point2d(0, renderQuad.h);
@@ -201,7 +237,12 @@ void GUIOutput::Handle(std::unique_ptr<Message> message){
     if(typeid(*message) == typeid(playFieldMessage)){
         Message * msg = &(*message);
         playFieldMessage * tr_msg = dynamic_cast<playFieldMessage*>(msg);
-        drawField(tr_msg->field_name, tr_msg->info, tr_msg->position, tr_msg->fog);
+        drawField(tr_msg->field_name, tr_msg->info, tr_msg->position, tr_msg->fog, tr_msg->draw_pointer);
+    }
+    if(typeid(*message) == typeid(pointerMessage)){
+        Message * msg = &(*message);
+        pointerMessage * tr_msg = dynamic_cast<pointerMessage*>(msg);
+        this->pointer = *tr_msg;
     }
 }
 
@@ -209,6 +250,9 @@ void GUIOutput::Handle(std::unique_ptr<Message> message){
 GUIOutput::~GUIOutput(){
     SDL_DestroyRenderer(renderer);
     SDL_DestroyWindow(window);
+    TTF_CloseFont(big_font);
+    TTF_CloseFont(medium_font);
+    TTF_CloseFont(small_font);
     TTF_Quit();
     SDL_Quit();
 }

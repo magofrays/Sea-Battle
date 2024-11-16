@@ -17,9 +17,9 @@ Game::Game(gameState * state, messageHandler * handler) : state(state){ // for t
 }
 
 void Game::setState(gameState * state){
-    delete state;
+    state->setNext(this->state->handler);
+    delete this->state;
     this->state = state;
-    state->setGame(this);
     setNext(state);
 }
 
@@ -47,4 +47,8 @@ void Game::setNext(messageHandler * handler){
 
 Game::~Game(){
     delete state;
+}
+
+void Game::save(){
+    
 }

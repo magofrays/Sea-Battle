@@ -7,8 +7,7 @@
 #include "../utilities/settings.h"
 
 void setupFieldState::execute(){
-    Handle(textMessage("Input field size", {255, 255, 0, 255}, textPosition::title).clone());
-    
+    Handle(textMessage("Create your field!", {255, 255, 0, 255}, textPosition::title).clone());
     try{
     game->player.setField(playField(size_x, size_y));
     }catch(invalidFieldSize & e){
@@ -34,6 +33,7 @@ void setupFieldState::Handle(std::unique_ptr<Message> message){
     if(typeid(*message) == typeid(keyMessage)){
         Message * msg = &(*message);
         keyMessage * key_msg = dynamic_cast<keyMessage*>(msg);
+        int temp;
         switch(key_msg->info){
             case Key::pointer_up:
                 size_y++;
@@ -51,9 +51,11 @@ void setupFieldState::Handle(std::unique_ptr<Message> message){
                 this->end();
                 break;
             case Key::extra_action:
-                int temp = size_x;
+                temp = size_x;
                 size_x = size_y;
                 size_y = temp;
+            default:
+                break;
         }
     }
     else{
@@ -62,5 +64,5 @@ void setupFieldState::Handle(std::unique_ptr<Message> message){
 }
 
 void setupFieldState::end(){
-    //game.setState(std::make_shared<setupShipState>();)
+    game->setState(new setupShipState(game));
 }

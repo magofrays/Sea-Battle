@@ -8,8 +8,8 @@
       "args": [],
       "stopAtEntry": false,
       "externalConsole": false,
-      "cwd": "/home/magofrays/Desktop/OOP/Sea-Battle/game/tests",
-      "program": "/home/magofrays/Desktop/OOP/Sea-Battle/game/tests/build/Debug/outDebug",
+      "cwd": "/home/magofrays/Desktop/OOP/Sea-Battle/game/src",
+      "program": "/home/magofrays/Desktop/OOP/Sea-Battle/game/src/build/Release/outRelease",
       "MIMode": "gdb",
       "miDebuggerPath": "gdb",
       "setupCommands": [

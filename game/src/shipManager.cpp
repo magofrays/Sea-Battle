@@ -1,6 +1,14 @@
 #include "shipManager.h"
 
 shipManager::shipManager(const shipManager &ship_manager):ships(ship_manager.ships), destroyed_ships(ship_manager.destroyed_ships){}
+shipManager::shipManager(const json & data){
+    int size = data["size"];
+    destroyed_ships = data["destroyed_ships"];
+    for(int i = 0; i != size; i++){
+        ships.push_back(std::make_shared<Ship>(data["ships"][i]));
+    }
+}
+
 shipManager& shipManager::operator = (const shipManager& ship_manager){
     if(this != &ship_manager){
         ships = ship_manager.ships;
@@ -43,8 +51,18 @@ bool shipManager::checkDestroyedShips(){
 }
 
 bool shipManager::allShipsDestroyed(){
-    if(ships.size() == destroyed_ships){
+    if(ships.size() == destroyed_ships){ 
         return true;
     }
     return false;
+}
+
+json shipManager::toJson(){
+    json data;
+    data["size"] = ships.size();
+    data["destroyed_ships"] = destroyed_ships;
+    for(int i = 0; i != ships.size(); i++){
+        data["ships"].push_back(ships[i]->toJson());
+    }
+    return data;
 }

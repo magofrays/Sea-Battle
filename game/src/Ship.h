@@ -2,6 +2,7 @@
 #include "utilities/vector2d.h"
 #include "errors/errors.h"
 
+
 class Ship{
     public:
         class Segment{
@@ -13,6 +14,7 @@ class Ship{
                 };
                 segmentState state;
                 Segment():state(normal){}
+                Segment(segmentState state): state(state){}
                 void Attack();
         };
 
@@ -25,6 +27,8 @@ class Ship{
         Ship() = default;
         Ship(int length, point2d coordinates, bool is_vertical);
         Ship(const Ship &ship);
+        Ship(const json & data);
+
         Ship& operator = (const Ship& ship);
         Ship & operator = (Ship && ship);
         int getLen() const;
@@ -33,4 +37,6 @@ class Ship{
         std::vector<std::shared_ptr<Segment>> & getSegments();
         bool isDestroyed();
         friend class inputManager;
+        
+        json toJson();
 };

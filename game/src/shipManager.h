@@ -6,7 +6,8 @@ class shipManager{
     int destroyed_ships;
     public:
         shipManager() = default;
-        shipManager(const shipManager &ship_manager);
+        shipManager(const shipManager & ship_manager);
+        shipManager(const json & data);
         shipManager& operator = (const shipManager& ship_manager);
         
         int getLen() const;
@@ -15,5 +16,7 @@ class shipManager{
         void addShip(std::shared_ptr<Ship> ship);
         bool checkDestroyedShips();
         bool allShipsDestroyed();
+
+        json toJson();
 };
 

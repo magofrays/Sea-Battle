@@ -14,6 +14,10 @@ class playField{
             cellState state;
             Cell():segment(nullptr), state(unknown){}
             void Attack(bool change_state);
+            
+            void toJsoin(){
+
+            }
     };
 
     private:
@@ -23,6 +27,8 @@ class playField{
         playField() = default;
         playField(int size_x, int size_y);
         playField(point2d size);
+        playField(const json & data);
+    
         playField(const playField &play_field);
         playField& operator = (const playField& play_field);
         playField(playField && play_field) noexcept;
@@ -33,4 +39,6 @@ class playField{
         box2d getArea() const;
         Cell getCell(int x, int y);
         void Attack(point2d coordinates, bool sneak);
+
+        json toJson();
 };

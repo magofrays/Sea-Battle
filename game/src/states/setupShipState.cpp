@@ -6,7 +6,8 @@
 #include "errors/errors.h"
 #include "../utilities/settings.h"
 
-setupShipState::setupShipState(Game * game) : gameState(game){
+setupShipState::setupShipState(Game * game) : gameState(game), 
+            field(game->player.play_field), pointer(game->player.pointer){
     box2d sizes = game->player.play_field.getArea();
     int area = sizes.max_point.x*sizes.min_point.y;
     int count = ceil(area * 0.2);
@@ -33,6 +34,12 @@ setupShipState::setupShipState(Game * game) : gameState(game){
     }
 }
 
+void setupShipState::execute(){
+    Handle(textMessage("Add ships!", {255, 255, 0, 255}, textPosition::title).clone());
+    Handle(pointerMessage(box2d(), pointer).clone());
+    Handle(playFieldMessage("Your field", field, fieldPosition::center, false, true).clone());
+}
+
 void setupShipState::Handle(std::unique_ptr<Message> message){
     
     if(typeid(*message) == typeid(keyMessage)){
@@ -43,7 +50,7 @@ void setupShipState::Handle(std::unique_ptr<Message> message){
                 game->player.pointer += point2d(0, 1);
                 break;
             case Key::pointer_down:
-                sgame->player.pointer -= point2d(0, 1);
+                game->player.pointer -= point2d(0, 1);
                 break;
             case Key::pointer_right:
                 game->player.pointer += point2d(1, 0);
@@ -56,6 +63,8 @@ void setupShipState::Handle(std::unique_ptr<Message> message){
                 break;
             case Key::extra_action:
                 is_vertical = !is_vertical;
+            default:
+                break;
         }
     }
     else{

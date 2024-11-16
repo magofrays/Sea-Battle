@@ -6,11 +6,11 @@
 #include "../IO/gameInput.h"
 #include "../IO/gameOutput.h"
 #include "../states/setupFieldState.h"
+#include "../SL/saveLoadManager.h"
 
 class Game: public messageHandler{
     gameState * state;
     messageHandler * handler;
-    
     public:
         bool running = true;
         humanPlayer player;
@@ -23,5 +23,7 @@ class Game: public messageHandler{
         
         void Handle(std::unique_ptr<Message> message);
         void setNext(messageHandler * handler);
-        
+
+        void save();
+        void load(); 
 };

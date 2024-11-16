@@ -33,8 +33,18 @@ playField::playField(point2d size){
     field.resize(size.y, std::vector<Cell>(size.x));
 }
 
-playField::playField(const playField &play_field):area(play_field.area), field(play_field.field){
+playField::playField(const json & data){ // we trust json
+    int size_x = data["width"];
+    int size_y = data["height"];
+    field.resize(size_y, std::vector<Cell>(size_x));
+    for(int y = 0; y != size_y; y++){
+        for(int x = 0; x != size_x; x++){
+            field[y][x].state = data["playField"][y][x];
+        }
     }
+}
+
+playField::playField(const playField &play_field):area(play_field.area), field(play_field.field){}
 
 playField& playField::operator = (const playField& play_field){
     if(this != &play_field){
@@ -97,3 +107,18 @@ void playField::Attack(point2d coordinates, bool not_sneak){
     }
     (field[coordinates.y][coordinates.x]).Attack(not_sneak);
 };
+
+
+json playField::toJson(){
+    json data;
+    data["width"] = area.max_point.x;
+    data["height"] = area.max_point.y;
+    for(int y = 0; y != area.max_point.y; y++){
+        std::vector<int> row;
+        for(int x = 0; x != area.max_point.x; x++){
+            row.push_back(static_cast<int>(field[y][x].state));
+        }
+        data["playField"].push_back(row);
+    }
+    return data;
+}

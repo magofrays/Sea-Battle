@@ -7,6 +7,8 @@ void Ship::Segment::Attack(){
             break;
         case Ship::Segment::damaged:
             state = Ship::Segment::destroyed;
+        default:
+            break;
     }
 }
 
@@ -29,8 +31,18 @@ Ship::Ship(int length, point2d coordinates, bool is_vertical)
     for(int i = 0; i != length; i++){
         segments.push_back(std::make_shared<Segment>());
     }
-} 
-Ship::Ship(const Ship &ship) : length(ship.length), area(area),
+}
+
+Ship::Ship(const json & data){
+    length = data["length"];
+    is_vertical = data["is_vertical"];
+    this->area = box2d(data["area"]);
+    for(int i = 0; i != length; i++){
+        segments.push_back(std::make_shared<Segment>(data["segments"][i]));
+    }
+}
+
+Ship::Ship(const Ship &ship) : length(ship.length), area(ship.area),
          is_vertical(ship.is_vertical), segments(ship.segments){
          } 
 
@@ -82,3 +94,13 @@ bool Ship::isDestroyed(){
     return is_destroyed;
 }
 
+json Ship::toJson(){
+    json data;
+    data["length"] = length;
+    data["is_vertical"] = is_vertical;
+    data["area"] = area.toJson();
+    for(int i = 0; i != segments.size(); i++){
+        data["segments"].push_back(static_cast<int>(segments[i]->state));
+    }
+    return data;
+}
