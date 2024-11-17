@@ -19,7 +19,7 @@ playField::playField(int size_x, int size_y)
     if(size_x < 1 || size_y < 1 || size_x > seabattle::MAX_FIELD_SIZE || size_y > seabattle::MAX_FIELD_SIZE){
         throw invalidFieldSize(size_x, size_y);
     }
-    box2d area(point2d(0, 0), point2d(size_x, size_y));
+    box2d area(point2d(0, 0), point2d(size_x-1, size_y-1));
     this->area = area;
     field.resize(size_y, std::vector<Cell>(size_x));
 }
@@ -30,7 +30,7 @@ playField::playField(point2d size){
     }
     box2d area(point2d(0, 0), size);
     this->area = area;
-    field.resize(size.y, std::vector<Cell>(size.x));
+    field.resize(size.y+1, std::vector<Cell>(size.x+1));
 }
 
 playField::playField(const json & data){ // we trust json
@@ -75,13 +75,13 @@ void playField::placeShip(std::shared_ptr<Ship> ship, shipManager & ship_manager
             
             int x = ship_area.min_point.x; int y_min = ship_area.min_point.y;
             
-            for(int y = y_min; y != ship_area.max_point.y; y++){
+            for(int y = y_min; y != ship_area.max_point.y+1; y++){
                 field[y][x].segment = segments[y-y_min];
             }
         }
         else{
             int y = ship_area.min_point.y; int x_min = ship_area.min_point.x;
-            for(int x = x_min; x != ship_area.max_point.x; x++){
+            for(int x = x_min; x != ship_area.max_point.x+1; x++){
                 field[y][x].segment = segments[x-x_min];
             }
         }
@@ -102,7 +102,7 @@ playField::Cell playField::getCell(int x, int y){
 }
 
 void playField::Attack(point2d coordinates, bool not_sneak){
-    if(!(area.contains(box2d(coordinates, coordinates+point2d(1, 1)) ))){
+    if(!(area.contains(box2d(coordinates, coordinates)))){
         throw objectOutOfBounds(coordinates);
     }
     (field[coordinates.y][coordinates.x]).Attack(not_sneak);

@@ -3,11 +3,11 @@
 
 Key GUIInput::transformKey(SDL_Keycode key){
     switch (key) {
-    case SDLK_w:
+    case SDLK_s:
         return Key::pointer_up;
     case SDLK_a:
         return Key::pointer_left;
-    case SDLK_s:
+    case SDLK_w:
         return Key::pointer_down;
     case SDLK_d:
         return Key::pointer_right;

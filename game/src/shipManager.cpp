@@ -25,6 +25,8 @@ bool shipManager::shipIntersection(box2d ship_area){
     for(auto & ship: ships){
         
         box2d area = ship->getArea();
+        area.min_point -= point2d(1, 1);
+        area.max_point += point2d(1, 1);
         if(area.intersects(ship_area)){
             return true;
         }

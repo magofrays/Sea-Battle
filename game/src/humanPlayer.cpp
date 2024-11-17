@@ -7,15 +7,11 @@ void humanPlayer::getOpponent(Player * player){
 }
 
 
-void humanPlayer::placeShip(){
-    //Handle(textMessage("Place a ship!", point2d(40, 40)).clone());
-    std::shared_ptr<Ship> ship = std::make_shared<Ship>();
-    play_field.placeShip(ship, ship_manager);
-}
 
 std::shared_ptr<IAbility> humanPlayer::useAbility(){
     return abilities_manager.getAbility();
 }
+
 
 void humanPlayer::Attack(){
     if(double_damage){

@@ -101,7 +101,8 @@ class box2d{
 
     bool intersects(box2d box) const
         {
-            return contains(box.min_point) || contains(box.max_point);
+            return (box.max_point.x >= min_point.x) && (max_point.x >= box.min_point.x) &&
+                   (box.max_point.y >= min_point.y) && (max_point.y >= box.min_point.y);
         }
 
     json toJson(){

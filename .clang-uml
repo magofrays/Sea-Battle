@@ -1,18 +1,20 @@
 diagrams:
-  chaos-diagram:
+  super-diagram:
     type: class
     glob:
       - game/src/*.cpp
       - game/src/*.h
       - game/src/abilities/*.cpp
       - game/src/abilities/*.h
-      - game/src/console/*.cpp
-      - game/src/console/*.h
-      - game/src/console/input/*.cpp
-      - game/src/console/input/*.h
-      - game/src/console/output/*.cpp
-      - game/src/console/output/*.h
       - game/src/errors/*.h
       - game/src/utilities/*.h
+      - game/src/states/*.cpp
+      - game/src/states/*.h
+      - game/src/SL/*.h
+      - game/src/SL/*.cpp
+      - game/src/messages/*.h
+      - game/src/messages/*.cpp
+      - game/src/IO/*.h
+      - game/src/IO/*.cpp
     generate_template_argument_dependencies: false
-compilation_database_dir: game/build
+compilation_database_dir: build

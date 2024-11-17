@@ -11,7 +11,10 @@ class humanPlayer: public Player{
             point2d pointer;
             humanPlayer(): double_damage(false){}
             void getOpponent(Player * player);
-            void placeShip();
+            void placeShip(std::shared_ptr<Ship> ship){
+    play_field.placeShip(ship, ship_manager);
+}
+
             void Attack();
             std::shared_ptr<IAbility> useAbility();
             friend class doubleDamageAbility;

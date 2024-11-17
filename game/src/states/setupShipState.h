@@ -10,11 +10,16 @@ class setupShipState: public gameState{
     bool is_vertical = true;
     playField & field;
     point2d & pointer;
+    box2d pointer_area;
+    int length;
     public:
         setupShipState(Game * game);
         void execute();
-        void end();
-
+        bool enoughShips();
+        bool shipInField(box2d area, point2d coordinates);
+        void placeShip();
+        void end(){}
+        
         void Handle(std::unique_ptr<Message> message);
     friend Game;
 };
