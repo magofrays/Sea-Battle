@@ -6,7 +6,7 @@ class Game;
 class gameState: public messageHandler{
     protected:
         messageHandler * handler;
-        Game * game; 
+        Game * game;
     public:
         gameState(Game * game): game(game) {}
         void setGame(Game * game);
@@ -17,4 +17,5 @@ class gameState: public messageHandler{
         void setNext(messageHandler * handler){
             this->handler = handler;
         }
+        friend Game;
 };

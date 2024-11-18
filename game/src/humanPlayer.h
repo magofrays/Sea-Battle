@@ -11,7 +11,7 @@ class humanPlayer: public Player{
             point2d pointer;
             humanPlayer(): double_damage(false){}
             void getOpponent(Player * player);
-            void placeShip();
+
             void Attack();
             std::shared_ptr<IAbility> useAbility();
             friend class doubleDamageAbility;

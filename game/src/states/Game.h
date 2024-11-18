@@ -1,19 +1,21 @@
 #pragma once
 #include "../humanPlayer.h"
+#include "../botPlayer.h"
 #include "gameState.h"
 #include "../messages/messageHandler.h"
 #include "../messages/keyMessage.h"
 #include "../IO/gameInput.h"
 #include "../IO/gameOutput.h"
 #include "../states/setupFieldState.h"
+#include "../SL/saveLoadManager.h"
 
 class Game: public messageHandler{
     gameState * state;
     messageHandler * handler;
-    
     public:
         bool running = true;
         humanPlayer player;
+        botPlayer bot;
         
         Game(messageHandler * handler);
         Game(gameState * state, messageHandler * handler);
@@ -23,5 +25,7 @@ class Game: public messageHandler{
         
         void Handle(std::unique_ptr<Message> message);
         void setNext(messageHandler * handler);
-        
+
+        void save();
+        void load(); 
 };

@@ -13,10 +13,10 @@ void shellingAbility::apply(humanPlayer * player){
     playField * play_field = player->opponent_play_field;
     shipManager * ship_manager = player->opponent_ship_manager;
     if(ship_manager->allShipsDestroyed()){
-        player->Handle(textMessage("All ships are already destroyed!", point2d(40, 40)).clone());
+        //player->Handle(textMessage("All ships are already destroyed!", point2d(40, 40)).clone());
         return;
     }
-    player->Handle(textMessage("Shelling ability applied!", point2d(50, 50)).clone());
+    //player->Handle(textMessage("Shelling ability applied!", point2d(50, 50)).clone());
     std::mt19937 gen(std::random_device{}());
     int x = gen()%(play_field->getArea().max_point.x);
     int y = gen()%(play_field->getArea().max_point.y);
@@ -26,5 +26,5 @@ void shellingAbility::apply(humanPlayer * player){
     }
     
     play_field->Attack(point2d(x, y), false);
-    player->Handle(textMessage("One of the ships was attacked!", point2d(60, 60)).clone());
+    //player->Handle(textMessage("One of the ships was attacked!", point2d(60, 60)).clone());
 }

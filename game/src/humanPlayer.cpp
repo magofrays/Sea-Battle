@@ -7,11 +7,6 @@ void humanPlayer::getOpponent(Player * player){
 }
 
 
-void humanPlayer::placeShip(){
-    Handle(textMessage("Place a ship!", point2d(40, 40)).clone());
-    std::shared_ptr<Ship> ship = std::make_shared<Ship>();
-    play_field.placeShip(ship, ship_manager);
-}
 
 std::shared_ptr<IAbility> humanPlayer::useAbility(){
     return abilities_manager.getAbility();
@@ -26,7 +21,7 @@ void humanPlayer::Attack(){
     opponent_play_field->Attack(pointer, true);
 
     if(opponent_ship_manager->checkDestroyedShips()){
-        Handle(textMessage("You destroyed ship, so got a new ability!", point2d(70, 70)).clone());
+        //Handle(textMessage("You destroyed ship, so got a new ability!", point2d(70, 70)).clone());
         abilities_manager.createRandomAbility();
     }
 }

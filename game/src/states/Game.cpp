@@ -6,6 +6,7 @@ Game::Game(messageHandler * handler){
     state = new setupFieldState(this); 
     state->setNext(handler);
     player.setNext(this);
+    bot.setNext(this);
     setNext(state);
 }
 
@@ -13,18 +14,18 @@ Game::Game(gameState * state, messageHandler * handler) : state(state){ // for t
     setState(state);
     state->setNext(handler);
     player.setNext(this);
+    bot.setNext(this);
     setNext(state);
 }
 
 void Game::setState(gameState * state){
-    delete state;
+    state->setNext(this->state->handler);
+    delete this->state;
     this->state = state;
-    state->setGame(this);
     setNext(state);
 }
 
 void Game::execute(){
-    //Handle(textMessage("I'M GAME", point2d(10, 0)).clone());
     state->execute();
 }
 
@@ -48,4 +49,8 @@ void Game::setNext(messageHandler * handler){
 
 Game::~Game(){
     delete state;
+}
+
+void Game::save(){
+    
 }

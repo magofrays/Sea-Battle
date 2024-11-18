@@ -4,21 +4,29 @@
 #include "setupShipState.h"
 #include "../messages/playFieldMessage.h"
 #include "errors/errors.h"
-
+#include "../utilities/settings.h"
 
 void setupFieldState::execute(){
-    Handle(textMessage("Field size", point2d(100, 4)).clone());
-    
+    Handle(textMessage("Create your field!", {255, 255, 0, 255}, textPosition::title).clone());
     try{
-    game->player.setField(playField(size_x, size_y));
+        playField new_field(size_x, size_y);
+        play_field = new_field;
     }catch(invalidFieldSize & e){
-        Handle(textMessage(e.what(), point2d(700, 600)).clone());
-        if(size_x == 0)
-            size_x++;
-        if(size_y == 0)
-            size_y++;
+        Handle(textMessage(e.what(), {255, 0, 0, 255}, textPosition::log).clone());
+        if(size_x < 1){
+            size_x = 1;
+        }
+        if(size_y < 1){
+            size_y = 1;
+        }
+        if(size_x > seabattle::MAX_FIELD_SIZE){
+            size_x = seabattle::MAX_FIELD_SIZE;
+        }
+        if(size_y > seabattle::MAX_FIELD_SIZE){
+            size_y = seabattle::MAX_FIELD_SIZE;
+        }
     }
-    Handle(playFieldMessage(game->player.play_field, fieldPosition::center).clone());
+    Handle(playFieldMessage("Your field", play_field, fieldPosition::center, false).clone());
     
 }
 void setupFieldState::Handle(std::unique_ptr<Message> message){
@@ -26,6 +34,7 @@ void setupFieldState::Handle(std::unique_ptr<Message> message){
     if(typeid(*message) == typeid(keyMessage)){
         Message * msg = &(*message);
         keyMessage * key_msg = dynamic_cast<keyMessage*>(msg);
+        int temp;
         switch(key_msg->info){
             case Key::pointer_up:
                 size_y++;
@@ -40,12 +49,14 @@ void setupFieldState::Handle(std::unique_ptr<Message> message){
                 size_x--;
                 break;
             case Key::main_action:
-                createField();
+                this->end();
                 break;
-            case Key::extra_action:
-                int temp = size_x;
+            case Key::extra_action_0:
+                temp = size_x;
                 size_x = size_y;
                 size_y = temp;
+            default:
+                break;
         }
     }
     else{
@@ -53,6 +64,8 @@ void setupFieldState::Handle(std::unique_ptr<Message> message){
     }
 }
 
-void setupFieldState::createField(){
-    //game.setState(std::make_shared<setupShipState>();)
+void setupFieldState::end(){
+    game->player.setField(play_field);
+    game->bot.setField(play_field);
+    game->setState(new setupShipState(game));
 }
