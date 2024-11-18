@@ -31,8 +31,8 @@ class playField{
     
         playField(const playField &play_field);
         playField& operator = (const playField& play_field);
-        playField(playField && play_field) noexcept;
-        playField& operator = (playField && play_field) noexcept;
+        playField(playField && play_field);
+        playField& operator = (playField && play_field);
         
         void placeShip(std::shared_ptr<Ship> ship, shipManager & ship_manager);
         

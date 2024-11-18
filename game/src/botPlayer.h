@@ -1,5 +1,8 @@
 #include "Player.h"
 
 class botPlayer: public Player{
-    void Attack(){}
+    public:
+    void Attack();
+    void setField(playField play_field);
+    
 };

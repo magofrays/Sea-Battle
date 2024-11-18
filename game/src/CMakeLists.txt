@@ -3,7 +3,7 @@ file(GLOB_RECURSE SRCFILES "*.cpp")
 
 set(FILTERED_SOURCE_FILES)
 set(IGNORE_FOLDERS)
-set(IGNORE_FILES "humanPlayer")
+set(IGNORE_FILES)
 
 foreach(FILE ${SRCFILES})
     get_filename_component(FILE_DIR ${FILE} DIRECTORY)

@@ -1,5 +1,6 @@
 #pragma once
 #include "../humanPlayer.h"
+#include "../botPlayer.h"
 #include "gameState.h"
 #include "../messages/messageHandler.h"
 #include "../messages/keyMessage.h"
@@ -14,6 +15,7 @@ class Game: public messageHandler{
     public:
         bool running = true;
         humanPlayer player;
+        botPlayer bot;
         
         Game(messageHandler * handler);
         Game(gameState * state, messageHandler * handler);

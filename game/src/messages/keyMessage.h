@@ -8,7 +8,8 @@ enum class Key{
         pointer_up,
         pointer_down,
         main_action,
-        extra_action,
+        extra_action_0,
+        extra_action_1,
         quit,
         null
     };

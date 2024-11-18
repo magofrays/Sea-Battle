@@ -12,7 +12,6 @@ std::shared_ptr<IAbility> humanPlayer::useAbility(){
     return abilities_manager.getAbility();
 }
 
-
 void humanPlayer::Attack(){
     if(double_damage){
         opponent_play_field->Attack(pointer, true);

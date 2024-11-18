@@ -6,6 +6,7 @@ Game::Game(messageHandler * handler){
     state = new setupFieldState(this); 
     state->setNext(handler);
     player.setNext(this);
+    bot.setNext(this);
     setNext(state);
 }
 
@@ -13,6 +14,7 @@ Game::Game(gameState * state, messageHandler * handler) : state(state){ // for t
     setState(state);
     state->setNext(handler);
     player.setNext(this);
+    bot.setNext(this);
     setNext(state);
 }
 

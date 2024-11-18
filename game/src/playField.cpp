@@ -1,5 +1,6 @@
 #include "playField.h"
 #include "utilities/settings.h"
+
 void playField::Cell::Attack(bool change_state){
     if(!segment){
         if(change_state){
@@ -53,12 +54,12 @@ playField& playField::operator = (const playField& play_field){
     }
     return *this;
 }
-playField::playField(playField && play_field) noexcept :area(std::move(play_field.area))
+playField::playField(playField && play_field) :area(std::move(play_field.area))
                                             {
     field = std::move(play_field.field);
     play_field.field.clear();
 }
-playField& playField::operator = (playField && play_field) noexcept {
+playField& playField::operator = (playField && play_field) {
     if(this != &play_field){
         area = std::move(play_field.area);
         field = std::move(play_field.field);

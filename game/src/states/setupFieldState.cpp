@@ -9,7 +9,8 @@
 void setupFieldState::execute(){
     Handle(textMessage("Create your field!", {255, 255, 0, 255}, textPosition::title).clone());
     try{
-    game->player.setField(playField(size_x, size_y));
+        playField new_field(size_x, size_y);
+        play_field = new_field;
     }catch(invalidFieldSize & e){
         Handle(textMessage(e.what(), {255, 0, 0, 255}, textPosition::log).clone());
         if(size_x < 1){
@@ -25,7 +26,7 @@ void setupFieldState::execute(){
             size_y = seabattle::MAX_FIELD_SIZE;
         }
     }
-    Handle(playFieldMessage("Your field", game->player.play_field, fieldPosition::center, false).clone());
+    Handle(playFieldMessage("Your field", play_field, fieldPosition::center, false).clone());
     
 }
 void setupFieldState::Handle(std::unique_ptr<Message> message){
@@ -50,7 +51,7 @@ void setupFieldState::Handle(std::unique_ptr<Message> message){
             case Key::main_action:
                 this->end();
                 break;
-            case Key::extra_action:
+            case Key::extra_action_0:
                 temp = size_x;
                 size_x = size_y;
                 size_y = temp;
@@ -64,5 +65,7 @@ void setupFieldState::Handle(std::unique_ptr<Message> message){
 }
 
 void setupFieldState::end(){
+    game->player.setField(play_field);
+    game->bot.setField(play_field);
     game->setState(new setupShipState(game));
 }

@@ -18,7 +18,9 @@ class setupShipState: public gameState{
         bool enoughShips();
         bool shipInField(box2d area, point2d coordinates);
         void placeShip();
-        void end(){}
+        void end(){
+            std::cout << "ended\n";
+        }
         
         void Handle(std::unique_ptr<Message> message);
     friend Game;

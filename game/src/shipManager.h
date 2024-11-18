@@ -16,7 +16,7 @@ class shipManager{
         void addShip(std::shared_ptr<Ship> ship);
         bool checkDestroyedShips();
         bool allShipsDestroyed();
-
+        bool noFreeCells(box2d area);
         json toJson();
 };
 

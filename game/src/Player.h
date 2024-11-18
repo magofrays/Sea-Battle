@@ -14,6 +14,13 @@ class Player: public messageHandler{
         void setField(playField field){
             play_field = field;
         }
+
+        void placeShip(std::shared_ptr<Ship> ship){
+            play_field.placeShip(ship, ship_manager);
+        }
+
+        void placeShipsRandomly(int single_decks, int double_decks, int three_decks, int four_decks);
+
         void Handle(std::unique_ptr<Message> message){
             handler->Handle(std::move(message));
         }

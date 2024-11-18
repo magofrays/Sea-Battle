@@ -5,7 +5,7 @@
 class setupFieldState: public gameState {
     int size_x;
     int size_y;
-    
+    playField play_field;
     public:
         setupFieldState(Game * game):gameState(game), size_x(1), size_y(1){
         }

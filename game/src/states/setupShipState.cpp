@@ -8,6 +8,7 @@
 
 setupShipState::setupShipState(Game * game) : gameState(game), 
             field(game->player.play_field), pointer(game->player.pointer){
+    
     point2d sizes = game->player.play_field.getArea().max_point;
     int area = (sizes.x+1)*(sizes.y+1);
     int count = ceil(area * 0.2);
@@ -32,7 +33,8 @@ setupShipState::setupShipState(Game * game) : gameState(game),
             }
         }
     }
-    std::cout << single_decks << " " << double_decks << " " << three_decks << " " << four_decks << "\n";
+    game->bot.placeShipsRandomly(single_decks, double_decks, three_decks, four_decks);
+    //std::cout << single_decks << " " << double_decks << " " << three_decks << " " << four_decks << "\n";
 }
 bool setupShipState::enoughShips(){
     return !(single_decks || double_decks || three_decks || four_decks);
@@ -59,12 +61,17 @@ void setupShipState::execute(){
         if(!is_vertical){
             pointer_area.max_point = point2d(pointer_area.max_point.y, pointer_area.max_point.x);
         }
+        if(!shipInField(pointer_area, pointer)){
+            is_vertical = !is_vertical;
+        }
         Handle(textMessage("Add ships!", {255, 255, 0, 255}, textPosition::title).clone());
         Handle(pointerMessage(pointer_area, pointer).clone());
         Handle(playFieldMessage("Your field", field, fieldPosition::center, false, true).clone());
     }
     else{
-        Handle(playFieldMessage("Your field", field, fieldPosition::center, false, false).clone());
+        //this->end();
+        Handle(playFieldMessage("Your field", field, fieldPosition::left, false, false).clone());
+        Handle(playFieldMessage("Bot field", game->bot.play_field, fieldPosition::right, false, false).clone());
     }
     
     
@@ -77,7 +84,6 @@ bool setupShipState::shipInField(box2d area, point2d coordinates){
 }
 
 void setupShipState::placeShip(){
-    //box2d ship_area(pointer_area.min_point+pointer, pointer_area.max_point+pointer);
     try{
         game->player.placeShip(std::make_shared<Ship>(length, pointer, is_vertical));
         switch(length){
@@ -93,13 +99,15 @@ void setupShipState::placeShip(){
             case 1:
                 single_decks--;
         }
+        if(game->player.ship_manager.noFreeCells(game->player.play_field.getArea())){
+            this->end();
+        }
     }catch(invalidShipPosition & e){
         Handle(textMessage(e.what(), {255, 0, 0}, textPosition::log).clone());
     }
     catch(objectOutOfBounds & e){
         Handle(textMessage(e.what(), {255, 0, 0}, textPosition::log).clone());
     }
-
 }
 
 void setupShipState::Handle(std::unique_ptr<Message> message){
@@ -130,9 +138,15 @@ void setupShipState::Handle(std::unique_ptr<Message> message){
             case Key::main_action:
                 this->placeShip();
                 break;
-            case Key::extra_action:
+            case Key::extra_action_0:
                 if(shipInField(box2d(pointer_area.max_point, point2d(pointer_area.max_point.y, pointer_area.max_point.x)), pointer))
                     is_vertical = !is_vertical;
+                break;
+            case Key::extra_action_1:
+                game->player.placeShipsRandomly(single_decks, double_decks, three_decks, four_decks);
+                single_decks = 0; double_decks = 0; three_decks = 0; four_decks = 0;
+                this->end();
+                break;
                 
             default:
                 break;
