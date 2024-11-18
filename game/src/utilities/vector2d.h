@@ -7,6 +7,9 @@
 #include <random>
 #include <string>
 #include <sstream>
+#include <concepts>
+#include <type_traits>
+
 class point2d{
     public:
     int x; int y;
