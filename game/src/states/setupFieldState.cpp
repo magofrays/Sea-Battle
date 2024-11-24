@@ -7,6 +7,7 @@
 #include "../utilities/settings.h"
 
 void setupFieldState::execute(){
+
     Handle(textMessage("Create your field!", {255, 255, 0, 255}, textPosition::title).clone());
     try{
         playField new_field(size_x, size_y);
@@ -55,6 +56,10 @@ void setupFieldState::Handle(std::unique_ptr<Message> message){
                 temp = size_x;
                 size_x = size_y;
                 size_y = temp;
+                break;
+            case Key::extra_action_1:
+                size_x = 8;
+                size_y = 8;
             default:
                 break;
         }
@@ -68,4 +73,14 @@ void setupFieldState::end(){
     game->player.setField(play_field);
     game->bot.setField(play_field);
     game->setState(new setupShipState(game));
+}
+
+json & operator>>(json & data, setupFieldState & game_state){
+    data["size_x"] = game_state.size_x;
+    data["size_y"] = game_state.size_y;
+}
+
+json & operator<<(json & data, setupFieldState & game_state){
+    game_state.size_x = data["size_x"];
+    game_state.size_y = data["size_y"];
 }

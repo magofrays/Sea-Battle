@@ -74,7 +74,7 @@ bool shipManager::checkDestroyedShips(){
 }
 
 bool shipManager::allShipsDestroyed(){
-    if(ships.size() == destroyed_ships){ 
+    if(ships.size() == destroyed_ships){
         return true;
     }
     return false;

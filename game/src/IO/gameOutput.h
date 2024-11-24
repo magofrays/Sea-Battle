@@ -6,7 +6,7 @@
 #include "../messages/playFieldMessage.h"
 #include "../messages/pointerMessage.h"
 
-class gameOutput: public messageHandler{
+class gameOutput: public messageHandler{ //delete or fix class
     protected:
         messageHandler * handler = nullptr;
     public:

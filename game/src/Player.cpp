@@ -5,9 +5,9 @@ void Player::placeShipsRandomly(int single_decks, int double_decks, int three_de
     box2d field_area = play_field.getArea();
     point2d field_size = field_area.max_point;
     while(single_decks || double_decks || three_decks || four_decks){
-        bool is_vertical = true;
-        int x = gen()%field_size.x; 
-        int y = gen()%field_size.y;
+        bool is_vertical = (gen()%2 == 0);
+        int x = gen()%(field_size.x+1); 
+        int y = gen()%(field_size.y+1);
         int length;
         if(four_decks){
             length = 4;
@@ -24,8 +24,8 @@ void Player::placeShipsRandomly(int single_decks, int double_decks, int three_de
         bool placed = false;
         for(int i = 0; i != field_size.x+1; i++){
             for(int j = 0; j != field_size.y+1; j++){
-                for(int changer = 0; changer != 2; changer++){
-                    Ship ship(length, {(x+i)%(field_size.x+1), (y+j)%(field_size.y+1)}, (is_vertical && changer));
+
+                    Ship ship(length, {(x+i)%(field_size.x+1), (y+j)%(field_size.y+1)}, is_vertical);
                     box2d ship_area = ship.getArea();
                     if(play_field.getArea().contains(ship_area) && !ship_manager.shipIntersection(ship_area)){
                         this->placeShip(std::make_shared<Ship>(ship));
@@ -48,11 +48,17 @@ void Player::placeShipsRandomly(int single_decks, int double_decks, int three_de
                         placed = true;
                         break;
                     }
-                    if(placed) break;
-                }
                 if(placed) break;
             }
             if(placed) break;
         }
     }
+}
+
+
+json Player::toJson(){
+    json data;
+    data["ship_manager"] = ship_manager.toJson();
+    data["play_field"] = play_field.toJson();
+    return data;
 }

@@ -27,4 +27,6 @@ class Player: public messageHandler{
         void setNext(messageHandler * handler){
             this->handler = handler;
         }
+
+        json toJson();
 };

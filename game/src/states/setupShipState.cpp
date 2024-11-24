@@ -1,13 +1,7 @@
 #include "setupShipState.h"
-#include "../messages/keyMessage.h"
-#include "../messages/textMessage.h"
-#include "setupShipState.h"
-#include "../messages/playFieldMessage.h"
-#include "errors/errors.h"
-#include "../utilities/settings.h"
 
 setupShipState::setupShipState(Game * game) : gameState(game), 
-            field(game->player.play_field), pointer(game->player.pointer){
+            field(game->player.play_field), pointer(game->player.pointer), pointer_area(game->player.pointer_area){
     
     point2d sizes = game->player.play_field.getArea().max_point;
     int area = (sizes.x+1)*(sizes.y+1);
@@ -61,7 +55,7 @@ void setupShipState::execute(){
         if(!is_vertical){
             pointer_area.max_point = point2d(pointer_area.max_point.y, pointer_area.max_point.x);
         }
-        if(!shipInField(pointer_area, pointer)){
+        if(!game->player.areaInField(pointer_area, pointer)){
             is_vertical = !is_vertical;
         }
         Handle(textMessage("Add ships!", {255, 255, 0, 255}, textPosition::title).clone());
@@ -69,18 +63,11 @@ void setupShipState::execute(){
         Handle(playFieldMessage("Your field", field, fieldPosition::center, false, true).clone());
     }
     else{
-        //this->end();
-        Handle(playFieldMessage("Your field", field, fieldPosition::left, false, false).clone());
-        Handle(playFieldMessage("Bot field", game->bot.play_field, fieldPosition::right, false, false).clone());
+        this->end();
+        
     }
     
     
-}
-
-bool setupShipState::shipInField(box2d area, point2d coordinates){
-    area.min_point += coordinates;
-    area.max_point += coordinates;
-    return field.getArea().contains(area);
 }
 
 void setupShipState::placeShip(){
@@ -110,6 +97,11 @@ void setupShipState::placeShip(){
     }
 }
 
+void setupShipState::end(){
+    game->setState(new playState(game));
+}
+
+
 void setupShipState::Handle(std::unique_ptr<Message> message){
     
     if(typeid(*message) == typeid(keyMessage)){
@@ -117,34 +109,33 @@ void setupShipState::Handle(std::unique_ptr<Message> message){
         keyMessage * key_msg = dynamic_cast<keyMessage*>(msg);
         switch(key_msg->info){
             case Key::pointer_up:
-                if(shipInField(pointer_area, pointer + point2d(0, 1)))
-                    game->player.pointer += point2d(0, 1);
+                if(game->player.areaInField(pointer_area, pointer + point2d(0, 1)))
+                    pointer += point2d(0, 1);
                     break;
 
             case Key::pointer_down:
-                if(shipInField(pointer_area, pointer - point2d(0, 1)))
-                    game->player.pointer -= point2d(0, 1);
+                if(game->player.areaInField(pointer_area, pointer - point2d(0, 1)))
+                    pointer -= point2d(0, 1);
                     break;
             case Key::pointer_right:
-                if(shipInField(pointer_area, pointer + point2d(1, 0)))
-                    game->player.pointer += point2d(1, 0);
+                if(game->player.areaInField(pointer_area, pointer + point2d(1, 0)))
+                    pointer += point2d(1, 0);
                     break;
                 
             case Key::pointer_left:
-                if(shipInField(pointer_area, pointer - point2d(1, 0)))
-                    game->player.pointer -= point2d(1, 0);
+                if(game->player.areaInField(pointer_area, pointer - point2d(1, 0)))
+                    pointer -= point2d(1, 0);
                     break;
                 
             case Key::main_action:
                 this->placeShip();
                 break;
             case Key::extra_action_0:
-                if(shipInField(box2d(pointer_area.max_point, point2d(pointer_area.max_point.y, pointer_area.max_point.x)), pointer))
+                if(game->player.areaInField(box2d(pointer_area.max_point, point2d(pointer_area.max_point.y, pointer_area.max_point.x)), pointer))
                     is_vertical = !is_vertical;
                 break;
             case Key::extra_action_1:
                 game->player.placeShipsRandomly(single_decks, double_decks, three_decks, four_decks);
-                single_decks = 0; double_decks = 0; three_decks = 0; four_decks = 0;
                 this->end();
                 break;
                 
@@ -155,4 +146,25 @@ void setupShipState::Handle(std::unique_ptr<Message> message){
     else{
         handler->Handle(std::move(message));
     }
+}
+
+
+json & operator << (json & data, setupShipState & game_state){
+    data["single_decks"] = game_state.single_decks;
+    data["double_decks"] = game_state.double_decks;
+    data["three_decks"] = game_state.three_decks;
+    data["four_dekcs"] = game_state.four_decks;
+    data["is_vertical"] = game_state.is_vertical;
+    data["length"] = game_state.length;
+    return data;
+ }
+
+json & operator >> (json & data, setupShipState & game_state){
+    game_state.single_decks = data["single_decks"]; 
+    game_state.double_decks = data["double_decks"];
+    game_state.three_decks = data["three_decks"];
+    game_state.four_decks = data["four_dekcs"];
+    game_state.is_vertical = data["is_vertical"];
+    game_state.length = data["length"];
+    return data;
 }

@@ -13,5 +13,7 @@ class setupFieldState: public gameState {
 
         void Handle(std::unique_ptr<Message> message);
         void end();
+        friend json & operator << (json & data, setupFieldState & game_state);
+        friend json & operator >> (json & data, setupFieldState & game_state);
     friend Game;
 };

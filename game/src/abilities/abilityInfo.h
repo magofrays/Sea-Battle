@@ -3,5 +3,5 @@
 
 struct abilityInfo{
     bool need_input;
-    std::string name;
+    box2d pointer_size;
 };

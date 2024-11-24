@@ -7,18 +7,17 @@
 #include "../IO/gameInput.h"
 #include "../IO/gameOutput.h"
 #include "../states/setupFieldState.h"
-#include "../SL/saveLoadManager.h"
+#include "../RW/fileRW.h"
 
 class Game: public messageHandler{
     gameState * state;
     messageHandler * handler;
+    fileRW save_load;
     public:
         bool running = true;
         humanPlayer player;
         botPlayer bot;
-        
-        Game(messageHandler * handler);
-        Game(gameState * state, messageHandler * handler);
+        Game(messageHandler * handler);     
         void setState(gameState * state);
         void execute();
         ~Game();

@@ -90,6 +90,12 @@ void GUIOutput::drawField(std::string field_name, playField & field, fieldPositi
             else{
                 if(!(field.getCell(x, y).segment)){
                     color = seabattle::CELL_EMPTY;
+                    if(field.getCell(x, y).state == playField::Cell::unknown){
+                        color = seabattle::CELL_EMPTY;
+                    }
+                    else if(field.getCell(x, y).state == playField::Cell::empty){
+                        color = seabattle::CELL_ATTACKED;
+                    }
                 }
                 else{
                     switch(field.getCell(x, y).segment->state){

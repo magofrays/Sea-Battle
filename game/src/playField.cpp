@@ -1,14 +1,14 @@
 #include "playField.h"
 #include "utilities/settings.h"
 
-void playField::Cell::Attack(bool change_state){
+void playField::Cell::Attack(bool sneak){
     if(!segment){
-        if(change_state){
+        if(!sneak){
             state = playField::Cell::empty;
         }
     }
     else{
-        if(change_state){
+        if(!sneak){
             state = playField::Cell::ship;
         }
         segment->Attack();
@@ -102,11 +102,11 @@ playField::Cell playField::getCell(int x, int y){
     return field[y][x];
 }
 
-void playField::Attack(point2d coordinates, bool not_sneak){
+void playField::Attack(point2d coordinates, bool sneak){
     if(!(area.contains(box2d(coordinates, coordinates)))){
         throw objectOutOfBounds(coordinates);
     }
-    (field[coordinates.y][coordinates.x]).Attack(not_sneak);
+    (field[coordinates.y][coordinates.x]).Attack(sneak);
 };
 
 
