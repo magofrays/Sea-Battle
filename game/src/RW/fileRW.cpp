@@ -1,6 +1,6 @@
-#include "saveLoadManager.h"
+#include "fileRW.h"
 
-fileRW::saveLoadManager(const std::string& fname){
+fileRW::fileRW(std::string fname){
     read_write.open(fname, std::ios_base::in | std::ios_base::out);
     if (!read_write.is_open()) {
         throw std::runtime_error("Could not open file.");
@@ -29,7 +29,7 @@ void fileRW::read(json& j){
     }
 }
 
-fileRW::~saveLoadManager(){
+fileRW::~fileRW(){
     if (read_write.is_open()) {
         read_write.close();
     }

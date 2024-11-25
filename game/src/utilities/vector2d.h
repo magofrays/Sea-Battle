@@ -1,15 +1,8 @@
-#pragma once
-#include <iostream>
-#include <vector>
-#include <algorithm>
-#include <memory>
-#include <queue>
-#include <random>
-#include <string>
-#include <sstream>
-#include <concepts>
-#include <type_traits>
+#ifndef SEABATTLE_VECTOR2D_H
+#define SEABATTLE_VECTOR2D_H
+
 #include <nlohmann/json.hpp>
+#include <algorithm>
 using json = nlohmann::json;
 
 class point2d{
@@ -112,3 +105,5 @@ class box2d{
         return data;
     }
 };
+
+#endif

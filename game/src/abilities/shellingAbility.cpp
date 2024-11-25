@@ -1,6 +1,9 @@
 #include "shellingAbility.h"
+
+#include <random>
 #include "../humanPlayer.h"
 #include "../messages/textMessage.h"
+
 
 abilityInfo shellingAbility::info(){
     abilityInfo info;

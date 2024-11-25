@@ -1,4 +1,6 @@
-#pragma once
+#ifndef SEABATTLE_DOUBLEDAMAGEABILITY_H
+#define SEABATTLE_DOUBLEDAMAGEABILITY_H
+
 #include "IAbility.h"
 
 class doubleDamageAbility: public IAbility{
@@ -6,3 +8,5 @@ class doubleDamageAbility: public IAbility{
         abilityInfo info();
         void apply(humanPlayer * player);
 };
+
+#endif

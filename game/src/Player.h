@@ -1,6 +1,8 @@
-#pragma once
+#ifndef SEABATTLE_PLAYER_H
+#define SEABATTLE_PLAYER_H
 
 #include "playField.h"
+#include "shipManager.h"
 #include "messages/messageHandler.h"
 
 class Player: public messageHandler{
@@ -30,3 +32,5 @@ class Player: public messageHandler{
 
         json toJson();
 };
+
+#endif

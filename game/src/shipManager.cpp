@@ -1,4 +1,5 @@
 #include "shipManager.h"
+#include "Ship.h"
 
 shipManager::shipManager(const shipManager &ship_manager):ships(ship_manager.ships), destroyed_ships(ship_manager.destroyed_ships){}
 shipManager::shipManager(const json & data){

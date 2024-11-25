@@ -1,5 +1,7 @@
-#pragma once
-#include <SDL2/SDL_surface.h>
+#ifndef SEABATTLE_SETTINGS_H
+#define SEABATTLE_SETTINGS_H
+
+#include <SDL2/SDL.h>
 
 namespace seabattle{
     constexpr int WIDTH = 1600;
@@ -10,7 +12,7 @@ namespace seabattle{
     constexpr int SMALL_FONT_SIZE = 15;
     constexpr int LOG_LENGTH = 5;
     constexpr int MAX_FIELD_SIZE = 20;
-    constexpr const char* FONT_DIR = "../game/assets/fonts/font.ttf";
+    static const char* FONT_DIR = "../game/assets/fonts/font.ttf";
     constexpr SDL_Color SHIP_SEGMENT_NORMAL = {0, 255, 0, 255};
     constexpr SDL_Color SHIP_SEGMENT_DAMAGED = {255, 128, 0, 255};
     constexpr SDL_Color SHIP_SEGMENT_DESTROYED = {255, 0, 0, 255};
@@ -19,5 +21,7 @@ namespace seabattle{
     constexpr SDL_Color CELL_ATTACKED = {66, 103, 203, 255};
     constexpr SDL_Color BACKGROUND_COLOR = {131, 148, 196, 255};
     constexpr SDL_Color POINTER_COLOR = {0, 255, 255, 255};
-    constexpr const char* SAVE_DIR = "../game/saves/data_game.json";
+    static const char* SAVE_DIR = "../game/saves/data_game.json";
 }
+
+#endif

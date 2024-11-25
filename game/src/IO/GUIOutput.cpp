@@ -1,5 +1,6 @@
 #include "GUIOutput.h"
 #include <filesystem>
+#include <iostream>
 
 GUIOutput::GUIOutput(){
     if (SDL_Init(SDL_INIT_VIDEO) != 0) {
@@ -195,8 +196,8 @@ void GUIOutput::update(){
     SDL_RenderClear(renderer);
 }
 
-void GUIOutput::redirectText(Text text, textPosition position){
-    switch(position){
+void GUIOutput::redirectText(textMessage text){
+    switch(text.position){
         case textPosition::title:
             title = text;
             break;
@@ -234,7 +235,7 @@ void GUIOutput::Handle(std::unique_ptr<Message> message){
     if(typeid(*message) == typeid(textMessage)){
         Message * msg = &(*message);
         textMessage * tr_msg = dynamic_cast<textMessage*>(msg);
-        redirectText(tr_msg->info, tr_msg->position);
+        redirectText(*tr_msg);
     }
     if(typeid(*message) == typeid(playFieldMessage)){
         Message * msg = &(*message);

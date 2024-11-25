@@ -1,4 +1,5 @@
 #include "botPlayer.h"
+#include <random>
 
 void botPlayer::setField(playField play_field){
     this->play_field = play_field;

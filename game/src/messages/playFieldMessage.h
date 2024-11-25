@@ -1,6 +1,9 @@
-#pragma once
-#include "../playField.h"
+#ifndef SEABATTLE_PLAYFIELD_MESSAGE_H
+#define SEABATTLE_PLAYFIELD_MESSAGE_H
+
 #include "Message.h"
+#include "../playField.h"
+#include <string>
 
 enum class fieldPosition{
     left,
@@ -20,3 +23,4 @@ struct playFieldMessage: public Message{
         return std::make_unique<playFieldMessage>(*this);
     }
 };
+#endif

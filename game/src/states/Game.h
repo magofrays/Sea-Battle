@@ -4,9 +4,8 @@
 #include "gameState.h"
 #include "../messages/messageHandler.h"
 #include "../messages/keyMessage.h"
-#include "../IO/gameInput.h"
-#include "../IO/gameOutput.h"
-#include "../states/setupFieldState.h"
+#include "../IO/GUIInput.h"
+#include "../IO/GUIOutput.h"
 #include "../RW/fileRW.h"
 
 class Game: public messageHandler{

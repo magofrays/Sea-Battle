@@ -1,5 +1,10 @@
-#pragma once
-#include "shipManager.h"
+#ifndef SEABATTLE_PLAYFIELD_H
+#define SEABATTLE_PLAYFIELD_H
+
+#include "utilities/vector2d.h"
+#include "Ship.h"
+
+class shipManager;
 
 class playField{
     public:
@@ -42,3 +47,5 @@ class playField{
 
         json toJson();
 };
+
+#endif

@@ -1,6 +1,7 @@
 #include "scannerAbility.h"
 #include "../humanPlayer.h"
 #include "../messages/textMessage.h"
+#include "../errors/errors.h"
 
 abilityInfo scannerAbility::info(){
     abilityInfo info;

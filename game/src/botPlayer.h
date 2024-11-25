@@ -1,3 +1,6 @@
+#ifndef SEABATTLE_BOTPLAYER_H
+#define SEABATTLE_BOTPLAYER_H
+
 #include "Player.h"
 
 class botPlayer: public Player{
@@ -7,3 +10,5 @@ class botPlayer: public Player{
     void getOpponent(Player * player);
     
 };
+
+#endif

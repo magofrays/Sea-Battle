@@ -1,5 +1,4 @@
 #include "GUIInput.h"
-#include "../messages/textMessage.h"
 
 Key GUIInput::transformKey(SDL_Keycode key){
     switch (key) {

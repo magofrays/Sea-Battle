@@ -1,4 +1,6 @@
 #include "playField.h"
+#include "errors/errors.h"
+#include "shipManager.h"
 #include "utilities/settings.h"
 
 void playField::Cell::Attack(bool sneak){

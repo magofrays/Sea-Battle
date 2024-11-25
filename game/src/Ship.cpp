@@ -1,4 +1,5 @@
 #include "Ship.h"
+#include "errors/errors.h"
 
 void Ship::Segment::Attack(){
     switch(state){

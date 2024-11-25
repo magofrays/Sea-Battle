@@ -1,9 +1,9 @@
-#pragma once
-#include "scannerAbility.h"
-#include "doubleDamageAbility.h"
-#include "shellingAbility.h"
-#include "errors/errors.h"
-class humanPlayer;
+#ifndef SEABATTLE_ABILITIESMANAGER_H
+#define SEABATTLE_ABILITIESMANAGER_H
+
+#include <memory>
+#include <queue>
+#include "IAbility.h"
 
 class abilitiesManager{
     std::queue <std::shared_ptr<IAbility>> abilities;
@@ -12,4 +12,6 @@ class abilitiesManager{
         void createRandomAbility();
         std::shared_ptr<IAbility> getAbility();
 };
+
+#endif
 

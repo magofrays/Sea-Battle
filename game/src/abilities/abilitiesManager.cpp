@@ -1,5 +1,9 @@
 #include "abilitiesManager.h"
-
+#include "scannerAbility.h"
+#include "shellingAbility.h"
+#include "doubleDamageAbility.h"
+#include <random>
+#include "../errors/errors.h"
 
 abilitiesManager::abilitiesManager() {
     std::vector<std::shared_ptr<IAbility>> abilities;

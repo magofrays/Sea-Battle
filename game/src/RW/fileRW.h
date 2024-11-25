@@ -1,7 +1,10 @@
-#pragma once;
-#include <nlohmann/json.hpp>
+#ifndef SEABATTLE_FILERW_H
+#define SEABATTLE_FILERW_H
+
 #include <fstream>
-using json = nlohmann::json
+#include <string>
+#include <nlohmann/json.hpp>
+using json = nlohmann::json;
 
 class fileRW{
 private:
@@ -9,7 +12,7 @@ private:
 
 
 public:
-    fileRW(const std::string& fname);
+    fileRW(std::string fname);
 
     void write(const json& j);
 
@@ -17,3 +20,5 @@ public:
 
     ~fileRW();
 };
+
+#endif

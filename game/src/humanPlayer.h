@@ -1,4 +1,6 @@
-#pragma once
+#ifndef SEABATTLE_HUMANPLAYER_H
+#define SEABATTLE_HUMANPLAYER_H
+
 #include "Player.h"
 #include "abilities/IAbility.h"
 #include "abilities/abilitiesManager.h"
@@ -22,3 +24,5 @@ class humanPlayer: public Player{
             friend class scannerAbility;
             friend class shellingAbility;
 };
+
+#endif
