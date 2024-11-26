@@ -7,6 +7,7 @@ class setupFieldState: public gameState {
     int size_y;
     playField play_field;
     public:
+        setupFieldState() = default;
         setupFieldState(Game * game):gameState(game), size_x(1), size_y(1){
         }
         void execute();

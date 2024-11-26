@@ -19,10 +19,6 @@ class playField{
             cellState state;
             Cell():segment(nullptr), state(unknown){}
             void Attack(bool change_state);
-            
-            void toJsoin(){
-
-            }
     };
 
     private:
@@ -41,6 +37,8 @@ class playField{
         
         void placeShip(std::shared_ptr<Ship> ship, shipManager & ship_manager);
         
+        void loadShips(shipManager & ship_manager);
+
         box2d getArea() const;
         Cell getCell(int x, int y);
         void Attack(point2d coordinates, bool sneak);

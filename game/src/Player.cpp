@@ -1,5 +1,6 @@
 #include "Player.h"
 #include <random>
+#include <iostream>
 
 void Player::placeShipsRandomly(int single_decks, int double_decks, int three_decks, int four_decks){
     std::mt19937 gen(std::random_device{}());
@@ -56,10 +57,17 @@ void Player::placeShipsRandomly(int single_decks, int double_decks, int three_de
     }
 }
 
+json & operator << (json & data, Player & player){
+    data["ship_manager"] = player.ship_manager.toJson();
+    data["play_field"] = player.play_field.toJson();
+    return data;
+}
 
-json Player::toJson(){
-    json data;
-    data["ship_manager"] = ship_manager.toJson();
-    data["play_field"] = play_field.toJson();
+json & operator >> (json & data, Player & player){
+    player.ship_manager = shipManager(data.at("ship_manager"));
+    player.play_field = playField(data.at("play_field"));
+    std::cout << player.play_field.getArea().max_point.x << " " << player.play_field.getArea().max_point.y << "\n";
+    player.play_field.loadShips(player.ship_manager);
+    std::cout << "successfuly loaded Player\n";
     return data;
 }

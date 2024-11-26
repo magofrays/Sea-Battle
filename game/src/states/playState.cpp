@@ -26,7 +26,7 @@ void playState::execute(){
         Handle(textMessage("ATTACK!", {255, 0, 0}, textPosition::title).clone());
         Handle(pointerMessage(pointer_area, pointer).clone());
         Handle(playFieldMessage("Your field", game->player.play_field, fieldPosition::left, false, false).clone());
-        Handle(playFieldMessage("Bot field", game->bot.play_field, fieldPosition::right, true, true).clone());
+        Handle(playFieldMessage("Bot field", game->bot.play_field, fieldPosition::right, false, true).clone());
     }
 }
 
@@ -34,7 +34,7 @@ void playState::usingAbility(){
     Handle(textMessage("USE ABILITY!", {255, 0, 255}, textPosition::title).clone());
     Handle(playFieldMessage("Your field", game->player.play_field, fieldPosition::left, false, false).clone());
     Handle(pointerMessage(pointer_area, pointer).clone());
-    Handle(playFieldMessage("Bot field", game->bot.play_field, fieldPosition::right, true, true).clone());
+    Handle(playFieldMessage("Bot field", game->bot.play_field, fieldPosition::right, false, true).clone());
 }
 
 void playState::Handle(std::unique_ptr<Message> message){
@@ -102,12 +102,12 @@ void playState::win(){
     Handle(playFieldMessage("Bot field", game->bot.play_field, fieldPosition::right, false, true).clone());
 }
 
-json & operator>>(json & data, playState & game_state){
+json & operator<<(json & data, playState & game_state){
     data["input"] = game_state.input;
     return data;
 }
 
-json & operator<<(json & data, playState & game_state){
+json & operator>>(json & data, playState & game_state){
     game_state.input = data["input"];
     return data;    
 }

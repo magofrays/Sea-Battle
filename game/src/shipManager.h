@@ -5,6 +5,7 @@
 #include <memory>
 
 class Ship;
+class playField;
 
 class shipManager{
     std::vector<std::shared_ptr<Ship>> ships;
@@ -23,6 +24,7 @@ class shipManager{
         bool allShipsDestroyed();
         bool noFreeCells(box2d area);
         json toJson();
+        friend playField;
 };
 
 #endif

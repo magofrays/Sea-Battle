@@ -6,6 +6,7 @@ class playState: public gameState{
     box2d & pointer_area;
     public:
         bool input = false;
+        playState() = default;
         playState(Game * game);
         void execute();
         void end(){}

@@ -19,7 +19,6 @@ class humanPlayer: public Player{
             void Attack();
             bool getAbility();
             void useAbility();
-            json toJson();
             friend class doubleDamageAbility;
             friend class scannerAbility;
             friend class shellingAbility;

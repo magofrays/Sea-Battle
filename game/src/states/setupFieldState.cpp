@@ -75,13 +75,13 @@ void setupFieldState::end(){
     game->setState(new setupShipState(game));
 }
 
-json & operator>>(json & data, setupFieldState & game_state){
+json & operator << (json & data, setupFieldState & game_state){
     data["size_x"] = game_state.size_x;
     data["size_y"] = game_state.size_y;
     return data;
 }
 
-json & operator<<(json & data, setupFieldState & game_state){
+json & operator >> (json & data, setupFieldState & game_state){
     game_state.size_x = data["size_x"];
     game_state.size_y = data["size_y"];
     return data;

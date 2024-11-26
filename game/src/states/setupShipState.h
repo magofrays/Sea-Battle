@@ -14,7 +14,7 @@ class setupShipState: public gameState{
     box2d & pointer_area;
     int length;
     public:
-        setupShipState(Game * game);
+        setupShipState(Game * game, bool bot_places_ships = true);
         void execute();
         bool enoughShips();
         void placeShip();

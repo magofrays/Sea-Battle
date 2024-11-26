@@ -3,10 +3,10 @@
 
 shipManager::shipManager(const shipManager &ship_manager):ships(ship_manager.ships), destroyed_ships(ship_manager.destroyed_ships){}
 shipManager::shipManager(const json & data){
-    int size = data["size"];
-    destroyed_ships = data["destroyed_ships"];
+    int size = data.at("size");
+    destroyed_ships = data.at("destroyed_ships");
     for(int i = 0; i != size; i++){
-        ships.push_back(std::make_shared<Ship>(data["ships"][i]));
+        ships.push_back(std::make_shared<Ship>(data.at("ships")[i]));
     }
 }
 

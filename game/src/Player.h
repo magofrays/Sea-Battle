@@ -30,7 +30,9 @@ class Player: public messageHandler{
             this->handler = handler;
         }
 
-        json toJson();
+        friend json & operator << (json & data, Player & player); //write
+        friend json & operator >> (json & data, Player & player); //read
+
 };
 
 #endif

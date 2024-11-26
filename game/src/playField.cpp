@@ -37,12 +37,12 @@ playField::playField(point2d size){
 }
 
 playField::playField(const json & data){ // we trust json
-    int size_x = data["width"];
-    int size_y = data["height"];
+    int size_x = data.at("width");
+    int size_y = data.at("height");
     field.resize(size_y, std::vector<Cell>(size_x));
     for(int y = 0; y != size_y; y++){
         for(int x = 0; x != size_x; x++){
-            field[y][x].state = data["playField"][y][x];
+            field[y][x].state = data.at("playField")[y][x];
         }
     }
 }
@@ -124,4 +124,23 @@ json playField::toJson(){
         data["playField"].push_back(row);
     }
     return data;
+}
+
+void playField::loadShips(shipManager & ship_manager){
+    for(auto ship: ship_manager.ships){
+        box2d ship_area = ship->getArea();
+        auto segments = ship->getSegments();
+        if(ship->IsVertical()){
+            int x = ship_area.min_point.x; int y_min = ship_area.min_point.y;
+            for(int y = y_min; y != ship_area.max_point.y+1; y++){
+                field[y][x].segment = segments[y-y_min];
+            }
+        }
+        else{
+            int y = ship_area.min_point.y; int x_min = ship_area.min_point.x;
+            for(int x = x_min; x != ship_area.max_point.x+1; x++){
+                field[y][x].segment = segments[x-x_min];
+            }
+        }
+    }
 }

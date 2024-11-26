@@ -16,6 +16,10 @@ Key GUIInput::transformKey(SDL_Keycode key){
             return Key::extra_action_0;
         case SDLK_RCTRL:
             return Key::extra_action_1;
+        case SDLK_5:
+            return Key::save_action;
+        case SDLK_6:
+            return Key::load_action;
         default:
             return Key::null;
     }

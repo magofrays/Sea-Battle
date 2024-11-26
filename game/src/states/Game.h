@@ -6,12 +6,10 @@
 #include "../messages/keyMessage.h"
 #include "../IO/GUIInput.h"
 #include "../IO/GUIOutput.h"
-#include "../RW/fileRW.h"
 
 class Game: public messageHandler{
     gameState * state;
     messageHandler * handler;
-    fileRW save_load;
     public:
         bool running = true;
         humanPlayer player;

@@ -1,6 +1,6 @@
 #include "setupShipState.h"
 
-setupShipState::setupShipState(Game * game) : gameState(game), 
+setupShipState::setupShipState(Game * game, bool bot_places_ships) : gameState(game), 
             field(game->player.play_field), pointer(game->player.pointer), pointer_area(game->player.pointer_area){
     
     point2d sizes = game->player.play_field.getArea().max_point;
@@ -27,12 +27,16 @@ setupShipState::setupShipState(Game * game) : gameState(game),
             }
         }
     }
-    game->bot.placeShipsRandomly(single_decks, double_decks, three_decks, four_decks);
-    //std::cout << single_decks << " " << double_decks << " " << three_decks << " " << four_decks << "\n";
+    if(bot_places_ships){
+        game->bot.placeShipsRandomly(single_decks, double_decks, three_decks, four_decks);
+    }
 }
+
+
 bool setupShipState::enoughShips(){
     return !(single_decks || double_decks || three_decks || four_decks);
 }
+
 void setupShipState::execute(){
     if(!enoughShips()){
         pointer_area;

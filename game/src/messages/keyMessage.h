@@ -11,6 +11,8 @@ enum class Key{
         extra_action_0,
         extra_action_1,
         quit,
+        save_action,
+        load_action,
         null
     };
 

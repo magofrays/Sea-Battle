@@ -45,10 +45,19 @@ bool humanPlayer::areaInField(box2d area, point2d coordinates){
     area.max_point += coordinates;
     return play_field.getArea().contains(area);
 }
-
-json humanPlayer::toJson(){
-    json data = Player::toJson();
-    data["pointer"] = pointer.toJson();
-    data["pointer_area"] = pointer_area.toJson();
+/*
+json & operator << (json & data, humanPlayer & player){
+    data["play_field"] = player.play_field.toJson();
+    data["ship_manager"] = player.ship_manager.toJson();
+    data["pointer"] = player.pointer.toJson();
+    data["pointer_area"] = player.pointer_area.toJson();
     return data;
 }
+
+json & operator >> (json & data, humanPlayer & player){
+    player.ship_manager = shipManager(data["ship_manager"]);
+    player.play_field = playField(data["play_field"]);
+    player.pointer = point2d(data["pointer"]);
+    player.pointer_area = box2d(data["pointer_area"]);
+    return data;
+}*/
