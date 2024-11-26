@@ -71,12 +71,14 @@ class box2d{
             max_point = box.max_point;
         }
         return *this;}
+    
     box2d & operator = (box2d && box){
         if(this != &box){
-            min_point = std::move(min_point);
-            max_point = std::move(max_point);
+            min_point = std::move(box.min_point);
+            max_point = std::move(box.max_point);
         }
-        return *this;}
+        return *this;
+    }
 
 
     bool contains(point2d point) const

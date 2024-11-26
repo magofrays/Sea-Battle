@@ -68,6 +68,6 @@ json & operator >> (json & data, Player & player){
     player.play_field = playField(data.at("play_field"));
     std::cout << player.play_field.getArea().max_point.x << " " << player.play_field.getArea().max_point.y << "\n";
     player.play_field.loadShips(player.ship_manager);
-    std::cout << "successfuly loaded Player\n";
+    std::cout << "successfully loaded Player\n";
     return data;
 }

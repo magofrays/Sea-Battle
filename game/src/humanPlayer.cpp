@@ -22,6 +22,7 @@ bool humanPlayer::getAbility(){
 
 void humanPlayer::useAbility(){
     current_ability->apply(this);
+    current_ability = nullptr;
     pointer_area.min_point = point2d(0, 0);
     pointer_area.max_point = point2d(0, 0);
 }
@@ -45,19 +46,22 @@ bool humanPlayer::areaInField(box2d area, point2d coordinates){
     area.max_point += coordinates;
     return play_field.getArea().contains(area);
 }
-/*
+
 json & operator << (json & data, humanPlayer & player){
     data["play_field"] = player.play_field.toJson();
     data["ship_manager"] = player.ship_manager.toJson();
     data["pointer"] = player.pointer.toJson();
     data["pointer_area"] = player.pointer_area.toJson();
+    data["abilities_manager"] = player.abilities_manager.toJson();
     return data;
 }
 
 json & operator >> (json & data, humanPlayer & player){
-    player.ship_manager = shipManager(data["ship_manager"]);
-    player.play_field = playField(data["play_field"]);
-    player.pointer = point2d(data["pointer"]);
-    player.pointer_area = box2d(data["pointer_area"]);
+    player.ship_manager = shipManager(data.at("ship_manager"));
+    player.play_field = playField(data.at("play_field"));
+    player.pointer = point2d(data.at("pointer"));
+    player.pointer_area = box2d(data.at("pointer_area"));
+    player.abilities_manager = abilitiesManager(data.at("abilities_manager"));
+
     return data;
-}*/
+}

@@ -2,6 +2,7 @@
 #include "errors/errors.h"
 #include "shipManager.h"
 #include "utilities/settings.h"
+#include <iostream>
 
 void playField::Cell::Attack(bool sneak){
     if(!segment){
@@ -39,6 +40,7 @@ playField::playField(point2d size){
 playField::playField(const json & data){ // we trust json
     int size_x = data.at("width");
     int size_y = data.at("height");
+    area = box2d(point2d(0, 0), point2d(size_x-1, size_y-1));
     field.resize(size_y, std::vector<Cell>(size_x));
     for(int y = 0; y != size_y; y++){
         for(int x = 0; x != size_x; x++){
@@ -58,13 +60,12 @@ playField& playField::operator = (const playField& play_field){
 }
 playField::playField(playField && play_field) :area(std::move(play_field.area))
                                             {
-    field = std::move(play_field.field);
-    play_field.field.clear();
+    field = play_field.field;
 }
 playField& playField::operator = (playField && play_field) {
     if(this != &play_field){
-        area = std::move(play_field.area);
-        field = std::move(play_field.field);
+        area = play_field.area;
+        field = play_field.field;
     }
     return *this;
 }
@@ -114,11 +115,11 @@ void playField::Attack(point2d coordinates, bool sneak){
 
 json playField::toJson(){
     json data;
-    data["width"] = area.max_point.x;
-    data["height"] = area.max_point.y;
-    for(int y = 0; y != area.max_point.y; y++){
+    data["width"] = area.max_point.x+1;
+    data["height"] = area.max_point.y+1;
+    for(int y = 0; y != area.max_point.y+1; y++){
         std::vector<int> row;
-        for(int x = 0; x != area.max_point.x; x++){
+        for(int x = 0; x != area.max_point.x+1; x++){
             row.push_back(static_cast<int>(field[y][x].state));
         }
         data["playField"].push_back(row);

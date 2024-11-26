@@ -2,7 +2,7 @@
 
 setupShipState::setupShipState(Game * game, bool bot_places_ships) : gameState(game), 
             field(game->player.play_field), pointer(game->player.pointer), pointer_area(game->player.pointer_area){
-    
+    pointer = point2d(0, 0);
     point2d sizes = game->player.play_field.getArea().max_point;
     int area = (sizes.x+1)*(sizes.y+1);
     int count = ceil(area * 0.2);

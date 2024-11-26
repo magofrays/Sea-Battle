@@ -12,7 +12,23 @@ abilitiesManager::abilitiesManager() {
     abilities.push_back(std::make_shared<shellingAbility>());
     std::shuffle(abilities.begin(), abilities.end(), std::mt19937(std::random_device()()));
     for(auto ability: abilities){
-        this->abilities.push(ability);
+        this->abilities.push_back(ability);
+    }
+}
+
+abilitiesManager::abilitiesManager(const json & data){
+    int size = data["size"];
+    for(int i = 0; i != size; i++){
+        std::string ability_name = data.at("abilities")[i];
+        if(ability_name == typeid(scannerAbility).name()){
+            abilities.push_back(std::make_shared<scannerAbility>());
+        }
+        else if(ability_name == typeid(shellingAbility).name()){
+            abilities.push_back(std::make_shared<shellingAbility>());
+        }
+        else if(ability_name == typeid(doubleDamageAbility).name()){
+            abilities.push_back(std::make_shared<doubleDamageAbility>());
+        }
     }
 }
 
@@ -21,13 +37,13 @@ void abilitiesManager::createRandomAbility(){
     int ability_index = gen() % 3;
     switch(ability_index){
         case 0:
-            abilities.push(std::make_shared<scannerAbility>());
+            abilities.push_back(std::make_shared<scannerAbility>());
             break;
         case 1:
-            abilities.push(std::make_shared<doubleDamageAbility>());
+            abilities.push_back(std::make_shared<doubleDamageAbility>());
             break;
         case 2:
-            abilities.push(std::make_shared<shellingAbility>());
+            abilities.push_back(std::make_shared<shellingAbility>());
             break;
     }
 }
@@ -37,6 +53,26 @@ std::shared_ptr<IAbility> abilitiesManager::getAbility(){
         throw noAbilitiesException();
         }
     std::shared_ptr<IAbility> last_ability = abilities.front();
-    abilities.pop();
+    abilities.pop_front();
     return last_ability;
+}
+
+json abilitiesManager::toJson(){
+    json data;
+    data["size"] = abilities.size();
+    for(auto ability: abilities){
+        IAbility * abil = &(*ability);
+        std::string abil_name = typeid(*abil).name();
+        if(abil_name == typeid(scannerAbility).name()){
+            data["abilities"].push_back(abil_name);
+        }
+        else if(abil_name == typeid(shellingAbility).name()){
+            data["abilities"].push_back(abil_name);
+        }
+        else if(abil_name == typeid(doubleDamageAbility).name()){
+            data["abilities"].push_back(abil_name);
+        }
+
+    }
+    return data;
 }

@@ -2,15 +2,19 @@
 #define SEABATTLE_ABILITIESMANAGER_H
 
 #include <memory>
-#include <queue>
+#include <deque>
 #include "IAbility.h"
+#include <nlohmann/json.hpp>
+using json = nlohmann::json;
 
 class abilitiesManager{
-    std::queue <std::shared_ptr<IAbility>> abilities;
+    std::deque <std::shared_ptr<IAbility>> abilities;
     public:
         abilitiesManager();
+        abilitiesManager(const json & data);
         void createRandomAbility();
         std::shared_ptr<IAbility> getAbility();
+        json toJson();
 };
 
 #endif

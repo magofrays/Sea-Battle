@@ -18,6 +18,7 @@ GUIOutput::GUIOutput(){
     renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC);
     SDL_SetRenderDrawColor(renderer, 131, 148, 196, 255);
     SDL_RenderClear(renderer);
+    SDL_SetRenderDrawBlendMode(renderer, SDL_BLENDMODE_BLEND);
     big_font = TTF_OpenFont(seabattle::FONT_DIR, seabattle::BIG_FONT_SIZE);
     if (big_font == nullptr) {
         std::cerr<< std::filesystem::current_path().string() << TTF_GetError() << "\n";
@@ -114,18 +115,18 @@ void GUIOutput::drawField(std::string field_name, playField & field, fieldPositi
             }
             SDL_SetRenderDrawColor(renderer, color.r, color.g, color.b, color.a);
             SDL_RenderFillRect(renderer, &cell);
-            SDL_SetRenderDrawColor(renderer, 32, 32, 32, 100);
+            SDL_SetRenderDrawColor(renderer, 32, 32, 32, 255);
             SDL_RenderDrawRect(renderer, &cell);
             SDL_RenderDrawRect(renderer, &outline);
-            point2d field_indent(10, 0);
-            point2d name_coordinates = point2d(field_outline.w/2+field_outline.x, field_outline.h+field_outline.y) + field_indent;
-            this->drawText(field_name, name_coordinates, medium, {255, 255, 255, 255}, true);
-            if(draw_pointer){
-                this->drawPointer(size_cell, coordinates, size);
-            }
-
+            
         }
     }
+    point2d field_indent(10, 0);
+    point2d name_coordinates = point2d(field_outline.w/2+field_outline.x, field_outline.h+field_outline.y) + field_indent;
+    this->drawText(field_name, name_coordinates, medium, {255, 255, 255, 255}, true);
+    if(draw_pointer){
+                this->drawPointer(size_cell, coordinates, size);
+            }
 }
 
 void GUIOutput::drawPointer(int size_cell, point2d coordinates, point2d field_size){
@@ -136,7 +137,7 @@ void GUIOutput::drawPointer(int size_cell, point2d coordinates, point2d field_si
             SDL_Rect cell = {.x = coordinates.x + cell_coordinates.x, .y = coordinates.y + cell_coordinates.y, .w = size_cell, .h = size_cell};
             SDL_SetRenderDrawColor(renderer, color.r, color.g, color.b, color.a);
             SDL_RenderFillRect(renderer, &cell);
-            SDL_SetRenderDrawColor(renderer, 32, 32, 32, 100);
+            SDL_SetRenderDrawColor(renderer, 32, 32, 32, 255);
             SDL_RenderDrawRect(renderer, &cell);
         }
     }
@@ -221,7 +222,7 @@ void GUIOutput::drawLog(){
     for(int i = 0; i != seabattle::LOG_LENGTH; i++){
         if(log[i].msg.size() != 0){
             SDL_Rect outline = {coordinates.x-3, coordinates.y, seabattle::WIDTH/2, seabattle::SMALL_FONT_SIZE};
-            SDL_SetRenderDrawColor(renderer, 70, 70, 70, 100);
+            SDL_SetRenderDrawColor(renderer, 0, 0, 0, 200);
             SDL_RenderFillRect(renderer, &outline);
             SDL_Rect renderQuad = this->drawText(log[i].msg, coordinates, small, log[i].color);
             

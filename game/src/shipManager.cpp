@@ -75,10 +75,13 @@ bool shipManager::checkDestroyedShips(){
 }
 
 bool shipManager::allShipsDestroyed(){
-    if(ships.size() == destroyed_ships){
-        return true;
+    int destroyed = 0;
+    for(auto ship: ships){
+        if(ship->isDestroyed()){
+            destroyed++;
+        }
     }
-    return false;
+    return destroyed == ships.size();
 }
 
 json shipManager::toJson(){

@@ -65,17 +65,22 @@ void Game::save(){
     if(state_name == typeid(setupShipState).name()){
         setupShipState * tr_state = dynamic_cast<setupShipState*>(this->state);
         data[state_name] << *tr_state;
+        data["humanPlayer"] << player;
+        data["botPlayer"] << bot;
     }
     if(state_name == typeid(playState).name()){
         playState * tr_state = dynamic_cast<playState*>(this->state);
         data[state_name] << *tr_state;
+        data["humanPlayer"] << player;
+        data["botPlayer"] << bot;
     }
-    data["humanPlayer"] << player;
-    data["botPlayer"] << bot;
+    
     save.write(data);
 }
 
 void Game::load(){
+    bot.ship_manager = shipManager();
+    player.ship_manager = shipManager();
     fileRead load(std::string(seabattle::SAVE_DIR));
     json data;
     load.read(data);
