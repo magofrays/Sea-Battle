@@ -4,3 +4,4 @@
 void gameState::setGame(Game * game){
             this->game = game;
         }
+

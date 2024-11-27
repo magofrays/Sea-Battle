@@ -1,15 +1,8 @@
-#pragma once
-#include <iostream>
-#include <vector>
-#include <algorithm>
-#include <memory>
-#include <queue>
-#include <random>
-#include <string>
-#include <sstream>
-#include <concepts>
-#include <type_traits>
+#ifndef SEABATTLE_VECTOR2D_H
+#define SEABATTLE_VECTOR2D_H
+
 #include <nlohmann/json.hpp>
+#include <algorithm>
 using json = nlohmann::json;
 
 class point2d{
@@ -24,8 +17,8 @@ class point2d{
         y = point.y;
     }
     point2d(const json & data){
-        x = data["x"];
-        y = data["y"];
+        x = data.at("x");
+        y = data.at("y");
     }
 
     point2d & operator =(const point2d & point){
@@ -70,7 +63,7 @@ class box2d{
     box2d(box2d && box){
         min_point = std::move(box.min_point);
         max_point = std::move(box.max_point);}
-    box2d(const json & data):min_point(data["min_point"]), max_point(data["max_point"]) {}
+    box2d(const json & data):min_point(data.at("min_point")), max_point(data.at("max_point")) {}
 
     box2d & operator = (const box2d & box){
         if(this != &box){
@@ -78,12 +71,14 @@ class box2d{
             max_point = box.max_point;
         }
         return *this;}
+    
     box2d & operator = (box2d && box){
         if(this != &box){
-            min_point = std::move(min_point);
-            max_point = std::move(max_point);
+            min_point = std::move(box.min_point);
+            max_point = std::move(box.max_point);
         }
-        return *this;}
+        return *this;
+    }
 
 
     bool contains(point2d point) const
@@ -112,3 +107,5 @@ class box2d{
         return data;
     }
 };
+
+#endif

@@ -1,22 +1,25 @@
 #include "GUIInput.h"
-#include "../messages/textMessage.h"
 
 Key GUIInput::transformKey(SDL_Keycode key){
     switch (key) {
-        case SDLK_DOWN:
+        case SDLK_s:
             return Key::pointer_up;
-        case SDLK_LEFT:
+        case SDLK_a:
             return Key::pointer_left;
-        case SDLK_UP:
+        case SDLK_w:
             return Key::pointer_down;
-        case SDLK_RIGHT:
+        case SDLK_d:
             return Key::pointer_right;
         case SDLK_RETURN:
             return Key::main_action;
-        case SDLK_RSHIFT:
+        case SDLK_e:
             return Key::extra_action_0;
-        case SDLK_RCTRL:
+        case SDLK_q:
             return Key::extra_action_1;
+        case SDLK_1:
+            return Key::save_action;
+        case SDLK_2:
+            return Key::load_action;
         default:
             return Key::null;
     }

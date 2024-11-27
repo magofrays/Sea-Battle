@@ -1,5 +1,6 @@
-#pragma once
-#include "../playField.h"
+#ifndef SEABATTLE_IABILITY_H
+#define SEABATTLE_IABILITY_H
+
 #include "abilityInfo.h"
 
 class humanPlayer;
@@ -9,3 +10,5 @@ class IAbility{
         virtual void apply(humanPlayer * player) = 0;
         virtual ~IAbility() {}
 };
+
+#endif

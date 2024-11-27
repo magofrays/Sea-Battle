@@ -1,12 +1,17 @@
-#pragma once
-#include <SDL2/SDL.h>
+#ifndef SEABATTLE_GUIOUTPUT_H
+#define SEABATTLE_GUIOUTPUT_H
 
-#include <SDL2/SDL_ttf.h>
-#include "gameOutput.h"
+#include "../messages/messageHandler.h"
+
+#include "../messages/textMessage.h"
+#include "../messages/playFieldMessage.h"
+#include "../messages/pointerMessage.h"
 #include "../utilities/settings.h"
-#include "../utilities/vector2d.h"
 
-class GUIOutput : public gameOutput{ //need fix for fonts program is slow
+#include <SDL2/SDL.h>
+#include <SDL2/SDL_ttf.h>
+
+class GUIOutput : public messageHandler{
     enum fontSize{
         big, medium, small
     };
@@ -15,11 +20,13 @@ class GUIOutput : public gameOutput{ //need fix for fonts program is slow
     TTF_Font * big_font;
     TTF_Font * medium_font;
     TTF_Font * small_font;
-    Text title;
+    textMessage title;
     std::vector<std::string> instructions;
-    Text log[seabattle::LOG_LENGTH];
+    textMessage log[seabattle::LOG_LENGTH];
     pointerMessage pointer; 
-
+    
+    messageHandler * handler = nullptr;
+    
     public:
         GUIOutput();
         void drawField(std::string field_name, playField & field, fieldPosition position, bool fog, bool draw_pointer=false);
@@ -30,10 +37,10 @@ class GUIOutput : public gameOutput{ //need fix for fonts program is slow
         SDL_Rect drawText(std::string text, point2d coordinates, fontSize font_size, 
                     SDL_Color color = {255, 255, 255, 255}, bool is_centered = false);
         
-        void redirectText(Text text, textPosition position);
+        void redirectText(textMessage text);
 
         void drawTitle();
-        //void drawInstructions();
+        void drawInstructions();
         void drawLog();
 
         ~GUIOutput();
@@ -41,4 +48,9 @@ class GUIOutput : public gameOutput{ //need fix for fonts program is slow
         void Handle(std::unique_ptr<Message> message);
 
         void update();
+        void setNext(messageHandler * handler){
+            this->handler = handler;
+        }
 };
+
+#endif

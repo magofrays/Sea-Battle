@@ -1,5 +1,11 @@
-#pragma once
-#include "Ship.h"
+#ifndef SEABATTLE_SHIPMANAGER_H
+#define SEABATTLE_SHIPMANAGER_H
+
+#include "utilities/vector2d.h"
+#include <memory>
+
+class Ship;
+class playField;
 
 class shipManager{
     std::vector<std::shared_ptr<Ship>> ships;
@@ -18,5 +24,7 @@ class shipManager{
         bool allShipsDestroyed();
         bool noFreeCells(box2d area);
         json toJson();
+        friend playField;
 };
 
+#endif

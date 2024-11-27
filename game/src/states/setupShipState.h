@@ -1,27 +1,23 @@
 #pragma once
 #include "gameState.h"
 #include "Game.h"
+#include "playState.h"
 
 class setupShipState: public gameState{
-    int single_decks;
-    int double_decks;
-    int three_decks;
-    int four_decks;
+    int ships[4];
     bool is_vertical = true;
     playField & field;
     point2d & pointer;
-    box2d pointer_area;
+    box2d & pointer_area;
     int length;
     public:
-        setupShipState(Game * game);
+        setupShipState(Game * game, messageHandler * next, bool place_ships = true);
         void execute();
         bool enoughShips();
-        bool shipInField(box2d area, point2d coordinates);
         void placeShip();
-        void end(){
-            std::cout << "ended\n";
-        }
-        
+        void end();
+        friend json & operator << (json & data, setupShipState & game_state);
+        friend json & operator >> (json & data, setupShipState & game_state);
         void Handle(std::unique_ptr<Message> message);
     friend Game;
 };

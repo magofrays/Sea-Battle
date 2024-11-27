@@ -3,7 +3,6 @@
 #include "states/Game.h"
 
 int main(){
-    
     GUIInput input;
     GUIOutput output;
     Game game(&output);

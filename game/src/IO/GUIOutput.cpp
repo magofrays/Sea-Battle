@@ -1,5 +1,6 @@
 #include "GUIOutput.h"
 #include <filesystem>
+#include <iostream>
 
 GUIOutput::GUIOutput(){
     if (SDL_Init(SDL_INIT_VIDEO) != 0) {
@@ -17,6 +18,7 @@ GUIOutput::GUIOutput(){
     renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC);
     SDL_SetRenderDrawColor(renderer, 131, 148, 196, 255);
     SDL_RenderClear(renderer);
+    SDL_SetRenderDrawBlendMode(renderer, SDL_BLENDMODE_BLEND);
     big_font = TTF_OpenFont(seabattle::FONT_DIR, seabattle::BIG_FONT_SIZE);
     if (big_font == nullptr) {
         std::cerr<< std::filesystem::current_path().string() << TTF_GetError() << "\n";
@@ -90,6 +92,12 @@ void GUIOutput::drawField(std::string field_name, playField & field, fieldPositi
             else{
                 if(!(field.getCell(x, y).segment)){
                     color = seabattle::CELL_EMPTY;
+                    if(field.getCell(x, y).state == playField::Cell::unknown){
+                        color = seabattle::CELL_EMPTY;
+                    }
+                    else if(field.getCell(x, y).state == playField::Cell::empty){
+                        color = seabattle::CELL_ATTACKED;
+                    }
                 }
                 else{
                     switch(field.getCell(x, y).segment->state){
@@ -107,18 +115,18 @@ void GUIOutput::drawField(std::string field_name, playField & field, fieldPositi
             }
             SDL_SetRenderDrawColor(renderer, color.r, color.g, color.b, color.a);
             SDL_RenderFillRect(renderer, &cell);
-            SDL_SetRenderDrawColor(renderer, 32, 32, 32, 100);
+            SDL_SetRenderDrawColor(renderer, 32, 32, 32, 255);
             SDL_RenderDrawRect(renderer, &cell);
             SDL_RenderDrawRect(renderer, &outline);
-            point2d field_indent(10, 0);
-            point2d name_coordinates = point2d(field_outline.w/2+field_outline.x, field_outline.h+field_outline.y) + field_indent;
-            this->drawText(field_name, name_coordinates, medium, {255, 255, 255, 255}, true);
-            if(draw_pointer){
-                this->drawPointer(size_cell, coordinates, size);
-            }
-
+            
         }
     }
+    point2d field_indent(10, 0);
+    point2d name_coordinates = point2d(field_outline.w/2+field_outline.x, field_outline.h+field_outline.y) + field_indent;
+    this->drawText(field_name, name_coordinates, medium, {255, 255, 255, 255}, true);
+    if(draw_pointer){
+                this->drawPointer(size_cell, coordinates, size);
+            }
 }
 
 void GUIOutput::drawPointer(int size_cell, point2d coordinates, point2d field_size){
@@ -129,7 +137,7 @@ void GUIOutput::drawPointer(int size_cell, point2d coordinates, point2d field_si
             SDL_Rect cell = {.x = coordinates.x + cell_coordinates.x, .y = coordinates.y + cell_coordinates.y, .w = size_cell, .h = size_cell};
             SDL_SetRenderDrawColor(renderer, color.r, color.g, color.b, color.a);
             SDL_RenderFillRect(renderer, &cell);
-            SDL_SetRenderDrawColor(renderer, 32, 32, 32, 100);
+            SDL_SetRenderDrawColor(renderer, 32, 32, 32, 255);
             SDL_RenderDrawRect(renderer, &cell);
         }
     }
@@ -180,17 +188,9 @@ SDL_Rect GUIOutput::drawText(std::string text, point2d coordinates, fontSize fon
 
 
 
-void GUIOutput::update(){
-    this->drawTitle();
-    this->drawLog();
-    SDL_RenderPresent(renderer);
-    SDL_Color c = seabattle::BACKGROUND_COLOR;
-    SDL_SetRenderDrawColor(renderer, c.r, c.g, c.b, c.a);
-    SDL_RenderClear(renderer);
-}
 
-void GUIOutput::redirectText(Text text, textPosition position){
-    switch(position){
+void GUIOutput::redirectText(textMessage text){
+    switch(text.position){
         case textPosition::title:
             title = text;
             break;
@@ -209,12 +209,12 @@ void GUIOutput::drawTitle(){
 }
 
 void GUIOutput::drawLog(){
-    point2d bottom_indent(0, -30);
-    point2d coordinates = point2d(seabattle::WIDTH/4, seabattle::HEIGHT) + bottom_indent;
+    point2d indent = {12, 0};
+    point2d coordinates = point2d(seabattle::WIDTH/6, seabattle::HEIGHT*11/12) - indent;
     for(int i = 0; i != seabattle::LOG_LENGTH; i++){
         if(log[i].msg.size() != 0){
-            SDL_Rect outline = {coordinates.x-3, coordinates.y, seabattle::WIDTH/2, seabattle::SMALL_FONT_SIZE};
-            SDL_SetRenderDrawColor(renderer, 70, 70, 70, 100);
+            SDL_Rect outline = {coordinates.x-3, coordinates.y, seabattle::WIDTH/3, seabattle::SMALL_FONT_SIZE};
+            SDL_SetRenderDrawColor(renderer, 0, 0, 0, 150);
             SDL_RenderFillRect(renderer, &outline);
             SDL_Rect renderQuad = this->drawText(log[i].msg, coordinates, small, log[i].color);
             
@@ -224,11 +224,40 @@ void GUIOutput::drawLog(){
     }
 }
 
+void GUIOutput::drawInstructions(){
+    point2d indent = {12, 0};
+    point2d text_indent = {0, seabattle::SMALL_FONT_SIZE};
+    point2d coordinates = point2d(seabattle::WIDTH/2, seabattle::HEIGHT*11/12 - seabattle::SMALL_FONT_SIZE*7) + indent;
+    SDL_Rect outline = {coordinates.x-3, coordinates.y, seabattle::WIDTH/3, seabattle::SMALL_FONT_SIZE*8};
+    SDL_SetRenderDrawColor(renderer, 255, 255, 255, 150);
+    SDL_RenderFillRect(renderer, &outline);
+    this->drawText("==============================INSTRUCTIONS=================================", coordinates, small, {0, 0, 0});
+    this->drawText("W, A, S, D - to move pointer/change field size", coordinates+text_indent, small, {0, 0, 0});
+    this->drawText("E - to use ability/rotate ship/rotate field", coordinates+text_indent*2, small, {0, 0, 0});
+    this->drawText("Q - to place ships automatically/set field size automatically", coordinates+text_indent*3, small, {0, 0, 0});
+    this->drawText("1 - to save game", coordinates+text_indent*4, small, {0, 0, 0});
+    this->drawText("2 - to load game", coordinates+text_indent*5, small, {0, 0, 0});
+    this->drawText("Also use eng layout to play game", coordinates+text_indent*6, small, {0, 0, 0});
+    this->drawText("===========================================================================", coordinates+text_indent*7, small, {0, 0, 0});
+}
+
+void GUIOutput::update(){
+    this->drawTitle();
+    this->drawLog();
+    this->drawInstructions();
+    SDL_RenderPresent(renderer);
+    SDL_Color c = seabattle::BACKGROUND_COLOR;
+    SDL_SetRenderDrawColor(renderer, c.r, c.g, c.b, c.a);
+    SDL_RenderClear(renderer);
+}
+
+
+
 void GUIOutput::Handle(std::unique_ptr<Message> message){
     if(typeid(*message) == typeid(textMessage)){
         Message * msg = &(*message);
         textMessage * tr_msg = dynamic_cast<textMessage*>(msg);
-        redirectText(tr_msg->info, tr_msg->position);
+        redirectText(*tr_msg);
     }
     if(typeid(*message) == typeid(playFieldMessage)){
         Message * msg = &(*message);

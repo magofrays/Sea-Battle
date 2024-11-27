@@ -1,7 +1,8 @@
-#pragma once
-#include "utilities/vector2d.h"
-#include "errors/errors.h"
+#ifndef SEABATTLE_SHIP_H
+#define SEABATTLE_SHIP_H
 
+#include <memory>
+#include "utilities/vector2d.h"
 
 class Ship{
     public:
@@ -40,3 +41,5 @@ class Ship{
         
         json toJson();
 };
+
+#endif

@@ -1,6 +1,8 @@
-#pragma once
-#include "../utilities/vector2d.h"
+#ifndef SEABATTLE_POINTER_MESSAGE_H
+#define SEABATTLE_POINTER_MESSAGE_H
+
 #include "Message.h"
+#include "../utilities/vector2d.h"
 
 struct pointerMessage: public Message{
     box2d area;
@@ -12,3 +14,5 @@ struct pointerMessage: public Message{
         return std::make_unique<pointerMessage>(*this);
     }
 };
+
+#endif

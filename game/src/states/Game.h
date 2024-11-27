@@ -4,10 +4,8 @@
 #include "gameState.h"
 #include "../messages/messageHandler.h"
 #include "../messages/keyMessage.h"
-#include "../IO/gameInput.h"
-#include "../IO/gameOutput.h"
-#include "../states/setupFieldState.h"
-#include "../SL/saveLoadManager.h"
+#include "../IO/GUIInput.h"
+#include "../IO/GUIOutput.h"
 
 class Game: public messageHandler{
     gameState * state;
@@ -16,9 +14,7 @@ class Game: public messageHandler{
         bool running = true;
         humanPlayer player;
         botPlayer bot;
-        
-        Game(messageHandler * handler);
-        Game(gameState * state, messageHandler * handler);
+        Game(messageHandler * handler);     
         void setState(gameState * state);
         void execute();
         ~Game();

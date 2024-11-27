@@ -1,27 +1,7 @@
 {
-    "ship_manager": {
-        "destroyed_ships": 0,
-        "ships": [
-            {
-                "area": {
-                    "max_point": {
-                        "x": 2,
-                        "y": 5
-                    },
-                    "min_point": {
-                        "x": 1,
-                        "y": 2
-                    }
-                },
-                "is_vertical": true,
-                "length": 3,
-                "segments": [
-                    0,
-                    0,
-                    0
-                ]
-            }
-        ],
-        "size": 1
-    }
+    "15setupFieldState": {
+        "size_x": 4,
+        "size_y": 4
+    },
+    "state_name": "15setupFieldState"
 }

@@ -1,4 +1,5 @@
 #include "Ship.h"
+#include "errors/errors.h"
 
 void Ship::Segment::Attack(){
     switch(state){
@@ -34,11 +35,11 @@ Ship::Ship(int length, point2d coordinates, bool is_vertical)
 }
 
 Ship::Ship(const json & data){
-    length = data["length"];
-    is_vertical = data["is_vertical"];
-    this->area = box2d(data["area"]);
+    length = data.at("length");
+    is_vertical = data.at("is_vertical");
+    this->area = box2d(data.at("area"));
     for(int i = 0; i != length; i++){
-        segments.push_back(std::make_shared<Segment>(data["segments"][i]));
+        segments.push_back(std::make_shared<Segment>(data.at("segments")[i]));
     }
 }
 
