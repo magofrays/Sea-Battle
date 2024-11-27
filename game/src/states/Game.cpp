@@ -3,20 +3,20 @@
 #include "setupFieldState.h"
 #include "setupShipState.h"
 #include "playState.h"
+#include "endGameState.h"
 #include "../messages/textMessage.h"
 #include "../RW/fileRead.h"
 #include "../RW/fileWrite.h"
 
 Game::Game(messageHandler * handler){
-    state = new setupFieldState(this); 
-    state->setNext(handler);
+    state = new setupFieldState(this, handler); 
     player.setNext(handler);
     bot.setNext(handler);
     setNext(state);
 }
 
 void Game::setState(gameState * state){
-    state->setNext(this->state->handler);
+    //state->setNext(this->state->handler);
     delete this->state;
     this->state = state;
     setNext(state);
@@ -74,7 +74,12 @@ void Game::save(){
         data["humanPlayer"] << player;
         data["botPlayer"] << bot;
     }
-    
+    if(state_name == typeid(endGameState).name()){
+        endGameState * tr_state = dynamic_cast<endGameState *>(this->state);
+        data[state_name] << *tr_state;
+        data["humanPlayer"] << player;
+        data["botPlayer"] << bot;
+    }
     save.write(data);
 }
 
@@ -86,25 +91,31 @@ void Game::load(){
     load.read(data);
     std::string state_name = data["state_name"];
     if(state_name == typeid(setupFieldState).name()){
-        setupFieldState * new_state = new setupFieldState(this);
+        setupFieldState * new_state = new setupFieldState(this, this->state->handler);
         data[state_name] >> *new_state;
         this->setState(new_state);
     }
     if(state_name == typeid(setupShipState).name()){
         data["humanPlayer"] >> player;
         data["botPlayer"] >> bot;
-        setupShipState * new_state = new setupShipState(this, false);
+        setupShipState * new_state = new setupShipState(this, this->state->handler, false);
         data[state_name] >> *new_state;
         this->setState(new_state);
     }
     if(state_name == typeid(playState).name()){
         data["humanPlayer"] >> player;
         data["botPlayer"] >> bot;
-        playState * new_state = new playState(this);
+        playState * new_state = new playState(this, this->state->handler,  data[state_name]["round_number"]);
         data[state_name] >> *new_state;
         this->setState(new_state);
     }
-    
+    if(state_name == typeid(endGameState).name()){
+        data["humanPlayer"] >> player;
+        data["botPlayer"] >> bot;
+        endGameState * new_state = new endGameState(this, this->state->handler, data[state_name]["lost"], data[state_name]["round_number"]);
+        data[state_name] >> *new_state;
+        this->setState(new_state);
+    }
 }
 
 Game::~Game(){

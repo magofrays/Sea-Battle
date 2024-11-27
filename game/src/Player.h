@@ -20,8 +20,8 @@ class Player: public messageHandler{
         void placeShip(std::shared_ptr<Ship> ship){
             play_field.placeShip(ship, ship_manager);
         }
-
-        void placeShipsRandomly(int single_decks, int double_decks, int three_decks, int four_decks);
+        
+        
 
         void Handle(std::unique_ptr<Message> message){
             handler->Handle(std::move(message));
@@ -29,6 +29,14 @@ class Player: public messageHandler{
         void setNext(messageHandler * handler){
             this->handler = handler;
         }
+        void free(){
+            point2d field_size = play_field.getArea().max_point;
+            ship_manager = shipManager();
+            play_field = playField(field_size);
+        }
+        void callculateShips(int ships[4]);
+        void placeShipsRandomly(int ships[4]);
+
         friend json & operator << (json & data, Player & player); //write
         friend json & operator >> (json & data, Player & player); //read
 };

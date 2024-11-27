@@ -8,7 +8,6 @@
 
 void setupFieldState::execute(){
 
-    Handle(textMessage("Create your field!", {255, 255, 0, 255}, textPosition::title).clone());
     try{
         playField new_field(size_x, size_y);
         play_field = new_field;
@@ -39,29 +38,29 @@ void setupFieldState::Handle(std::unique_ptr<Message> message){
         switch(key_msg->info){
             case Key::pointer_up:
                 size_y++;
-                break;
+                return;
             case Key::pointer_down:
                 size_y--;
-                break;
+                return;
             case Key::pointer_right:
                 size_x++;
-                break;
+                return;
             case Key::pointer_left:
                 size_x--;
-                break;
+                return;
             case Key::main_action:
                 this->end();
-                break;
+                return;
             case Key::extra_action_0:
                 temp = size_x;
                 size_x = size_y;
                 size_y = temp;
-                break;
+                return;
             case Key::extra_action_1:
                 size_x = 8;
                 size_y = 8;
             default:
-                break;
+                return;
         }
     }
     else{
@@ -72,7 +71,7 @@ void setupFieldState::Handle(std::unique_ptr<Message> message){
 void setupFieldState::end(){
     game->player.setField(play_field);
     game->bot.setField(play_field);
-    game->setState(new setupShipState(game));
+    game->setState(new setupShipState(game, this->handler));
 }
 
 json & operator << (json & data, setupFieldState & game_state){

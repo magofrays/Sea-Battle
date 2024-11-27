@@ -40,7 +40,7 @@ class GUIOutput : public messageHandler{
         void redirectText(textMessage text);
 
         void drawTitle();
-        //void drawInstructions();
+        void drawInstructions();
         void drawLog();
 
         ~GUIOutput();

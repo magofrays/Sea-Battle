@@ -8,7 +8,9 @@ class setupFieldState: public gameState {
     playField play_field;
     public:
         setupFieldState() = default;
-        setupFieldState(Game * game):gameState(game), size_x(1), size_y(1){
+        setupFieldState(Game * game, messageHandler * next):gameState(game), size_x(2), size_y(2){
+            this->handler = next;
+            Handle(textMessage("Create your field!", {255, 255, 0, 255}, textPosition::title).clone());
         }
         void execute();
 

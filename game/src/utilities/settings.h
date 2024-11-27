@@ -10,7 +10,7 @@ namespace seabattle{
     constexpr int BIG_FONT_SIZE = 35;
     constexpr int MEDIUM_FONT_SIZE = 27;
     constexpr int SMALL_FONT_SIZE = 15;
-    constexpr int LOG_LENGTH = 5;
+    constexpr int LOG_LENGTH = 7;
     constexpr int MAX_FIELD_SIZE = 20;
     static const char* FONT_DIR = "../game/assets/fonts/font.ttf";
     constexpr SDL_Color SHIP_SEGMENT_NORMAL = {0, 255, 0, 255};

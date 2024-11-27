@@ -19,6 +19,7 @@ class humanPlayer: public Player{
             void Attack();
             bool getAbility();
             void useAbility();
+            void free();
             friend json & operator << (json & data, humanPlayer & player); //write
             friend json & operator >> (json & data, humanPlayer & player); //read
             friend class doubleDamageAbility;

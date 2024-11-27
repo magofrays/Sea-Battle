@@ -8,10 +8,10 @@ class playState: public gameState{
     public:
         bool input = false;
         playState() = default;
-        playState(Game * game, int round_number = 0);
+        playState(Game * game, messageHandler * next, int round_number = 0);
         void execute();
-        void end(){}
         void usingAbility();
+        void end(bool lost);
         void lose();
         void win();
         void Handle(std::unique_ptr<Message> message);

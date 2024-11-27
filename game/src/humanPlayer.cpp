@@ -41,6 +41,13 @@ void humanPlayer::Attack(){
     }
 }
 
+void humanPlayer::free(){
+    point2d field_size = play_field.getArea().max_point;
+    ship_manager = shipManager();
+    play_field = playField(field_size);
+    abilities_manager = abilitiesManager();
+}
+
 bool humanPlayer::areaInField(box2d area, point2d coordinates){
     area.min_point += coordinates;
     area.max_point += coordinates;
@@ -59,6 +66,7 @@ json & operator << (json & data, humanPlayer & player){
 json & operator >> (json & data, humanPlayer & player){
     player.ship_manager = shipManager(data.at("ship_manager"));
     player.play_field = playField(data.at("play_field"));
+    player.play_field.loadShips(player.ship_manager);
     player.pointer = point2d(data.at("pointer"));
     player.pointer_area = box2d(data.at("pointer_area"));
     player.abilities_manager = abilitiesManager(data.at("abilities_manager"));

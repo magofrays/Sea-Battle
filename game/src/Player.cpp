@@ -2,25 +2,26 @@
 #include <random>
 #include <iostream>
 
-void Player::placeShipsRandomly(int single_decks, int double_decks, int three_decks, int four_decks){
+void Player::placeShipsRandomly(int ships[4]){
+    int bot_ships[4] = {ships[0], ships[1], ships[2], ships[3]};
     std::mt19937 gen(std::random_device{}());
     box2d field_area = play_field.getArea();
     point2d field_size = field_area.max_point;
-    while(single_decks || double_decks || three_decks || four_decks){
+    while(bot_ships[0] || bot_ships[1] || bot_ships[2] || bot_ships[3]){
         bool is_vertical = (gen()%2 == 0);
         int x = gen()%(field_size.x+1); 
         int y = gen()%(field_size.y+1);
         int length;
-        if(four_decks){
+        if(bot_ships[3]){
             length = 4;
         }
-        else if(three_decks){
+        else if(bot_ships[2]){
             length = 3;
         }
-        else if(double_decks){
+        else if(bot_ships[1]){
             length = 2;
         }
-        else if(single_decks){
+        else if(bot_ships[0]){
             length = 1;
         }
         bool placed = false;
@@ -33,16 +34,16 @@ void Player::placeShipsRandomly(int single_decks, int double_decks, int three_de
                         this->placeShip(std::make_shared<Ship>(ship));
                         switch(length){
                             case 4:
-                                four_decks--;
+                                bot_ships[3]--;
                                 break;
                             case 3:
-                                three_decks--;
+                                bot_ships[2]--;
                                 break;
                             case 2:
-                                double_decks--;
+                                bot_ships[1]--;
                                 break;
                             case 1:
-                                single_decks--;
+                                bot_ships[0]--;
                         }
                         if(ship_manager.noFreeCells(field_area)){
                             return;
@@ -57,6 +58,33 @@ void Player::placeShipsRandomly(int single_decks, int double_decks, int three_de
     }
 }
 
+void Player::callculateShips(int ships[4]){
+    point2d sizes = play_field.getArea().max_point;
+    int area = (sizes.x+1)*(sizes.y+1);
+    int count = ceil(area * 0.2);
+    int max_first = (area <= 100) ? 5 : ceil(count * 0.25);
+    int max_second = (area <= 100) ? ceil(count * 0.5 / 2) : ceil(count * 0.4 / 2);
+    int max_third = (area <= 100) ? ceil(count * 0.45 / 3) : ceil(count * 0.4 / 3);
+    int max_fourth = (area <= 100) ? ceil(count * 0.26 / 4) : ceil(count * 0.31 / 4);
+
+    for (int first = 1; first < max_first; first++) {
+        for (int second = 0; second < max_second; second++) {
+            for (int third = 0; third < max_third; third++) {
+                for (int fourth = 0; fourth < max_fourth; fourth++) {
+                    if (first + second * 2 + third * 3 + fourth * 4 == count) {
+                        if (fourth <= third && third <= second && second <= first) {
+                            ships[0] = first;
+                            ships[1] = second;
+                            ships[2] = third;
+                            ships[3] = fourth;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
 json & operator << (json & data, Player & player){
     data["ship_manager"] = player.ship_manager.toJson();
     data["play_field"] = player.play_field.toJson();
@@ -66,8 +94,6 @@ json & operator << (json & data, Player & player){
 json & operator >> (json & data, Player & player){
     player.ship_manager = shipManager(data.at("ship_manager"));
     player.play_field = playField(data.at("play_field"));
-    std::cout << player.play_field.getArea().max_point.x << " " << player.play_field.getArea().max_point.y << "\n";
     player.play_field.loadShips(player.ship_manager);
-    std::cout << "successfully loaded Player\n";
     return data;
 }

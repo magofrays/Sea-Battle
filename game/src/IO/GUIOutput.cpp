@@ -188,14 +188,6 @@ SDL_Rect GUIOutput::drawText(std::string text, point2d coordinates, fontSize fon
 
 
 
-void GUIOutput::update(){
-    this->drawTitle();
-    this->drawLog();
-    SDL_RenderPresent(renderer);
-    SDL_Color c = seabattle::BACKGROUND_COLOR;
-    SDL_SetRenderDrawColor(renderer, c.r, c.g, c.b, c.a);
-    SDL_RenderClear(renderer);
-}
 
 void GUIOutput::redirectText(textMessage text){
     switch(text.position){
@@ -217,12 +209,12 @@ void GUIOutput::drawTitle(){
 }
 
 void GUIOutput::drawLog(){
-    point2d bottom_indent(0, -30);
-    point2d coordinates = point2d(seabattle::WIDTH/4, seabattle::HEIGHT) + bottom_indent;
+    point2d indent = {12, 0};
+    point2d coordinates = point2d(seabattle::WIDTH/6, seabattle::HEIGHT*11/12) - indent;
     for(int i = 0; i != seabattle::LOG_LENGTH; i++){
         if(log[i].msg.size() != 0){
-            SDL_Rect outline = {coordinates.x-3, coordinates.y, seabattle::WIDTH/2, seabattle::SMALL_FONT_SIZE};
-            SDL_SetRenderDrawColor(renderer, 0, 0, 0, 200);
+            SDL_Rect outline = {coordinates.x-3, coordinates.y, seabattle::WIDTH/3, seabattle::SMALL_FONT_SIZE};
+            SDL_SetRenderDrawColor(renderer, 0, 0, 0, 150);
             SDL_RenderFillRect(renderer, &outline);
             SDL_Rect renderQuad = this->drawText(log[i].msg, coordinates, small, log[i].color);
             
@@ -231,6 +223,35 @@ void GUIOutput::drawLog(){
         }
     }
 }
+
+void GUIOutput::drawInstructions(){
+    point2d indent = {12, 0};
+    point2d text_indent = {0, seabattle::SMALL_FONT_SIZE};
+    point2d coordinates = point2d(seabattle::WIDTH/2, seabattle::HEIGHT*11/12 - seabattle::SMALL_FONT_SIZE*7) + indent;
+    SDL_Rect outline = {coordinates.x-3, coordinates.y, seabattle::WIDTH/3, seabattle::SMALL_FONT_SIZE*8};
+    SDL_SetRenderDrawColor(renderer, 255, 255, 255, 150);
+    SDL_RenderFillRect(renderer, &outline);
+    this->drawText("==============================INSTRUCTIONS=================================", coordinates, small, {0, 0, 0});
+    this->drawText("W, A, S, D - to move pointer/change field size", coordinates+text_indent, small, {0, 0, 0});
+    this->drawText("E - to use ability/rotate ship/rotate field", coordinates+text_indent*2, small, {0, 0, 0});
+    this->drawText("Q - to place ships automatically/set field size automatically", coordinates+text_indent*3, small, {0, 0, 0});
+    this->drawText("1 - to save game", coordinates+text_indent*4, small, {0, 0, 0});
+    this->drawText("2 - to load game", coordinates+text_indent*5, small, {0, 0, 0});
+    this->drawText("Also use eng layout to play game", coordinates+text_indent*6, small, {0, 0, 0});
+    this->drawText("===========================================================================", coordinates+text_indent*7, small, {0, 0, 0});
+}
+
+void GUIOutput::update(){
+    this->drawTitle();
+    this->drawLog();
+    this->drawInstructions();
+    SDL_RenderPresent(renderer);
+    SDL_Color c = seabattle::BACKGROUND_COLOR;
+    SDL_SetRenderDrawColor(renderer, c.r, c.g, c.b, c.a);
+    SDL_RenderClear(renderer);
+}
+
+
 
 void GUIOutput::Handle(std::unique_ptr<Message> message){
     if(typeid(*message) == typeid(textMessage)){
