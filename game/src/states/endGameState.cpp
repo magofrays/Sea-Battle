@@ -12,7 +12,7 @@ endGameState::endGameState(Game * game, messageHandler * next, bool lost, int ro
         Handle(textMessage("Press ENTER to restart!", {255, 0, 0, 255}, textPosition::log).clone());
     }
     else{
-        Handle(textMessage("YOU WIN!", {255, 0, 0, 255}, textPosition::title).clone());
+        Handle(textMessage("YOU WIN!", {0, 255, 0, 255}, textPosition::title).clone());
         Handle(textMessage("Press ENTER to start round " + std::to_string(round_number+1) + "!", {255, 0, 0, 255}, textPosition::log).clone());
     }
 }

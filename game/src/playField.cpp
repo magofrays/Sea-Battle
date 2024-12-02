@@ -20,7 +20,7 @@ void playField::Cell::Attack(bool sneak){
 
 playField::playField(int size_x, int size_y)
 {
-    if(size_x < 1 || size_y < 1 || size_x > seabattle::MAX_FIELD_SIZE || size_y > seabattle::MAX_FIELD_SIZE){
+    if(size_x < 2 || size_y < 2 || size_x > seabattle::MAX_FIELD_SIZE || size_y > seabattle::MAX_FIELD_SIZE){
         throw invalidFieldSize(size_x, size_y);
     }
     box2d area(point2d(0, 0), point2d(size_x-1, size_y-1));
@@ -29,7 +29,7 @@ playField::playField(int size_x, int size_y)
 }
 
 playField::playField(point2d size){
-    if(size.x < 1 || size.y < 1){
+    if(size.x+1 < 2 || size.y+1 < 2 || size.x+1 > seabattle::MAX_FIELD_SIZE || size.y+1 > seabattle::MAX_FIELD_SIZE){
         throw invalidFieldSize(size.x, size.y);
     }
     box2d area(point2d(0, 0), size);

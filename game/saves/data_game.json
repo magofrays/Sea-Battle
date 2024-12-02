@@ -1,7 +1,369 @@
 {
-    "15setupFieldState": {
-        "size_x": 4,
-        "size_y": 4
+    "12endGameState": {
+        "lost": false,
+        "round_number": 0
     },
-    "state_name": "15setupFieldState"
+    "botPlayer": {
+        "play_field": {
+            "height": 3,
+            "playField": [
+                [
+                    2,
+                    1,
+                    1,
+                    1,
+                    1,
+                    1,
+                    1,
+                    1,
+                    1,
+                    2,
+                    1,
+                    1,
+                    2,
+                    1
+                ],
+                [
+                    1,
+                    1,
+                    1,
+                    1,
+                    1,
+                    1,
+                    1,
+                    1,
+                    1,
+                    2,
+                    1,
+                    1,
+                    1,
+                    1
+                ],
+                [
+                    1,
+                    2,
+                    2,
+                    1,
+                    1,
+                    1,
+                    1,
+                    1,
+                    1,
+                    2,
+                    1,
+                    2,
+                    1,
+                    2
+                ]
+            ],
+            "width": 14
+        },
+        "ship_manager": {
+            "destroyed_ships": 6,
+            "ships": [
+                {
+                    "area": {
+                        "max_point": {
+                            "x": 9,
+                            "y": 2
+                        },
+                        "min_point": {
+                            "x": 9,
+                            "y": 0
+                        }
+                    },
+                    "is_vertical": true,
+                    "length": 3,
+                    "segments": [
+                        2,
+                        2,
+                        2
+                    ]
+                },
+                {
+                    "area": {
+                        "max_point": {
+                            "x": 2,
+                            "y": 2
+                        },
+                        "min_point": {
+                            "x": 1,
+                            "y": 2
+                        }
+                    },
+                    "is_vertical": false,
+                    "length": 2,
+                    "segments": [
+                        2,
+                        2
+                    ]
+                },
+                {
+                    "area": {
+                        "max_point": {
+                            "x": 11,
+                            "y": 2
+                        },
+                        "min_point": {
+                            "x": 11,
+                            "y": 2
+                        }
+                    },
+                    "is_vertical": false,
+                    "length": 1,
+                    "segments": [
+                        2
+                    ]
+                },
+                {
+                    "area": {
+                        "max_point": {
+                            "x": 12,
+                            "y": 0
+                        },
+                        "min_point": {
+                            "x": 12,
+                            "y": 0
+                        }
+                    },
+                    "is_vertical": true,
+                    "length": 1,
+                    "segments": [
+                        2
+                    ]
+                },
+                {
+                    "area": {
+                        "max_point": {
+                            "x": 0,
+                            "y": 0
+                        },
+                        "min_point": {
+                            "x": 0,
+                            "y": 0
+                        }
+                    },
+                    "is_vertical": true,
+                    "length": 1,
+                    "segments": [
+                        2
+                    ]
+                },
+                {
+                    "area": {
+                        "max_point": {
+                            "x": 13,
+                            "y": 2
+                        },
+                        "min_point": {
+                            "x": 13,
+                            "y": 2
+                        }
+                    },
+                    "is_vertical": false,
+                    "length": 1,
+                    "segments": [
+                        2
+                    ]
+                }
+            ],
+            "size": 6
+        }
+    },
+    "humanPlayer": {
+        "abilities_manager": {
+            "abilities": [
+                "15shellingAbility",
+                "19doubleDamageAbility",
+                "14scannerAbility",
+                "14scannerAbility",
+                "14scannerAbility",
+                "14scannerAbility",
+                "19doubleDamageAbility",
+                "19doubleDamageAbility",
+                "14scannerAbility"
+            ],
+            "size": 9
+        },
+        "play_field": {
+            "height": 3,
+            "playField": [
+                [
+                    2,
+                    0,
+                    2,
+                    1,
+                    2,
+                    1,
+                    1,
+                    2,
+                    1,
+                    1,
+                    1,
+                    1,
+                    1,
+                    0
+                ],
+                [
+                    0,
+                    1,
+                    2,
+                    1,
+                    1,
+                    0,
+                    1,
+                    1,
+                    1,
+                    1,
+                    1,
+                    1,
+                    0,
+                    1
+                ],
+                [
+                    0,
+                    1,
+                    1,
+                    1,
+                    2,
+                    1,
+                    2,
+                    0,
+                    1,
+                    0,
+                    1,
+                    1,
+                    1,
+                    0
+                ]
+            ],
+            "width": 14
+        },
+        "pointer": {
+            "x": 12,
+            "y": 0
+        },
+        "pointer_area": {
+            "max_point": {
+                "x": 0,
+                "y": 0
+            },
+            "min_point": {
+                "x": 0,
+                "y": 0
+            }
+        },
+        "ship_manager": {
+            "destroyed_ships": 0,
+            "ships": [
+                {
+                    "area": {
+                        "max_point": {
+                            "x": 0,
+                            "y": 2
+                        },
+                        "min_point": {
+                            "x": 0,
+                            "y": 0
+                        }
+                    },
+                    "is_vertical": true,
+                    "length": 3,
+                    "segments": [
+                        1,
+                        0,
+                        0
+                    ]
+                },
+                {
+                    "area": {
+                        "max_point": {
+                            "x": 2,
+                            "y": 1
+                        },
+                        "min_point": {
+                            "x": 2,
+                            "y": 0
+                        }
+                    },
+                    "is_vertical": true,
+                    "length": 2,
+                    "segments": [
+                        1,
+                        2
+                    ]
+                },
+                {
+                    "area": {
+                        "max_point": {
+                            "x": 4,
+                            "y": 0
+                        },
+                        "min_point": {
+                            "x": 4,
+                            "y": 0
+                        }
+                    },
+                    "is_vertical": true,
+                    "length": 1,
+                    "segments": [
+                        2
+                    ]
+                },
+                {
+                    "area": {
+                        "max_point": {
+                            "x": 4,
+                            "y": 2
+                        },
+                        "min_point": {
+                            "x": 4,
+                            "y": 2
+                        }
+                    },
+                    "is_vertical": false,
+                    "length": 1,
+                    "segments": [
+                        2
+                    ]
+                },
+                {
+                    "area": {
+                        "max_point": {
+                            "x": 6,
+                            "y": 2
+                        },
+                        "min_point": {
+                            "x": 6,
+                            "y": 2
+                        }
+                    },
+                    "is_vertical": false,
+                    "length": 1,
+                    "segments": [
+                        2
+                    ]
+                },
+                {
+                    "area": {
+                        "max_point": {
+                            "x": 7,
+                            "y": 0
+                        },
+                        "min_point": {
+                            "x": 7,
+                            "y": 0
+                        }
+                    },
+                    "is_vertical": false,
+                    "length": 1,
+                    "segments": [
+                        2
+                    ]
+                }
+            ],
+            "size": 6
+        }
+    },
+    "state_name": "12endGameState"
 }

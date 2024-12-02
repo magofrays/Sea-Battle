@@ -13,11 +13,11 @@ void setupFieldState::execute(){
         play_field = new_field;
     }catch(invalidFieldSize & e){
         Handle(textMessage(e.what(), {255, 0, 0, 255}, textPosition::log).clone());
-        if(size_x < 1){
-            size_x = 1;
+        if(size_x < 2){
+            size_x = 2;
         }
-        if(size_y < 1){
-            size_y = 1;
+        if(size_y < 2){
+            size_y = 2;
         }
         if(size_x > seabattle::MAX_FIELD_SIZE){
             size_x = seabattle::MAX_FIELD_SIZE;
