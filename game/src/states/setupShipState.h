@@ -19,5 +19,4 @@ class setupShipState: public gameState{
         friend json & operator << (json & data, setupShipState & game_state);
         friend json & operator >> (json & data, setupShipState & game_state);
         void Handle(std::unique_ptr<Message> message);
-    friend Game;
 };

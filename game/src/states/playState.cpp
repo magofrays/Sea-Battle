@@ -99,17 +99,6 @@ void playState::end(bool lost){
     game->setState(new endGameState(game, this->handler, lost, round_number));
 }
 
-void playState::lose(){ // create new class for this
-    Handle(textMessage("YOU LOSE! TOO BAD!", {255, 0, 0}, textPosition::title).clone());
-    Handle(playFieldMessage("Your field", game->player.play_field, fieldPosition::left, false, true).clone());
-    Handle(playFieldMessage("Bot field", game->bot.play_field, fieldPosition::right, false, true).clone());
-}
-void playState::win(){
-    Handle(textMessage("YOU WIN! NICE!", {255, 255, 0}, textPosition::title).clone());
-    Handle(playFieldMessage("Your field", game->player.play_field, fieldPosition::left, false, true).clone());
-    Handle(playFieldMessage("Bot field", game->bot.play_field, fieldPosition::right, false, true).clone());
-}
-
 json & operator<<(json & data, playState & game_state){
     data["input"] = game_state.input;
     data["round_number"] = game_state.round_number;

@@ -1,20 +1,42 @@
 diagrams:
-  super-diagram:
-    type: class
-    glob:
-      - game/src/*.cpp
-      - game/src/*.h
-      - game/src/abilities/*.cpp
-      - game/src/abilities/*.h
-      - game/src/errors/*.h
-      - game/src/utilities/*.h
-      - game/src/states/*.cpp
-      - game/src/states/*.h
-      - game/src/SL/*.h
-      - game/src/SL/*.cpp
-      - game/src/messages/*.h
-      - game/src/messages/*.cpp
-      - game/src/IO/*.h
-      - game/src/IO/*.cpp
-    generate_template_argument_dependencies: false
+    lab3_diagram:
+      type: class
+      glob:
+        - game/src/messages/*.h
+        - game/src/states/*.h
+        - game/src/states/*.cpp
+        - game/src/IO/*.h
+        - game/src/IO/*.cpp
+        - game/src/utilities/*.h
+        - game/src/RW/*.h
+        - game/src/RW/*.cpp
+        - game/src/*.cpp
+        - game/src/*.h
+      generate_template_argument_dependencies: false
+      include:
+        elements:
+          - Game
+          - keyMessage
+          - Message
+          - messageHandler
+          - playFieldMessage
+          - pointerMessage
+          - textMessage
+          - GUIInput
+          - GUIOutput
+          - endGameState
+          - gameState
+          - playState
+          - setupFieldState
+          - setupShipState
+          - Player
+          - humanPlayer
+          - botPlayer
+          - fileRead
+          - fileWrite
+      exclude:
+        relationships:
+          - dependency
+        namespaces:
+          - std
 compilation_database_dir: build

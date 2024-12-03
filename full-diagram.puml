@@ -1,0 +1,627 @@
+@startuml
+class "nlohmann::basic_json" as C_0008843406913308057517
+class C_0008843406913308057517 {
+__
+}
+class "point2d" as C_0008811565138490693412
+class C_0008811565138490693412 {
++point2d() : void
++point2d(int x, int y) : void
++point2d(std::pair<int,int> coordinates) : void
++point2d(const point2d & point) : void
++point2d(const json & data) : void
+..
++operator=(const point2d & point) : point2d &
++operator=(point2d && point) : point2d &
+..
++operator*(int k) const : point2d
++operator+(point2d v) const : point2d
++operator+=(point2d v) : void
++operator-(point2d v) const : point2d
++operator-=(point2d v) : void
++operator/(int det) const : point2d
+..
++toJson() : json
+__
++x : int
++y : int
+}
+class "box2d" as C_0003276583972331131429
+class C_0003276583972331131429 {
++box2d() : void
++box2d(point2d min_point, point2d max_point) : void
++box2d(const box2d & box) : void
++box2d(box2d && box) : void
++box2d(const json & data) : void
+..
++operator=(const box2d & box) : box2d &
++operator=(box2d && box) : box2d &
+..
++contains(point2d point) const : bool
++contains(box2d box) const : bool
++intersects(box2d box) const : bool
++toJson() : json
+__
++max_point : point2d
++min_point : point2d
+}
+class "Ship" as C_0014529657433315016423
+class C_0014529657433315016423 {
++Ship() = default : void
++Ship(int length, point2d coordinates, bool is_vertical) : void
++Ship(const Ship & ship) : void
++Ship(const json & data) : void
+..
++operator=(const Ship & ship) : Ship &
++operator=(Ship && ship) : Ship &
+..
++IsVertical() const : bool
++getArea() const : box2d
++getLen() const : int
++getSegments() : std::vector<std::shared_ptr<Segment>> &
++isDestroyed() : bool
++toJson() : json
+__
+-area : box2d
+-is_vertical : bool
+-length : int
+-segments : std::vector<std::shared_ptr<Segment>>
+}
+class "Ship::Segment" as C_0000674658759292391449
+class C_0000674658759292391449 {
++Attack() : void
++Segment() : void
++Segment(segmentState state) : void
+__
++state : segmentState
+}
+enum "Ship::Segment::segmentState" as C_0002525743222311119146
+enum C_0002525743222311119146 {
+normal
+damaged
+destroyed
+}
+class "playField" as C_0002718641478943956868
+class C_0002718641478943956868 {
++playField() = default : void
++playField(int size_x, int size_y) : void
++playField(point2d size) : void
++playField(const json & data) : void
++playField(const playField & play_field) : void
++playField(playField && play_field) : void
+..
++operator=(const playField & play_field) : playField &
++operator=(playField && play_field) : playField &
+..
++Attack(point2d coordinates, bool sneak) : void
++getArea() const : box2d
++getCell(int x, int y) : Cell
++loadShips(shipManager & ship_manager) : void
++placeShip(std::shared_ptr<Ship> ship, shipManager & ship_manager) : void
++toJson() : json
+__
+-area : box2d
+-field : std::vector<std::vector<Cell>>
+}
+class "playField::Cell" as C_0012382187627966550024
+class C_0012382187627966550024 {
++Attack(bool change_state) : void
++Cell() : void
+__
++segment : std::shared_ptr<Ship::Segment>
++state : cellState
+}
+enum "playField::Cell::cellState" as C_0001015552162007637433
+enum C_0001015552162007637433 {
+unknown
+empty
+ship
+}
+class "objectOutOfBounds" as C_0016288775769628282457
+class C_0016288775769628282457 {
++objectOutOfBounds(point2d coordinates) : void
+..
++what() const noexcept : const char *
+__
+-coordinates : point2d
+-msg : std::string
+}
+class "invalidFieldSize" as C_0006266520075800295074
+class C_0006266520075800295074 {
++invalidFieldSize(int size_x, int size_y) : void
+..
++what() const noexcept : const char *
+__
+-msg : std::string
+-size_x : int
+-size_y : int
+}
+class "invalidShipLength" as C_0011842997067663358767
+class C_0011842997067663358767 {
++invalidShipLength(int length) : void
+..
++what() const noexcept : const char *
+__
+-length : int
+-msg : std::string
+}
+class "invalidShipPosition" as C_0002711233589939379544
+class C_0002711233589939379544 {
++invalidShipPosition() : void
+..
++what() const noexcept : const char *
+__
+-msg : std::string
+}
+class "noAbilitiesException" as C_0011430010922026392300
+class C_0011430010922026392300 {
++noAbilitiesException() : void
+..
++what() const noexcept : const char *
+__
+-msg : std::string
+}
+class "inputException" as C_0014977310728180813786
+class C_0014977310728180813786 {
++inputException() : void
+..
++what() const noexcept : const char *
+__
+-msg : std::string
+}
+class "shipManager" as C_0009950070490733851683
+class C_0009950070490733851683 {
++shipManager() = default : void
++shipManager(const shipManager & ship_manager) : void
++shipManager(const json & data) : void
+..
++operator=(const shipManager & ship_manager) : shipManager &
+..
++addShip(std::shared_ptr<Ship> ship) : void
++allShipsDestroyed() : bool
++checkDestroyedShips() : bool
++getLen() const : int
++noFreeCells(box2d area) : bool
++shipIntersection(box2d ship_area) : bool
++toJson() : json
+__
+-destroyed_ships : int
+-ships : std::vector<std::shared_ptr<Ship>>
+}
+class "inputManager" as C_0005702333270269120294
+class C_0005702333270269120294 {
+__
+}
+abstract "Message" as C_0014824791405600746196
+abstract C_0014824791405600746196 {
++~Message() : void
+..
+{abstract} +clone() = 0 : std::unique_ptr<Message>
+__
+}
+abstract "messageHandler" as C_0002868671723931243272
+abstract C_0002868671723931243272 {
+{abstract} +Handle(std::unique_ptr<Message> message) = 0 : void
+{abstract} +setNext(messageHandler * handler) = 0 : void
+__
+}
+enum "Key" as C_0011885248113263802190
+enum C_0011885248113263802190 {
+pointer_left
+pointer_right
+pointer_up
+pointer_down
+main_action
+extra_action_0
+extra_action_1
+quit
+save_action
+load_action
+null
+}
+class "keyMessage" as C_0005309857014136436063
+class C_0005309857014136436063 {
++keyMessage(Key info) : void
+..
++clone() : std::unique_ptr<Message>
+__
++info : Key
+}
+class "GUIInput" as C_0011262253915482236085
+class C_0011262253915482236085 {
++Handle(std::unique_ptr<Message> message) : void
++setNext(messageHandler * handler) : void
++transformKey(SDL_Keycode key) : Key
++update() : void
+__
+-handler : messageHandler *
+}
+enum "textPosition" as C_0004645388997010390871
+enum C_0004645388997010390871 {
+title
+log
+}
+class "textMessage" as C_0009406025119082287104
+class C_0009406025119082287104 {
++textMessage() = default : void
++textMessage(std::string msg, SDL_Color color, textPosition position) : void
+..
++clone() : std::unique_ptr<Message>
+__
++color : SDL_Color
++msg : std::string
++position : textPosition
+}
+enum "fieldPosition" as C_0008485816680576605435
+enum C_0008485816680576605435 {
+left
+center
+right
+}
+class "playFieldMessage" as C_0014967218307194513248
+class C_0014967218307194513248 {
++playFieldMessage(std::string field_name, playField & info, fieldPosition position, bool fog, bool draw_pointer = false) : void
+..
++clone() : std::unique_ptr<Message>
+__
++draw_pointer : bool
++field_name : std::string
++fog : bool
++info : playField &
++position : fieldPosition
+}
+class "pointerMessage" as C_0001120067731908979986
+class C_0001120067731908979986 {
++pointerMessage() = default : void
++pointerMessage(box2d area, point2d coordinates) : void
+..
++clone() : std::unique_ptr<Message>
+__
++area : box2d
++coordinates : point2d
+}
+class "GUIOutput" as C_0017586470103200854466
+class C_0017586470103200854466 {
++GUIOutput() : void
++~GUIOutput() : void
+..
++Handle(std::unique_ptr<Message> message) : void
++drawField(std::string field_name, playField & field, fieldPosition position, bool fog, bool draw_pointer = false) : void
++drawInstructions() : void
++drawLog() : void
++drawPointer(int size_cell, point2d coordinates, point2d field_size) : void
++drawText(std::string text, point2d coordinates, fontSize font_size, SDL_Color color = {255, 255, 255, 255}, bool is_centered = false) : SDL_Rect
++drawTitle() : void
++redirectText(textMessage text) : void
++setNext(messageHandler * handler) : void
++update() : void
+__
+-big_font : TTF_Font *
+-handler : messageHandler *
+-instructions : std::vector<std::string>
+-log : textMessage[7]
+-medium_font : TTF_Font *
+-pointer : pointerMessage
+-renderer : SDL_Renderer *
+-small_font : TTF_Font *
+-title : textMessage
+-window : SDL_Window *
+}
+enum "GUIOutput::fontSize" as C_0009596385689761298005
+enum C_0009596385689761298005 {
+big
+medium
+small
+}
+class "Player" as C_0003605716991605700936
+class C_0003605716991605700936 {
++Handle(std::unique_ptr<Message> message) : void
++callculateShips(int * ships) : void
++free() : void
++placeShip(std::shared_ptr<Ship> ship) : void
++placeShipsRandomly(int * ships) : void
++setField(playField field) : void
++setNext(messageHandler * handler) : void
+__
+-handler : messageHandler *
++opponent_play_field : playField *
++opponent_ship_manager : shipManager *
++play_field : playField
++ship_manager : shipManager
+}
+class "abilityInfo" as C_0003757119543468862538
+class C_0003757119543468862538 {
+__
++need_input : bool
++pointer_size : box2d
+}
+abstract "IAbility" as C_0009994077994353547300
+abstract C_0009994077994353547300 {
++~IAbility() : void
+..
+{abstract} +apply(humanPlayer * player) = 0 : void
+{abstract} +info() = 0 : abilityInfo
+__
+}
+class "abilitiesManager" as C_0007274270597269336837
+class C_0007274270597269336837 {
++abilitiesManager() : void
++abilitiesManager(const json & data) : void
+..
++createRandomAbility() : void
++getAbility() : std::shared_ptr<IAbility>
++toJson() : json
+__
+-abilities : std::deque<std::shared_ptr<IAbility>>
+}
+class "humanPlayer" as C_0009155539394473639796
+class C_0009155539394473639796 {
++humanPlayer() : void
+..
++Attack() : void
++areaInField(box2d area, point2d coordinates) : bool
++free() : void
++getAbility() : bool
++getOpponent(Player * player) : void
++useAbility() : void
+__
+-abilities_manager : abilitiesManager
+-current_ability : std::shared_ptr<IAbility>
+-double_damage : bool
++pointer : point2d
++pointer_area : box2d
+}
+class "botPlayer" as C_0007035786943398805312
+class C_0007035786943398805312 {
++Attack() : void
++getOpponent(Player * player) : void
++setField(playField play_field) : void
+__
+}
+abstract "gameState" as C_0016367574639074044496
+abstract C_0016367574639074044496 {
++gameState(Game * game) : void
++~gameState() : void
+..
+{abstract} +Handle(std::unique_ptr<Message> message) = 0 : void
+{abstract} +execute() = 0 : void
++setGame(Game * game) : void
++setNext(messageHandler * handler) : void
+__
+#game : Game *
+#handler : messageHandler *
+}
+class "Game" as C_0017470460303031448044
+class C_0017470460303031448044 {
++Game(messageHandler * handler) : void
++~Game() : void
+..
++Handle(std::unique_ptr<Message> message) : void
++execute() : void
++load() : void
++save() : void
++setNext(messageHandler * handler) : void
++setState(gameState * state) : void
+__
++bot : botPlayer
+-handler : messageHandler *
++player : humanPlayer
++running : bool
+-state : gameState *
+}
+class "doubleDamageAbility" as C_0005510779157418003060
+class C_0005510779157418003060 {
+__
+}
+class "shellingAbility" as C_0016160228652830484330
+class C_0016160228652830484330 {
+__
+}
+class "scannerAbility" as C_0016468253632855503069
+class C_0016468253632855503069 {
+__
+}
+class "setupFieldState" as C_0000578552989571253838
+class C_0000578552989571253838 {
++setupFieldState(Game * game, messageHandler * next) : void
+..
++Handle(std::unique_ptr<Message> message) : void
++end() : void
++execute() : void
+__
+-play_field : playField
+-size_x : int
+-size_y : int
+}
+class "playState" as C_0006481857000056373223
+class C_0006481857000056373223 {
++playState(Game * game, messageHandler * next, int round_number = 0) : void
+..
++Handle(std::unique_ptr<Message> message) : void
++end(bool lost) : void
++execute() : void
++lose() : void
++usingAbility() : void
++win() : void
+__
++input : bool
+-pointer : point2d &
+-pointer_area : box2d &
+-round_number : int
+}
+class "setupShipState" as C_0007711833425777125767
+class C_0007711833425777125767 {
++setupShipState(Game * game, messageHandler * next, bool place_ships = true) : void
+..
++Handle(std::unique_ptr<Message> message) : void
++end() : void
++enoughShips() : bool
++execute() : void
++placeShip() : void
+__
+-field : playField &
+-is_vertical : bool
+-length : int
+-pointer : point2d &
+-pointer_area : box2d &
+-ships : int[4]
+}
+class "endGameState" as C_0004412720201669573347
+class C_0004412720201669573347 {
++endGameState(Game * game, messageHandler * next, bool lost, int round_number) : void
+..
++Handle(std::unique_ptr<Message> message) : void
++end() : void
++execute() : void
+__
+-lost : bool
+-round_number : int
+}
+class "fileRead" as C_0011891490626615523118
+class C_0011891490626615523118 {
++fileRead(std::string fname) : void
++~fileRead() : void
+..
++read(json & j) : void
+__
+-reader : std::ifstream
+}
+class "fileWrite" as C_0002356937793177234169
+class C_0002356937793177234169 {
++fileWrite(std::string fname) : void
++~fileWrite() : void
+..
++write(const json & j) : void
+__
+-writer : std::ofstream
+}
+C_0008811565138490693412 ..> C_0008843406913308057517
+C_0003276583972331131429 ..> C_0008843406913308057517
+C_0003276583972331131429 o-- C_0008811565138490693412 : +min_point
+C_0003276583972331131429 o-- C_0008811565138490693412 : +max_point
+C_0014529657433315016423 ..> C_0008811565138490693412
+C_0014529657433315016423 ..> C_0008843406913308057517
+C_0014529657433315016423 ..> C_0000674658759292391449
+C_0014529657433315016423 o-- C_0003276583972331131429 : -area
+C_0014529657433315016423 <.. C_0005702333270269120294 : +<<friend>>
+C_0000674658759292391449 --+ C_0014529657433315016423
+C_0000674658759292391449 o-- C_0002525743222311119146 : +state
+C_0002525743222311119146 --+ C_0000674658759292391449
+C_0002718641478943956868 ..> C_0008811565138490693412
+C_0002718641478943956868 ..> C_0008843406913308057517
+C_0002718641478943956868 ..> C_0014529657433315016423
+C_0002718641478943956868 ..> C_0009950070490733851683
+C_0002718641478943956868 ..> C_0012382187627966550024
+C_0002718641478943956868 o-- C_0003276583972331131429 : -area
+C_0012382187627966550024 --+ C_0002718641478943956868
+C_0012382187627966550024 --> C_0000674658759292391449 : +segment
+C_0012382187627966550024 o-- C_0001015552162007637433 : +state
+C_0001015552162007637433 --+ C_0012382187627966550024
+C_0016288775769628282457 o-- C_0008811565138490693412 : -coordinates
+C_0009950070490733851683 ..> C_0008843406913308057517
+C_0009950070490733851683 ..> C_0003276583972331131429
+C_0009950070490733851683 o-- C_0014529657433315016423 : -ships
+C_0009950070490733851683 <.. C_0002718641478943956868 : +<<friend>>
+C_0002868671723931243272 ..> C_0014824791405600746196
+C_0005309857014136436063 o-- C_0011885248113263802190 : +info
+C_0014824791405600746196 <|-- C_0005309857014136436063
+
+C_0011262253915482236085 ..> C_0011885248113263802190
+C_0011262253915482236085 ..> C_0014824791405600746196
+C_0011262253915482236085 --> C_0002868671723931243272 : -handler
+C_0002868671723931243272 <|-- C_0011262253915482236085
+
+C_0009406025119082287104 o-- C_0004645388997010390871 : +position
+C_0014824791405600746196 <|-- C_0009406025119082287104
+
+C_0014967218307194513248 --> C_0002718641478943956868 : +info
+C_0014967218307194513248 o-- C_0008485816680576605435 : +position
+C_0014824791405600746196 <|-- C_0014967218307194513248
+
+C_0001120067731908979986 o-- C_0003276583972331131429 : +area
+C_0001120067731908979986 o-- C_0008811565138490693412 : +coordinates
+C_0014824791405600746196 <|-- C_0001120067731908979986
+
+C_0017586470103200854466 ..> C_0002718641478943956868
+C_0017586470103200854466 ..> C_0008485816680576605435
+C_0017586470103200854466 ..> C_0008811565138490693412
+C_0017586470103200854466 ..> C_0009596385689761298005
+C_0017586470103200854466 ..> C_0014824791405600746196
+C_0017586470103200854466 o-- C_0009406025119082287104 : -title
+C_0017586470103200854466 o-- "7" C_0009406025119082287104 : -log
+C_0017586470103200854466 o-- C_0001120067731908979986 : -pointer
+C_0017586470103200854466 --> C_0002868671723931243272 : -handler
+C_0002868671723931243272 <|-- C_0017586470103200854466
+
+C_0009596385689761298005 --+ C_0017586470103200854466
+C_0003605716991605700936 ..> C_0014529657433315016423
+C_0003605716991605700936 ..> C_0014824791405600746196
+C_0003605716991605700936 --> C_0002868671723931243272 : -handler
+C_0003605716991605700936 --> C_0002718641478943956868 : +opponent_play_field
+C_0003605716991605700936 --> C_0009950070490733851683 : +opponent_ship_manager
+C_0003605716991605700936 o-- C_0002718641478943956868 : +play_field
+C_0003605716991605700936 o-- C_0009950070490733851683 : +ship_manager
+C_0002868671723931243272 <|-- C_0003605716991605700936
+
+C_0003757119543468862538 o-- C_0003276583972331131429 : +pointer_size
+C_0009994077994353547300 ..> C_0003757119543468862538
+C_0009994077994353547300 ..> C_0009155539394473639796
+C_0007274270597269336837 ..> C_0008843406913308057517
+C_0007274270597269336837 o-- C_0009994077994353547300 : -abilities
+C_0009155539394473639796 o-- C_0007274270597269336837 : -abilities_manager
+C_0009155539394473639796 --> C_0009994077994353547300 : -current_ability
+C_0009155539394473639796 o-- C_0008811565138490693412 : +pointer
+C_0009155539394473639796 o-- C_0003276583972331131429 : +pointer_area
+C_0009155539394473639796 <.. C_0016160228652830484330 : +<<friend>>
+C_0009155539394473639796 <.. C_0016468253632855503069 : +<<friend>>
+C_0009155539394473639796 <.. C_0005510779157418003060 : +<<friend>>
+C_0003605716991605700936 <|-- C_0009155539394473639796
+
+C_0007035786943398805312 ..> C_0002718641478943956868
+C_0003605716991605700936 <|-- C_0007035786943398805312
+
+C_0016367574639074044496 ..> C_0014824791405600746196
+C_0016367574639074044496 --> C_0002868671723931243272 : #handler
+C_0016367574639074044496 --> C_0017470460303031448044 : #game
+C_0016367574639074044496 <.. C_0017470460303031448044 : +<<friend>>
+C_0002868671723931243272 <|-- C_0016367574639074044496
+
+C_0017470460303031448044 ..> C_0014824791405600746196
+C_0017470460303031448044 --> C_0016367574639074044496 : -state
+C_0017470460303031448044 --> C_0002868671723931243272 : -handler
+C_0017470460303031448044 o-- C_0009155539394473639796 : +player
+C_0017470460303031448044 o-- C_0007035786943398805312 : +bot
+C_0002868671723931243272 <|-- C_0017470460303031448044
+
+C_0000578552989571253838 ..> C_0002868671723931243272
+C_0000578552989571253838 ..> C_0014824791405600746196
+C_0000578552989571253838 o-- C_0002718641478943956868 : -play_field
+C_0000578552989571253838 <.. C_0017470460303031448044 : +<<friend>>
+C_0016367574639074044496 <|-- C_0000578552989571253838
+
+C_0006481857000056373223 ..> C_0017470460303031448044
+C_0006481857000056373223 ..> C_0002868671723931243272
+C_0006481857000056373223 ..> C_0014824791405600746196
+C_0006481857000056373223 --> C_0008811565138490693412 : -pointer
+C_0006481857000056373223 --> C_0003276583972331131429 : -pointer_area
+C_0016367574639074044496 <|-- C_0006481857000056373223
+
+C_0007711833425777125767 ..> C_0002868671723931243272
+C_0007711833425777125767 ..> C_0014824791405600746196
+C_0007711833425777125767 --> C_0002718641478943956868 : -field
+C_0007711833425777125767 --> C_0008811565138490693412 : -pointer
+C_0007711833425777125767 --> C_0003276583972331131429 : -pointer_area
+C_0007711833425777125767 <.. C_0017470460303031448044 : +<<friend>>
+C_0016367574639074044496 <|-- C_0007711833425777125767
+
+C_0004412720201669573347 ..> C_0017470460303031448044
+C_0004412720201669573347 ..> C_0002868671723931243272
+C_0004412720201669573347 ..> C_0014824791405600746196
+C_0016367574639074044496 <|-- C_0004412720201669573347
+
+C_0011891490626615523118 ..> C_0008843406913308057517
+C_0002356937793177234169 ..> C_0008843406913308057517
+
+'Generated with clang-uml, version 0.5.6
+'LLVM version Ubuntu clang version 18.1.3 (1ubuntu1)
+@enduml

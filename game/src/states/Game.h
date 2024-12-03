@@ -11,9 +11,10 @@ class Game: public messageHandler{
     gameState * state;
     messageHandler * handler;
     public:
-        bool running = true;
+        bool running;
         humanPlayer player;
         botPlayer bot;
+        
         Game(messageHandler * handler);     
         void setState(gameState * state);
         void execute();

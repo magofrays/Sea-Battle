@@ -22,10 +22,10 @@ class Player: public messageHandler{
         }
         
         
-
         void Handle(std::unique_ptr<Message> message){
             handler->Handle(std::move(message));
         }
+
         void setNext(messageHandler * handler){
             this->handler = handler;
         }
@@ -35,6 +35,7 @@ class Player: public messageHandler{
             play_field = playField(field_size);
         }
         void callculateShips(int ships[4]);
+        
         void placeShipsRandomly(int ships[4]);
 
         friend json & operator << (json & data, Player & player); //write

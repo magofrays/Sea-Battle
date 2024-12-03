@@ -7,7 +7,6 @@ class playState: public gameState{
     int round_number;
     public:
         bool input = false;
-        playState() = default;
         playState(Game * game, messageHandler * next, int round_number = 0);
         void execute();
         void usingAbility();

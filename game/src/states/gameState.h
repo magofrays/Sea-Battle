@@ -21,5 +21,5 @@ class gameState: public messageHandler{
         void setNext(messageHandler * handler){
             this->handler = handler;
         }
-        friend Game;
+    friend Game;
 };

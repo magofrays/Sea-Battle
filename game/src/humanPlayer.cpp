@@ -17,7 +17,6 @@ bool humanPlayer::getAbility(){
     }
     this->useAbility();
     return false;
-
 }
 
 void humanPlayer::useAbility(){

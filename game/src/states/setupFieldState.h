@@ -7,7 +7,6 @@ class setupFieldState: public gameState {
     int size_y;
     playField play_field;
     public:
-        setupFieldState() = default;
         setupFieldState(Game * game, messageHandler * next):gameState(game), size_x(2), size_y(2){
             this->handler = next;
             Handle(textMessage("Create your field!", {255, 255, 0, 255}, textPosition::title).clone());
@@ -18,5 +17,4 @@ class setupFieldState: public gameState {
         void end();
         friend json & operator << (json & data, setupFieldState & game_state);
         friend json & operator >> (json & data, setupFieldState & game_state);
-    friend Game;
 };

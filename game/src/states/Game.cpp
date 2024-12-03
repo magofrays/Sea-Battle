@@ -7,8 +7,10 @@
 #include "../messages/textMessage.h"
 #include "../RW/fileRead.h"
 #include "../RW/fileWrite.h"
+#include <iostream>
 
 Game::Game(messageHandler * handler){
+    this->running = true;
     state = new setupFieldState(this, handler); 
     player.setNext(handler);
     bot.setNext(handler);
@@ -16,7 +18,6 @@ Game::Game(messageHandler * handler){
 }
 
 void Game::setState(gameState * state){
-    //state->setNext(this->state->handler);
     delete this->state;
     this->state = state;
     setNext(state);
@@ -40,8 +41,16 @@ void Game::Handle(std::unique_ptr<Message> message){
             handler->Handle(textMessage("You saved!", {255, 255, 0, 255}, textPosition::log).clone());
         }
         if(key_msg->info == Key::load_action){
-            this->load();
-            handler->Handle(textMessage("You loaded!", {255, 255, 0, 255}, textPosition::log).clone());
+            try{
+                this->load();
+                handler->Handle(textMessage("You loaded!", {255, 255, 0, 255}, textPosition::log).clone());
+            }catch(std::runtime_error & e){
+                handler->Handle(textMessage(e.what(), {255, 0, 0, 255}, textPosition::log).clone());
+            }
+            catch(nlohmann::json_abi_v3_11_3::detail::parse_error & e){
+                handler->Handle(textMessage("Error: Save data is corrupted! Create new save!", {255, 0, 0, 255}, textPosition::log).clone());
+            }
+            
         }
     }
     handler->Handle(std::move(message));
@@ -54,7 +63,7 @@ void Game::setNext(messageHandler * handler){
 
 
 void Game::save(){
-    fileWrite save(std::string(seabattle::SAVE_DIR));
+    fileWrite save(seabattle::SAVE_DIR);
     json data;
     std::string state_name = typeid(*state).name();
     data["state_name"] = state_name;
@@ -80,15 +89,25 @@ void Game::save(){
         data["humanPlayer"] << player;
         data["botPlayer"] << bot;
     }
-    save.write(data);
+    json full_data;
+    full_data["seabattle"] = data;
+    full_data["hash_code"] = std::hash<std::string>{}(data.dump());
+    save.write(full_data);
 }
 
 void Game::load(){
     bot.ship_manager = shipManager();
     player.ship_manager = shipManager();
-    fileRead load(std::string(seabattle::SAVE_DIR));
-    json data;
-    load.read(data);
+    fileRead load(seabattle::SAVE_DIR);
+    json full_data;
+    load.read(full_data);
+    json data = full_data["seabattle"];
+    size_t hash_1 = std::hash<std::string>{}(data.dump());
+    size_t hash_2 = full_data["hash_code"];
+    if(hash_1 != hash_2){
+        std::cout << hash_1 << " " << hash_2 << "\n";
+        throw std::runtime_error("ERROR: Save data is corrupted! Create new save.");
+    }
     std::string state_name = data["state_name"];
     if(state_name == typeid(setupFieldState).name()){
         setupFieldState * new_state = new setupFieldState(this, this->state->handler);
