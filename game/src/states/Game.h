@@ -12,15 +12,26 @@ class Game: public messageHandler{
     messageHandler * handler;
     public:
         bool running;
+        point2d & pointer;
         humanPlayer player;
         botPlayer bot;
         
+        Game();
         Game(messageHandler * handler);     
+        void setHandlerToPlayers(messageHandler * handler);
+        
         void setState(gameState * state);
-        void execute();
+        
+        void update();
+        void main_action();
+        void extra_action_0();
+        void extra_action_1();
+        
         ~Game();
         
-        void Handle(std::unique_ptr<Message> message);
+        void Handle(std::unique_ptr<Message> message){
+            
+        }
         void setNext(messageHandler * handler);
 
         void save();

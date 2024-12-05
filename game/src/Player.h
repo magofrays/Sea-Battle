@@ -29,6 +29,7 @@ class Player: public messageHandler{
         void setNext(messageHandler * handler){
             this->handler = handler;
         }
+        
         void free(){
             point2d field_size = play_field.getArea().max_point;
             ship_manager = shipManager();

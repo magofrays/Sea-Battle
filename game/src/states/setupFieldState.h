@@ -3,15 +3,15 @@
 #include "Game.h"
 
 class setupFieldState: public gameState {
-    int size_x;
-    int size_y;
+    point2d & pointer;
     playField play_field;
     public:
-        setupFieldState(Game * game, messageHandler * next):gameState(game), size_x(2), size_y(2){
-            this->handler = next;
-            Handle(textMessage("Create your field!", {255, 255, 0, 255}, textPosition::title).clone());
-        }
-        void execute();
+        setupFieldState(Game * game, messageHandler * next);
+        
+        void update();
+        void main_action();
+        void extra_action_0();
+        void extra_action_1();
 
         void Handle(std::unique_ptr<Message> message);
         void end();

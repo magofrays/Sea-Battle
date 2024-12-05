@@ -1,29 +1,22 @@
 #include "GUIInput.h"
+#include "../RW/fileRead.h"
+#include "../utilities/settings.h"
 
-Key GUIInput::transformKey(SDL_Keycode key){
-    switch (key) {
-        case SDLK_s:
-            return Key::pointer_up;
-        case SDLK_a:
-            return Key::pointer_left;
-        case SDLK_w:
-            return Key::pointer_down;
-        case SDLK_d:
-            return Key::pointer_right;
-        case SDLK_RETURN:
-            return Key::main_action;
-        case SDLK_e:
-            return Key::extra_action_0;
-        case SDLK_q:
-            return Key::extra_action_1;
-        case SDLK_1:
-            return Key::save_action;
-        case SDLK_2:
-            return Key::load_action;
-        default:
-            return Key::null;
-    }
+GUIInput::GUIInput(){
+    json controls_data;
+    fileRead reader(seabattle::CONTROL_DIR);
+    reader.read(controls_data);
+    controls[controls_data["pointer_down"]] = Key::pointer_down;
+    controls[controls_data["pointer_left"]] = Key::pointer_left;
+    controls[controls_data["pointer_up"]] = Key::pointer_up;
+    controls[controls_data["pointer_right"]] = Key::pointer_right;
+    controls[controls_data["main_action"]] = Key::main_action;
+    controls[controls_data["extra_action_0"]] = Key::extra_action_0;
+    controls[controls_data["extra_action_1"]] = Key::extra_action_1;
+    controls[controls_data["save_action"]] = Key::save_action;
+    controls[controls_data["load_action"]] = Key::load_action; //need default controls
 }
+
 
 void GUIInput::update(){
     SDL_Event event;
@@ -34,11 +27,18 @@ void GUIInput::update(){
                 Handle(keyMessage(Key::quit).clone());
                 break;
             case SDL_KEYDOWN:
-                Handle(keyMessage(transformKey(event.key.keysym.sym)).clone());
+                std::string key_name = SDL_GetKeyName(event.key.keysym.sym);
+                if(controls.contains(key_name)){
+                    Handle(keyMessage(controls[key_name]).clone());
+                }
         }
     }
 }
 
 void GUIInput::Handle(std::unique_ptr<Message> message){
     handler->Handle(std::move(message));
+}
+
+void GUIInput::setNext(messageHandler * handler){
+    this->handler = handler;
 }

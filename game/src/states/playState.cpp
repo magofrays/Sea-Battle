@@ -14,7 +14,7 @@ playState::playState(Game * game, messageHandler * next, int round_number):gameS
 
 
 
-void playState::execute(){
+void playState::update(){
     if(game->player.ship_manager.allShipsDestroyed()){
         this->end(true); //lose
         return;
@@ -25,7 +25,7 @@ void playState::execute(){
     }
 
     if(input){
-        this->usingAbility();
+        this->extra_action_0();
     }
     else{
         Handle(pointerMessage(pointer_area, pointer).clone());
@@ -34,64 +34,41 @@ void playState::execute(){
     }
 }
 
-void playState::usingAbility(){
+void playState::main_action(){
+    if(input){
+        game->player.useAbility();
+        input = false;
+        Handle(textMessage("ATTACK!", {255, 0, 0}, textPosition::title).clone());
+        return;
+    }
+    game->player.Attack();
+    game->bot.Attack();
+    return;
+}
+
+void playState::extra_action_0(){
+    try{
+        input = game->player.getAbility();
+    }catch(noAbilitiesException & e){
+        Handle(textMessage(e.what(), {255, 0, 0}, textPosition::log).clone());
+    }
+    
+    if(input){
+        Handle(textMessage("USE ABILITY!", {255, 0, 255}, textPosition::title).clone());
+        pointer = point2d(0, 0);
+        Handle(textMessage("You need to input coordinates for ability", {0, 255, 0}, textPosition::log).clone());
+    }
+    
     Handle(playFieldMessage("Your field", game->player.play_field, fieldPosition::left, false, false).clone());
     Handle(pointerMessage(pointer_area, pointer).clone());
     Handle(playFieldMessage("Bot field", game->bot.play_field, fieldPosition::right, true, true).clone());
 }
 
-void playState::Handle(std::unique_ptr<Message> message){
-    if(typeid(*message) == typeid(keyMessage)){
-        Message * msg = &(*message);
-        keyMessage * key_msg = dynamic_cast<keyMessage*>(msg);
-        switch(key_msg->info){
-            case Key::pointer_up:
-                if(game->player.areaInField(pointer_area, pointer + point2d(0, 1)))
-                    pointer += point2d(0, 1);
-                    return;
+void playState::extra_action_1(){
+    return;
+}
 
-            case Key::pointer_down:
-                if(game->player.areaInField(pointer_area, pointer - point2d(0, 1)))
-                    pointer -= point2d(0, 1);
-                    return;
-            case Key::pointer_right:
-                if(game->player.areaInField(pointer_area, pointer + point2d(1, 0)))
-                    pointer += point2d(1, 0);
-                    return;
-                
-            case Key::pointer_left:
-                if(game->player.areaInField(pointer_area, pointer - point2d(1, 0)))
-                    pointer -= point2d(1, 0);
-                    return;
-                
-            case Key::main_action:
-                if(input){
-                    game->player.useAbility();
-                    input = false;
-                    Handle(textMessage("ATTACK!", {255, 0, 0}, textPosition::title).clone());
-                    return;
-                }
-                game->player.Attack();
-                game->bot.Attack();
-                return;
-            case Key::extra_action_0:
-            try{
-                input = game->player.getAbility();
-                    }
-                catch(noAbilitiesException & e){
-                    Handle(textMessage(e.what(), {255, 0, 0}, textPosition::log).clone());
-                }
-                if(input){
-                    Handle(textMessage("USE ABILITY!", {255, 0, 255}, textPosition::title).clone());
-                    pointer = point2d(0, 0);
-                    Handle(textMessage("You need to input coordinates for ability", {0, 255, 0}, textPosition::log).clone());
-                }
-                break;
-                
-            default:
-                break;
-        }
-    }
+void playState::Handle(std::unique_ptr<Message> message){
     handler->Handle(std::move(message));
 }
 

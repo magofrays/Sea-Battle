@@ -16,7 +16,7 @@ bool setupShipState::enoughShips(){
     return !(ships[0] || ships[1] || ships[2] || ships[3]);
 }
 
-void setupShipState::execute(){
+void setupShipState::update(){
     if(!enoughShips()){
         if(ships[3]){
             pointer_area.max_point = point2d(0, 3);
@@ -47,11 +47,9 @@ void setupShipState::execute(){
         this->end();
         
     }
-    
-    
 }
 
-void setupShipState::placeShip(){
+void setupShipState::main_action(){
     try{
         game->player.placeShip(std::make_shared<Ship>(length, pointer, is_vertical));
         switch(length){
@@ -78,55 +76,24 @@ void setupShipState::placeShip(){
     }
 }
 
+void setupShipState::extra_action_0(){
+    if(game->player.areaInField(box2d(pointer_area.max_point, point2d(pointer_area.max_point.y, pointer_area.max_point.x)), pointer)){
+        is_vertical = !is_vertical;
+    }
+}
+
+void setupShipState::extra_action_1(){
+    game->player.placeShipsRandomly(ships);
+    this->end();
+}
+
 void setupShipState::end(){
     game->setState(new playState(game, this->handler));
 }
 
 
 void setupShipState::Handle(std::unique_ptr<Message> message){
-    
-    if(typeid(*message) == typeid(keyMessage)){
-        Message * msg = &(*message);
-        keyMessage * key_msg = dynamic_cast<keyMessage*>(msg);
-        switch(key_msg->info){
-            case Key::pointer_up:
-                if(game->player.areaInField(pointer_area, pointer + point2d(0, 1)))
-                    pointer += point2d(0, 1);
-                    break;
-
-            case Key::pointer_down:
-                if(game->player.areaInField(pointer_area, pointer - point2d(0, 1)))
-                    pointer -= point2d(0, 1);
-                    break;
-            case Key::pointer_right:
-                if(game->player.areaInField(pointer_area, pointer + point2d(1, 0)))
-                    pointer += point2d(1, 0);
-                    break;
-                
-            case Key::pointer_left:
-                if(game->player.areaInField(pointer_area, pointer - point2d(1, 0)))
-                    pointer -= point2d(1, 0);
-                    return;
-                
-            case Key::main_action:
-                this->placeShip();
-                return;
-            case Key::extra_action_0:
-                if(game->player.areaInField(box2d(pointer_area.max_point, point2d(pointer_area.max_point.y, pointer_area.max_point.x)), pointer))
-                    is_vertical = !is_vertical;
-                return;
-            case Key::extra_action_1:
-                game->player.placeShipsRandomly(ships);
-                this->end();
-                return;
-                
-            default:
-                return;
-        }
-    }
-    else{
-        handler->Handle(std::move(message));
-    }
+    handler->Handle(std::move(message));
 }
 
 

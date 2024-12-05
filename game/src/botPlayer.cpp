@@ -1,4 +1,5 @@
 #include "botPlayer.h"
+#include "messages/textMessage.h"
 #include <random>
 
 void botPlayer::setField(playField play_field){
@@ -16,4 +17,7 @@ void botPlayer::Attack(){ //crate genius ai
     int x = gen()%(size.x+1);
     int y = gen()%(size.y+1);
     opponent_play_field->Attack({x, y}, false);
+    if(opponent_ship_manager->checkDestroyedShips()){
+        Handle(textMessage("BOT: HAHA! I destroyed your ship!", {255, 100, 0}, textPosition::log).clone());
+    }
 }

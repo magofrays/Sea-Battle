@@ -1,7 +1,7 @@
-#include "gameState.h"
-#include "Game.h"
+// #include "gameState.h"
+// #include "Game.h"
 
-void gameState::setGame(Game * game){
-            this->game = game;
-        }
+// void gameState::setGame(Game * game){
+//     this->game = game;
+// }
 

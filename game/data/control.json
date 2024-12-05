@@ -1,0 +1,12 @@
+{
+    "pointer_down": "w",
+    "pointer_left": "a",
+    "pointer_up": "s",
+    "pointer_right": "d",
+    "main_action": "Return",
+    "extra_action_0": "e",
+    "extra_action_1": "q",
+    "save_action": "1",
+    "load_action": "2",
+    "quit": "Escape"
+}

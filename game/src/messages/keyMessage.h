@@ -1,20 +1,20 @@
 #pragma once
 #include "../utilities/vector2d.h"
 #include "Message.h"
+#include "../IO/gameController.h"
 
-enum class Key{
-        pointer_left,
-        pointer_right,
-        pointer_up,
-        pointer_down,
-        main_action,
-        extra_action_0,
-        extra_action_1,
-        quit,
-        save_action,
-        load_action,
-        null
-    };
+enum class Key {
+    pointer_left,
+    pointer_right,
+    pointer_up,
+    pointer_down,
+    main_action,
+    extra_action_0,
+    extra_action_1,
+    quit,
+    save_action,
+    load_action,
+};
 
 struct keyMessage: public Message{
     Key info;   

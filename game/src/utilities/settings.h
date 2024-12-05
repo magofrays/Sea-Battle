@@ -21,7 +21,8 @@ namespace seabattle{
     constexpr SDL_Color CELL_ATTACKED = {66, 103, 203, 255};
     constexpr SDL_Color BACKGROUND_COLOR = {131, 148, 196, 255};
     constexpr SDL_Color POINTER_COLOR = {255, 255, 255, 200};
-    static const char* SAVE_DIR = "../game/saves/data_game.json";
+    static const char * SAVE_DIR = "../game/data/save.json";
+    static const char * CONTROL_DIR = "../game/data/control.json";
 }
 
 #endif

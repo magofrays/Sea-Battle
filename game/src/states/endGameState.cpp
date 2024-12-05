@@ -17,25 +17,24 @@ endGameState::endGameState(Game * game, messageHandler * next, bool lost, int ro
     }
 }
 
-void endGameState::execute(){
+void endGameState::update(){
     Handle(playFieldMessage("Your field", game->player.play_field, fieldPosition::left, false, false).clone());
     Handle(playFieldMessage("Bot field", game->bot.play_field, fieldPosition::right, false, false).clone());
 }
 
+
+void endGameState::main_action(){
+    this->end();
+}
+void endGameState::extra_action_0(){
+    this->end();
+}
+void endGameState::extra_action_1(){
+    this->end();
+}
+
 void endGameState::Handle(std::unique_ptr<Message> message){
-    if(typeid(*message) == typeid(keyMessage)){
-        Message * msg = &(*message);
-        keyMessage * key_msg = dynamic_cast<keyMessage*>(msg);
-        switch(key_msg->info){
-            case Key::main_action:
-                this->end();
-                return;
-        }
-    }
-    else{
-        handler->Handle(std::move(message));
-    }
-        
+    handler->Handle(std::move(message));     
 }
 
 void endGameState::end(){
