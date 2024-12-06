@@ -16,9 +16,7 @@ class Game: public messageHandler{
         humanPlayer player;
         botPlayer bot;
         
-        Game();
         Game(messageHandler * handler);     
-        void setHandlerToPlayers(messageHandler * handler);
         
         void setState(gameState * state);
         

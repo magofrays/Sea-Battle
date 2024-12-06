@@ -22,7 +22,7 @@ namespace seabattle{
     constexpr SDL_Color BACKGROUND_COLOR = {131, 148, 196, 255};
     constexpr SDL_Color POINTER_COLOR = {255, 255, 255, 200};
     static const char * SAVE_DIR = "../game/data/save.json";
-    static const char * CONTROL_DIR = "../game/data/control.json";
+    static const char * CONTROL_DIR = "../game/data/Nastya_control.json";
 }
 
 #endif

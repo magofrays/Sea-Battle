@@ -1,7 +1,6 @@
 #pragma once
 #include "../utilities/vector2d.h"
 #include "Message.h"
-#include "../IO/gameController.h"
 
 enum class Key {
     pointer_left,

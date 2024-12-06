@@ -9,23 +9,14 @@
 #include "../RW/fileWrite.h"
 #include <iostream>
 
-Game::Game() : pointer(player.pointer){
-    this->running = true;
-    state = new setupFieldState(this, handler); 
-    setNext(state);
-}
-
 Game::Game(messageHandler * handler) : pointer(player.pointer){
     this->running = true;
     state = new setupFieldState(this, handler); 
-    setHandlerToPlayers(handler);
+    player.setNext(handler);
+    bot.setNext(handler);
     setNext(state);
 }
 
-void Game::setHandlerToPlayers(messageHandler * handler){
-    player.setNext(handler);
-    bot.setNext(handler);
-}
 void Game::setState(gameState * state){
     delete this->state;
     this->state = state;

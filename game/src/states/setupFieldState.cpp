@@ -6,7 +6,10 @@
 #include "errors/errors.h"
 #include "../utilities/settings.h"
 
+
 setupFieldState::setupFieldState(Game * game, messageHandler * next) : gameState(game), pointer(game->pointer){
+
+
     pointer = point2d(2, 2);
     this->handler = next;
     Handle(textMessage("Create your field!", {255, 255, 0, 255}, textPosition::title).clone());//fix it

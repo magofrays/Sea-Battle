@@ -14,7 +14,8 @@ GUIInput::GUIInput(){
     controls[controls_data["extra_action_0"]] = Key::extra_action_0;
     controls[controls_data["extra_action_1"]] = Key::extra_action_1;
     controls[controls_data["save_action"]] = Key::save_action;
-    controls[controls_data["load_action"]] = Key::load_action; //need default controls
+    controls[controls_data["load_action"]] = Key::load_action;
+    controls[controls_data["quit"]] = Key::quit;
 }
 
 

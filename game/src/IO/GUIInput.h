@@ -3,7 +3,6 @@
 
 #include "../messages/messageHandler.h"
 #include "../messages/keyMessage.h"
-#include "gameController.h"
 
 #include <SDL2/SDL.h>
 #include <map>

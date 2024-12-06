@@ -4,8 +4,7 @@
 #include "IO/gameController.h"
 
 int main(){
-    Game game;
-    gameController<GUIInput, GUIOutput> control(game);
+    gameController<GUIInput, GUIOutput> control;
 
     return 0;
 }
