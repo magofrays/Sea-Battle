@@ -10,8 +10,8 @@ abilityInfo doubleDamageAbility::info(){
 
 void doubleDamageAbility::apply(humanPlayer * player){
     player->double_damage = true;
-    player->Handle(textMessage("Double damage ability applied!", {255, 0, 255}, textPosition::log).clone());
-    player->Handle(textMessage("Now you can damage any segment twice!", {255, 0, 255}, textPosition::log).clone());
+    player->Handle(textMessage("Double damage ability applied!", textColor::purple, textPosition::log).clone());
+    player->Handle(textMessage("Now you can damage any segment twice!", textColor::purple, textPosition::log).clone());
 }
 
 

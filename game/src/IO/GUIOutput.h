@@ -21,7 +21,6 @@ class GUIOutput : public messageHandler{
     TTF_Font * medium_font;
     TTF_Font * small_font;
     textMessage title;
-    std::vector<std::string> instructions;
     textMessage log[seabattle::LOG_LENGTH];
     pointerMessage pointer; 
     
@@ -31,11 +30,11 @@ class GUIOutput : public messageHandler{
         GUIOutput();
         void drawField(std::string field_name, playField & field, fieldPosition position, bool fog, bool draw_pointer=false);
         
-        void drawPointer(int size_cell, point2d coordinates, point2d field_size);
+        void drawPointer(int size_cell, point2d coordinates);
 
+        SDL_Color enumToColor(textColor color);
 
-        SDL_Rect drawText(std::string text, point2d coordinates, fontSize font_size, 
-                    SDL_Color color = {255, 255, 255, 255}, bool is_centered = false);
+        SDL_Rect drawText(std::string text, point2d coordinates, SDL_Color color, fontSize font_size, bool is_centered = false);
         
         void redirectText(textMessage text);
 

@@ -14,7 +14,7 @@ class GUIInput: public messageHandler{
     std::map<std::string, Key> controls;
 
     public:
-        GUIInput();
+        void setControls();
         void update();
         void Handle(std::unique_ptr<Message> message);
         void setNext(messageHandler * handler);

@@ -7,13 +7,13 @@
 endGameState::endGameState(Game * game, messageHandler * next, bool lost, int round_number): gameState(game), lost(lost), round_number(round_number){
     this->handler = next;
     if(lost){
-        Handle(textMessage("YOU LOST!", {255, 0, 0, 255}, textPosition::title).clone());
-        Handle(textMessage("You lost in round " + std::to_string(round_number) + "!", {255, 0, 0, 255}, textPosition::log).clone());
-        Handle(textMessage("Press ENTER to restart!", {255, 0, 0, 255}, textPosition::log).clone());
+        Handle(textMessage("YOU LOST!", textColor::red, textPosition::title).clone());
+        Handle(textMessage("You lost in round " + std::to_string(round_number) + "!", textColor::red, textPosition::log).clone());
+        Handle(textMessage("Press ENTER to restart!", textColor::red, textPosition::log).clone());
     }
     else{
-        Handle(textMessage("YOU WIN!", {0, 255, 0, 255}, textPosition::title).clone());
-        Handle(textMessage("Press ENTER to start round " + std::to_string(round_number+1) + "!", {255, 0, 0, 255}, textPosition::log).clone());
+        Handle(textMessage("YOU WIN!", textColor::green, textPosition::title).clone());
+        Handle(textMessage("Press ENTER to start round " + std::to_string(round_number+1) + "!", textColor::green, textPosition::log).clone());
     }
 }
 

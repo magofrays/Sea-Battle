@@ -3,7 +3,7 @@
 setupShipState::setupShipState(Game * game, messageHandler * next, bool place_ships) : gameState(game), 
             field(game->player.play_field), pointer(game->player.pointer), pointer_area(game->player.pointer_area){
     this->handler = next;
-    Handle(textMessage("Add ships!", {255, 255, 0, 255}, textPosition::title).clone());
+    Handle(textMessage("Add ships!", textColor::yellow, textPosition::title).clone());
     if(place_ships){
         pointer = point2d(0, 0);
         game->player.callculateShips(ships);    
@@ -69,10 +69,10 @@ void setupShipState::main_action(){
             this->end();
         }
     }catch(invalidShipPosition & e){
-        Handle(textMessage(e.what(), {255, 0, 0}, textPosition::log).clone());
+        Handle(textMessage(e.what(), textColor::red, textPosition::log).clone());
     }
     catch(objectOutOfBounds & e){
-        Handle(textMessage(e.what(), {255, 0, 0}, textPosition::log).clone());
+        Handle(textMessage(e.what(), textColor::red, textPosition::log).clone());
     }
 }
 

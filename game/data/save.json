@@ -1,10 +1,10 @@
 {
-    "hash_code": 13553125843170433197,
+    "hash_code": 17152214280463409736,
     "seabattle": {
         "15setupFieldState": {
             "pointer": {
-                "x": 2,
-                "y": 2
+                "x": 7,
+                "y": 1
             }
         },
         "state_name": "15setupFieldState"

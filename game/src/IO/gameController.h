@@ -32,7 +32,8 @@ template<messageHandlerDerived gameInput, messageHandlerDerived gameOutput>
 gameController<gameInput, gameOutput>::gameController() : game(&output)
     { 
     this->setNext(&output); 
-    this->input.setNext(this); 
+    this->input.setNext(this);
+    this->input.setControls();
     this->run();
 }
 
@@ -87,19 +88,23 @@ void gameController<gameInput, gameOutput>::Handle(std::unique_ptr<Message> mess
 
             case(Key::save_action):
                 game.save();
-                handler->Handle(textMessage("You saved!", {255, 255, 0, 255}, textPosition::log).clone());
+                handler->Handle(textMessage("You saved!", textColor::yellow, textPosition::log).clone());
                 return;
             
             case(Key::load_action):
                 try{
                     game.load();
-                    handler->Handle(textMessage("You loaded!", {255, 255, 0, 255}, textPosition::log).clone());
+                    handler->Handle(textMessage("You loaded!", textColor::yellow, textPosition::log).clone());
                 }
                 catch(std::runtime_error & e)
-                { handler->Handle(textMessage(e.what(), {255, 0, 0, 255}, textPosition::log).clone()); }
+                { handler->Handle(textMessage(e.what(), textColor::red, textPosition::log).clone()); }
                 
                 catch(nlohmann::json_abi_v3_11_3::detail::parse_error & e)
-                { handler->Handle(textMessage("Error: Save data is corrupted! Create new save!", {255, 0, 0, 255}, textPosition::log).clone()); }
+                    { handler->Handle(textMessage("Error: Bad json structure! Create new save!", textColor::red, textPosition::log).clone()); }
+
+                catch(nlohmann::json_abi_v3_11_3::detail::type_error & e){
+                    { handler->Handle(textMessage("Error: Bad json structure! Create new save!", textColor::red, textPosition::log).clone()); }
+                }
                 return;
         }
             

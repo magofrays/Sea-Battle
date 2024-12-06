@@ -30,12 +30,13 @@ void humanPlayer::Attack(){
     if(double_damage){
         opponent_play_field->Attack(pointer, false);
         double_damage = false;
+        Handle(textMessage("Double damage applied!", textColor::yellow, textPosition::log).clone());
     }
     
     opponent_play_field->Attack(pointer, false);
 
     if(opponent_ship_manager->checkDestroyedShips()){
-        Handle(textMessage("You destroyed ship, so got a new ability!", {255, 255, 0}, textPosition::log).clone());
+        Handle(textMessage("You destroyed ship, so got a new ability!", textColor::yellow, textPosition::log).clone());
         abilities_manager.createRandomAbility();
     }
 }

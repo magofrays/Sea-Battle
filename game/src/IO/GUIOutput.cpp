@@ -123,13 +123,34 @@ void GUIOutput::drawField(std::string field_name, playField & field, fieldPositi
     }
     point2d field_indent(10, 0);
     point2d name_coordinates = point2d(field_outline.w/2+field_outline.x, field_outline.h+field_outline.y) + field_indent;
-    this->drawText(field_name, name_coordinates, medium, {255, 255, 255, 255}, true);
+    this->drawText(field_name, name_coordinates, {255, 255, 255}, medium, true);
     if(draw_pointer){
-                this->drawPointer(size_cell, coordinates, size);
+                this->drawPointer(size_cell, coordinates);
             }
 }
 
-void GUIOutput::drawPointer(int size_cell, point2d coordinates, point2d field_size){
+SDL_Color GUIOutput::enumToColor(textColor color){
+    switch(color){
+        case textColor::green:
+            return {0, 255, 0};
+        case textColor::red:
+            return {255, 0, 0};
+        case textColor::yellow:
+            return {255, 255, 0};
+        case textColor::white:
+            return {255, 255, 255};
+        case textColor::purple:
+            return {255, 0, 255};
+        case textColor::blue:
+            return {0, 0, 255};
+        case textColor::black:
+            return {0, 0, 0};
+        default:
+            return {255, 255, 255};
+    }
+}
+
+void GUIOutput::drawPointer(int size_cell, point2d coordinates){
     SDL_Color color = seabattle::POINTER_COLOR;
     for(int x = pointer.area.min_point.x; x != pointer.area.max_point.x+1; x++){
         for(int y = pointer.area.min_point.y; y != pointer.area.max_point.y+1; y++){
@@ -145,8 +166,7 @@ void GUIOutput::drawPointer(int size_cell, point2d coordinates, point2d field_si
 
 
 
-SDL_Rect GUIOutput::drawText(std::string text, point2d coordinates, fontSize font_size, 
-                        SDL_Color color, bool is_centered){
+SDL_Rect GUIOutput::drawText(std::string text, point2d coordinates, SDL_Color color, fontSize font_size, bool is_centered){
     TTF_Font * font;
     switch(font_size){
         case big:
@@ -158,7 +178,6 @@ SDL_Rect GUIOutput::drawText(std::string text, point2d coordinates, fontSize fon
         case small:
             font = small_font;
     }
-
     if(text.size() != 0){
         
         SDL_Surface* textSurface = TTF_RenderText_Solid(font, text.c_str(), color);
@@ -205,7 +224,7 @@ void GUIOutput::redirectText(textMessage text){
 void GUIOutput::drawTitle(){
     point2d top_indent(0, 10);
     point2d coordinates = point2d(seabattle::WIDTH/2, 0) + top_indent;
-    this->drawText(title.msg, coordinates, big, title.color, true);
+    this->drawText(title.msg, coordinates, enumToColor(title.color), big, true);
 }
 
 void GUIOutput::drawLog(){
@@ -216,7 +235,7 @@ void GUIOutput::drawLog(){
             SDL_Rect outline = {coordinates.x-3, coordinates.y, seabattle::WIDTH/3, seabattle::SMALL_FONT_SIZE};
             SDL_SetRenderDrawColor(renderer, 0, 0, 0, 150);
             SDL_RenderFillRect(renderer, &outline);
-            SDL_Rect renderQuad = this->drawText(log[i].msg, coordinates, small, log[i].color);
+            SDL_Rect renderQuad = this->drawText(log[i].msg, coordinates, enumToColor(log[i].color), small);
             
             
             coordinates -= point2d(0, renderQuad.h);
@@ -231,14 +250,14 @@ void GUIOutput::drawInstructions(){
     SDL_Rect outline = {coordinates.x-3, coordinates.y, seabattle::WIDTH/3, seabattle::SMALL_FONT_SIZE*8};
     SDL_SetRenderDrawColor(renderer, 255, 255, 255, 150);
     SDL_RenderFillRect(renderer, &outline);
-    this->drawText("==============================INSTRUCTIONS=================================", coordinates, small, {0, 0, 0});
-    this->drawText("W, A, S, D - to move pointer/change field size", coordinates+text_indent, small, {0, 0, 0});
-    this->drawText("E - to use ability/rotate ship/rotate field", coordinates+text_indent*2, small, {0, 0, 0});
-    this->drawText("Q - to place ships automatically/set field size automatically", coordinates+text_indent*3, small, {0, 0, 0});
-    this->drawText("1 - to save game", coordinates+text_indent*4, small, {0, 0, 0});
-    this->drawText("2 - to load game", coordinates+text_indent*5, small, {0, 0, 0});
-    this->drawText("Also use eng layout to play game", coordinates+text_indent*6, small, {0, 0, 0});
-    this->drawText("===========================================================================", coordinates+text_indent*7, small, {0, 0, 0});
+    this->drawText("========================INSTRUCTIONS========================", coordinates, {0, 0, 0}, small);
+    this->drawText("W, A, S, D - to move pointer/change field size", coordinates+text_indent, {0, 0, 0}, small);
+    this->drawText("E - to use ability/rotate ship/rotate field", coordinates+text_indent*2, {0, 0, 0}, small);
+    this->drawText("Q - to place ships automatically/set field size automatically", coordinates+text_indent*3, {0, 0, 0}, small);
+    this->drawText("1 - to save game", coordinates+text_indent*4, {0, 0, 0}, small);
+    this->drawText("2 - to load game", coordinates+text_indent*5, {0, 0, 0}, small);
+    this->drawText("Also use eng layout to play game", coordinates+text_indent*6, {0, 0, 0}, small);
+    this->drawText("===========================================================", coordinates+text_indent*7, {0, 0, 0}, small);
 }
 
 void GUIOutput::update(){

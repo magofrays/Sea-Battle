@@ -1,23 +1,25 @@
 #include "GUIInput.h"
 #include "../RW/fileRead.h"
 #include "../utilities/settings.h"
+#include "controlReader.h"
+#include "../messages/textMessage.h"
 
-GUIInput::GUIInput(){
-    json controls_data;
-    fileRead reader(seabattle::CONTROL_DIR);
-    reader.read(controls_data);
-    controls[controls_data["pointer_down"]] = Key::pointer_down;
-    controls[controls_data["pointer_left"]] = Key::pointer_left;
-    controls[controls_data["pointer_up"]] = Key::pointer_up;
-    controls[controls_data["pointer_right"]] = Key::pointer_right;
-    controls[controls_data["main_action"]] = Key::main_action;
-    controls[controls_data["extra_action_0"]] = Key::extra_action_0;
-    controls[controls_data["extra_action_1"]] = Key::extra_action_1;
-    controls[controls_data["save_action"]] = Key::save_action;
-    controls[controls_data["load_action"]] = Key::load_action;
-    controls[controls_data["quit"]] = Key::quit;
+void GUIInput::setControls(){
+    try{
+        controls = controlReader()();
+        return;
+    }catch(std::invalid_argument & e){
+        Handle(textMessage(e.what(), textColor::red, textPosition::log).clone());
+    }
+    catch(nlohmann::json_abi_v3_11_3::detail::parse_error & e){
+        Handle(textMessage("Error: Bad json structure in controls!", textColor::red, textPosition::log).clone());
+    }
+    catch(nlohmann::json_abi_v3_11_3::detail::type_error & e){
+        Handle(textMessage("Error: Bad json structure in controls!", textColor::red, textPosition::log).clone());
+    }
+    controls = controlReader().getDefaultControls();
+    Handle(textMessage("Default controls initialized!", textColor::red, textPosition::log).clone());
 }
-
 
 void GUIInput::update(){
     SDL_Event event;

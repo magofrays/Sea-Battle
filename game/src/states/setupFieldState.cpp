@@ -12,7 +12,7 @@ setupFieldState::setupFieldState(Game * game, messageHandler * next) : gameState
 
     pointer = point2d(2, 2);
     this->handler = next;
-    Handle(textMessage("Create your field!", {255, 255, 0, 255}, textPosition::title).clone());//fix it
+    Handle(textMessage("Create your field!", textColor::yellow, textPosition::title).clone());//fix it
 }
 
 
@@ -23,18 +23,18 @@ void setupFieldState::update(){
         playField new_field(pointer);
         play_field = new_field;
     }catch(invalidFieldSize & e){
-        Handle(textMessage(e.what(), {255, 0, 0, 255}, textPosition::log).clone());
-        if(pointer.x < 2){
-            pointer.x = 2;
+        Handle(textMessage(e.what(), textColor::red, textPosition::log).clone());
+        if(pointer.x < 1){
+            pointer.x = 1;
         }
-        if(pointer.y < 2){
-            pointer.y = 2;
+        if(pointer.y < 1){
+            pointer.y = 1;
         }
-        if(pointer.x > seabattle::MAX_FIELD_SIZE){
-            pointer.x = seabattle::MAX_FIELD_SIZE;
+        if(pointer.x > seabattle::MAX_FIELD_SIZE-1){
+            pointer.x = seabattle::MAX_FIELD_SIZE-1;
         }
-        if(pointer.y > seabattle::MAX_FIELD_SIZE){
-            pointer.y = seabattle::MAX_FIELD_SIZE;
+        if(pointer.y > seabattle::MAX_FIELD_SIZE-1){
+            pointer.y = seabattle::MAX_FIELD_SIZE-1;
         }
     }
     Handle(playFieldMessage("Your field", play_field, fieldPosition::center, false).clone());

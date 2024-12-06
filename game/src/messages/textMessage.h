@@ -9,13 +9,23 @@ enum class textPosition{
     log,
 };
 
+enum class textColor{
+    red,
+    yellow,
+    purple,
+    green,
+    white,
+    blue,
+    black
+};
+
 struct textMessage: public Message{
     std::string msg = "";
-    SDL_Color color = {255,255,255,255};
+    textColor color = textColor::white;
     textPosition position;
 
     textMessage() = default;
-    textMessage(std::string msg, SDL_Color color, textPosition position):msg(msg), color(color), position(position){}
+    textMessage(std::string msg, textColor color, textPosition position):msg(msg), color(color), position(position){}
     std::unique_ptr<Message> clone(){
         return std::make_unique<textMessage>(*this);
     }
