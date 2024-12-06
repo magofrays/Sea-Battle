@@ -94,7 +94,7 @@ void GUIDrawField::operator()(){
     }
     point2d field_indent(10, 0);
     point2d name_coordinates = point2d(field_outline.w/2+field_outline.x, field_outline.h+field_outline.y) + field_indent;
-    output->drawText(field_name, name_coordinates, {255, 255, 255}, medium, true);
+    //output->drawText(field_name, name_coordinates, {255, 255, 255}, medium, true);
     if(draw_pointer){
         SDL_Color color = seabattle::POINTER_COLOR;
         for(int x = pointer.area.min_point.x; x != pointer.area.max_point.x+1; x++){
@@ -107,5 +107,24 @@ void GUIDrawField::operator()(){
                 SDL_RenderDrawRect(renderer, &cell);
             }
         }
+    }
+}
+
+void GUIDrawField::setField(std::unique_ptr<playFieldMessage> field){
+    if(!field){
+        fields[0] = nullptr;
+        fields[1] = nullptr;
+        return;
+    }
+    switch(field->position){
+        case fieldPosition::left:
+            fields[0] = field;
+            return;
+        case fieldPosition::center:
+            fields[0] = field;
+            return;
+        case fieldPosition::right:
+            fields[1] = field;
+            return;
     }
 }

@@ -7,6 +7,7 @@
 #include "../messages/playFieldMessage.h"
 #include "../messages/pointerMessage.h"
 #include "../utilities/settings.h"
+#include "GUIDrawField.h"
 
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_ttf.h>
@@ -22,15 +23,14 @@ class GUIOutput : public messageHandler{
     TTF_Font * small_font;
     textMessage title;
     textMessage log[seabattle::LOG_LENGTH];
-    pointerMessage pointer; 
+    pointerMessage pointer;
+    GUIDrawField fieldDrawer;
+    
     
     messageHandler * handler = nullptr;
     
     public:
         GUIOutput();
-        void drawField(std::string field_name, playField & field, fieldPosition position, bool fog, bool draw_pointer=false);
-        
-        void drawPointer(int size_cell, point2d coordinates);
 
         SDL_Color enumToColor(textColor color);
 
