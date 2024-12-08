@@ -5,14 +5,19 @@
 #include "../messages/playFieldMessage.h"
 #include "errors/errors.h"
 #include "../utilities/settings.h"
+#include <iostream>
 
 
 setupFieldState::setupFieldState(Game * game, messageHandler * next) : gameState(game), pointer(game->pointer){
 
 
     pointer = point2d(2, 2);
+    playField new_field(pointer);
+    play_field = new_field;
     this->handler = next;
-    Handle(textMessage("Create your field!", textColor::yellow, textPosition::title).clone());//fix it
+    Handle(textMessage("Create your field!", textColor::yellow, textPosition::title).clone());
+    Handle(playFieldMessage().clone());
+    Handle(playFieldMessage("Your field", play_field, fieldPosition::center, false).clone());
 }
 
 
@@ -37,7 +42,6 @@ void setupFieldState::update(){
             pointer.y = seabattle::MAX_FIELD_SIZE-1;
         }
     }
-    Handle(playFieldMessage("Your field", play_field, fieldPosition::center, false).clone());
     
 }
 

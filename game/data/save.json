@@ -1,12 +1,272 @@
 {
-    "hash_code": 17152214280463409736,
+    "hash_code": 2716466788108070086,
     "seabattle": {
-        "15setupFieldState": {
-            "pointer": {
-                "x": 7,
-                "y": 1
+        "12endGameState": {
+            "lost": false,
+            "round_number": 1
+        },
+        "botPlayer": {
+            "play_field": {
+                "height": 5,
+                "playField": [
+                    [
+                        1,
+                        1,
+                        2,
+                        1,
+                        1
+                    ],
+                    [
+                        2,
+                        1,
+                        1,
+                        1,
+                        1
+                    ],
+                    [
+                        2,
+                        1,
+                        1,
+                        1,
+                        1
+                    ],
+                    [
+                        1,
+                        1,
+                        1,
+                        2,
+                        1
+                    ],
+                    [
+                        1,
+                        2,
+                        1,
+                        1,
+                        1
+                    ]
+                ],
+                "width": 5
+            },
+            "ship_manager": {
+                "destroyed_ships": 4,
+                "ships": [
+                    {
+                        "area": {
+                            "max_point": {
+                                "x": 0,
+                                "y": 2
+                            },
+                            "min_point": {
+                                "x": 0,
+                                "y": 1
+                            }
+                        },
+                        "is_vertical": true,
+                        "length": 2,
+                        "segments": [
+                            2,
+                            2
+                        ]
+                    },
+                    {
+                        "area": {
+                            "max_point": {
+                                "x": 3,
+                                "y": 3
+                            },
+                            "min_point": {
+                                "x": 3,
+                                "y": 3
+                            }
+                        },
+                        "is_vertical": true,
+                        "length": 1,
+                        "segments": [
+                            2
+                        ]
+                    },
+                    {
+                        "area": {
+                            "max_point": {
+                                "x": 2,
+                                "y": 0
+                            },
+                            "min_point": {
+                                "x": 2,
+                                "y": 0
+                            }
+                        },
+                        "is_vertical": false,
+                        "length": 1,
+                        "segments": [
+                            2
+                        ]
+                    },
+                    {
+                        "area": {
+                            "max_point": {
+                                "x": 1,
+                                "y": 4
+                            },
+                            "min_point": {
+                                "x": 1,
+                                "y": 4
+                            }
+                        },
+                        "is_vertical": false,
+                        "length": 1,
+                        "segments": [
+                            2
+                        ]
+                    }
+                ],
+                "size": 4
             }
         },
-        "state_name": "15setupFieldState"
+        "humanPlayer": {
+            "abilities_manager": {
+                "abilities": [
+                    "14scannerAbility",
+                    "14scannerAbility",
+                    "15shellingAbility",
+                    "15shellingAbility",
+                    "14scannerAbility",
+                    "14scannerAbility",
+                    "19doubleDamageAbility"
+                ],
+                "size": 7
+            },
+            "play_field": {
+                "height": 5,
+                "playField": [
+                    [
+                        1,
+                        1,
+                        1,
+                        1,
+                        1
+                    ],
+                    [
+                        2,
+                        2,
+                        1,
+                        1,
+                        1
+                    ],
+                    [
+                        1,
+                        1,
+                        0,
+                        0,
+                        1
+                    ],
+                    [
+                        1,
+                        2,
+                        1,
+                        1,
+                        0
+                    ],
+                    [
+                        1,
+                        1,
+                        1,
+                        1,
+                        2
+                    ]
+                ],
+                "width": 5
+            },
+            "pointer": {
+                "x": 2,
+                "y": 0
+            },
+            "pointer_area": {
+                "max_point": {
+                    "x": 0,
+                    "y": 0
+                },
+                "min_point": {
+                    "x": 0,
+                    "y": 0
+                }
+            },
+            "ship_manager": {
+                "destroyed_ships": 2,
+                "ships": [
+                    {
+                        "area": {
+                            "max_point": {
+                                "x": 1,
+                                "y": 1
+                            },
+                            "min_point": {
+                                "x": 0,
+                                "y": 1
+                            }
+                        },
+                        "is_vertical": false,
+                        "length": 2,
+                        "segments": [
+                            2,
+                            1
+                        ]
+                    },
+                    {
+                        "area": {
+                            "max_point": {
+                                "x": 1,
+                                "y": 3
+                            },
+                            "min_point": {
+                                "x": 1,
+                                "y": 3
+                            }
+                        },
+                        "is_vertical": false,
+                        "length": 1,
+                        "segments": [
+                            2
+                        ]
+                    },
+                    {
+                        "area": {
+                            "max_point": {
+                                "x": 3,
+                                "y": 2
+                            },
+                            "min_point": {
+                                "x": 3,
+                                "y": 2
+                            }
+                        },
+                        "is_vertical": false,
+                        "length": 1,
+                        "segments": [
+                            0
+                        ]
+                    },
+                    {
+                        "area": {
+                            "max_point": {
+                                "x": 4,
+                                "y": 4
+                            },
+                            "min_point": {
+                                "x": 4,
+                                "y": 4
+                            }
+                        },
+                        "is_vertical": false,
+                        "length": 1,
+                        "segments": [
+                            2
+                        ]
+                    }
+                ],
+                "size": 4
+            }
+        },
+        "state_name": "12endGameState"
     }
 }

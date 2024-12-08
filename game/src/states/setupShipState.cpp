@@ -9,6 +9,8 @@ setupShipState::setupShipState(Game * game, messageHandler * next, bool place_sh
         game->player.callculateShips(ships);    
         game->bot.placeShipsRandomly(ships);
     }
+    Handle(pointerMessage(pointer_area, pointer).clone());
+    Handle(playFieldMessage("Your field", field, fieldPosition::center, false, true).clone());
 }
 
 
@@ -40,8 +42,7 @@ void setupShipState::update(){
         if(!game->player.areaInField(pointer_area, pointer)){
             is_vertical = !is_vertical;
         }
-        Handle(pointerMessage(pointer_area, pointer).clone());
-        Handle(playFieldMessage("Your field", field, fieldPosition::center, false, true).clone());
+        
     }
     else{
         this->end();

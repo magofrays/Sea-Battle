@@ -5,6 +5,6 @@
 
 int main(){
     gameController<GUIInput, GUIOutput> control;
-
+    control.run();
     return 0;
 }

@@ -15,11 +15,12 @@ endGameState::endGameState(Game * game, messageHandler * next, bool lost, int ro
         Handle(textMessage("YOU WIN!", textColor::green, textPosition::title).clone());
         Handle(textMessage("Press ENTER to start round " + std::to_string(round_number+1) + "!", textColor::green, textPosition::log).clone());
     }
+    Handle(playFieldMessage("Your field", game->player.play_field, fieldPosition::left, false, false).clone());
+    Handle(playFieldMessage("Bot field", game->bot.play_field, fieldPosition::right, false, false).clone());
 }
 
 void endGameState::update(){
-    Handle(playFieldMessage("Your field", game->player.play_field, fieldPosition::left, false, false).clone());
-    Handle(playFieldMessage("Bot field", game->bot.play_field, fieldPosition::right, false, false).clone());
+    
 }
 
 

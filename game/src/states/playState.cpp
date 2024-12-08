@@ -10,6 +10,8 @@ playState::playState(Game * game, messageHandler * next, int round_number):gameS
             game->player.getOpponent(&(game->bot));
             Handle(textMessage("ATTACK!", textColor::red, textPosition::title).clone());
             Handle(textMessage("Starting round " + std::to_string(round_number) + "!", textColor::yellow, textPosition::log).clone());
+            Handle(playFieldMessage("Your field", game->player.play_field, fieldPosition::left, false, false).clone());
+            Handle(playFieldMessage("Bot field", game->bot.play_field, fieldPosition::right, true, true).clone());
         }
 
 
@@ -22,17 +24,6 @@ void playState::update(){
     if(game->bot.ship_manager.allShipsDestroyed()){
         this->end(false); //win
         return;
-    }
-
-    if(input){
-        Handle(playFieldMessage("Your field", game->player.play_field, fieldPosition::left, false, false).clone());
-        Handle(pointerMessage(pointer_area, pointer).clone());
-        Handle(playFieldMessage("Bot field", game->bot.play_field, fieldPosition::right, true, true).clone());
-    }
-    else{
-        Handle(pointerMessage(pointer_area, pointer).clone());
-        Handle(playFieldMessage("Your field", game->player.play_field, fieldPosition::left, false, false).clone());
-        Handle(playFieldMessage("Bot field", game->bot.play_field, fieldPosition::right, true, true).clone());
     }
 }
 
@@ -66,12 +57,8 @@ void playState::extra_action_0(){
     
     if(input){
         Handle(textMessage("USE ABILITY!", textColor::purple, textPosition::title).clone());
-        pointer = point2d(0, 0);
         Handle(textMessage("You need to input coordinates for ability", textColor::purple, textPosition::log).clone());
     }
-    Handle(playFieldMessage("Your field", game->player.play_field, fieldPosition::left, false, false).clone());
-    Handle(pointerMessage(pointer_area, pointer).clone());
-    Handle(playFieldMessage("Bot field", game->bot.play_field, fieldPosition::right, true, true).clone());
 }
 
 void playState::extra_action_1(){

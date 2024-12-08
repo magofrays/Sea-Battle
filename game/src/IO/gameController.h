@@ -34,7 +34,6 @@ gameController<gameInput, gameOutput>::gameController() : game(&output)
     this->setNext(&output); 
     this->input.setNext(this);
     this->input.setControls();
-    this->run();
 }
 
 
