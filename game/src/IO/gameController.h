@@ -10,44 +10,37 @@
 
 class Game;
 
-template<typename T>
-concept messageHandlerDerived = std::is_base_of_v<messageHandler, T>;
 
-template<messageHandlerDerived gameInput, messageHandlerDerived gameOutput>
+template<typename gameInput>
 class gameController : public messageHandler {
     
     gameInput input;
-    gameOutput output;
-    Game game;
+    Game & game;
     messageHandler * handler;
 
     public:
-        gameController();
-        void run();
+        gameController(Game & game);
+        void update();
         void Handle(std::unique_ptr<Message> message);
         void setNext(messageHandler* handler);
 };
 
-template<messageHandlerDerived gameInput, messageHandlerDerived gameOutput>
-gameController<gameInput, gameOutput>::gameController() : game(&output)
+template<typename gameInput>
+gameController<gameInput>::gameController(Game & game) : game(game)
     { 
-    this->setNext(&output); 
+    this->setNext(&game); 
     this->input.setNext(this);
     this->input.setControls();
 }
 
 
-template<messageHandlerDerived gameInput, messageHandlerDerived gameOutput>
-void gameController<gameInput, gameOutput>::run(){
-     while(game.running){
-        game.update();
-        input.update();
-        output.update();
-    }
+template<typename gameInput>
+void gameController<gameInput>::update(){
+    input.update();
 }
 
-template<messageHandlerDerived gameInput, messageHandlerDerived gameOutput>
-void gameController<gameInput, gameOutput>::Handle(std::unique_ptr<Message> message){
+template<typename gameInput>
+void gameController<gameInput>::Handle(std::unique_ptr<Message> message){
     if(typeid(*message) == typeid(keyMessage)){
         
         Message * msg = &(*message);
@@ -106,14 +99,12 @@ void gameController<gameInput, gameOutput>::Handle(std::unique_ptr<Message> mess
                 }
                 return;
         }
-            
-            
     }
     handler->Handle(std::move(message));
 }
 
-template<messageHandlerDerived gameInput, messageHandlerDerived gameOutput>
-void gameController<gameInput, gameOutput>::setNext(messageHandler * handler){
+template<typename gameInput>
+void gameController<gameInput>::setNext(messageHandler * handler){
     this->handler = handler;
 }
 

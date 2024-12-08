@@ -1,8 +1,6 @@
 #ifndef SEABATTLE_GUIOUTPUT_H
 #define SEABATTLE_GUIOUTPUT_H
 
-#include "../../messages/messageHandler.h"
-
 #include "../../messages/textMessage.h"
 #include "../../messages/playFieldMessage.h"
 #include "../../messages/pointerMessage.h"
@@ -13,7 +11,7 @@
 #include <SDL2/SDL.h>
 
 
-class GUIOutput : public messageHandler{
+class GUIOutput{
 
     SDL_Window * window;
     SDL_Renderer * renderer;
@@ -21,20 +19,14 @@ class GUIOutput : public messageHandler{
     GUIDrawText textDrawer;
     GUIDrawField fieldDrawer;
     
-    messageHandler * handler = nullptr;
-    
     public:
         GUIOutput();
-
         void update();
-        
+        void sendText(std::unique_ptr<textMessage> text);
+        void sendField(std::unique_ptr<playFieldMessage> field);
+        void sendPointer(std::unique_ptr<pointerMessage> pointer);
         ~GUIOutput();
 
-        void Handle(std::unique_ptr<Message> message);
-
-        void setNext(messageHandler * handler){
-            this->handler = handler;
-        }
 };
 
 #endif

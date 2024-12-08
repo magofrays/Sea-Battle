@@ -18,7 +18,6 @@ GUIOutput::GUIOutput(){
     textDrawer.setRenderer(renderer);
     fieldDrawer.setRenderer(renderer);
     fieldDrawer.setTextDrawer(&textDrawer);
-
 }
 
 
@@ -32,25 +31,17 @@ void GUIOutput::update(){
     
 }
 
-
-
-void GUIOutput::Handle(std::unique_ptr<Message> message){
-    if(typeid(*message) == typeid(textMessage)){
-        Message * msg = &(*message);
-        textMessage * tr_msg = dynamic_cast<textMessage*>(msg);
-        textDrawer.redirectText(*tr_msg);
-    }
-    else if(typeid(*message) == typeid(playFieldMessage)){
-        std::unique_ptr<playFieldMessage> derivedPtr(static_cast<playFieldMessage*>(message.release()));
-        fieldDrawer.setField(std::move(derivedPtr));
-        
-    }
-    else if(typeid(*message) == typeid(pointerMessage)){
-        std::unique_ptr<pointerMessage> derivedPtr(static_cast<pointerMessage*>(message.release()));
-        fieldDrawer.setPointer(std::move(derivedPtr));
-    }
+void GUIOutput::sendText(std::unique_ptr<textMessage> text){
+    textDrawer.redirectText(*text);
 }
 
+void GUIOutput::sendField(std::unique_ptr<playFieldMessage> field){
+    fieldDrawer.setField(std::move(field));
+}
+
+void GUIOutput::sendPointer(std::unique_ptr<pointerMessage> pointer){
+    fieldDrawer.setPointer(std::move(pointer));
+}
 
 GUIOutput::~GUIOutput(){
     SDL_DestroyRenderer(renderer);

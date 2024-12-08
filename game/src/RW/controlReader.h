@@ -3,6 +3,7 @@
 
 #include <map>
 #include "../messages/keyMessage.h"
+#include "fileRead.h"
 
 class controlReader{
     std::map<std::string, Key> default_controls;

@@ -2,9 +2,16 @@
 #include "IO/GUI/GUIOutput.h"
 #include "states/Game.h"
 #include "IO/gameController.h"
+#include "IO/gameTracker.h"
 
 int main(){
-    gameController<GUIInput, GUIOutput> control;
-    control.run();
+    Game game;
+    gameTracker<GUIOutput> tracker(game);
+    gameController<GUIInput> controller(game);
+    while(game.running){
+        controller.update();
+        game.update();
+        tracker.update();
+    }
     return 0;
 }

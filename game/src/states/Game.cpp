@@ -10,8 +10,11 @@
 #include "../RW/fileWrite.h"
 #include <iostream>
 
-Game::Game(messageHandler * handler) : pointer(player.pointer), pointer_area(player.pointer_area){
+Game::Game() : pointer(player.pointer), pointer_area(player.pointer_area){
     this->running = true;
+}
+
+void Game::setupGame(messageHandler * handler){
     state = new setupFieldState(this, handler); 
     player.setNext(handler);
     bot.setNext(handler);
