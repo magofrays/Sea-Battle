@@ -3,10 +3,10 @@
 
 #include <SDL2/SDL.h>
 #include <memory>
-#include "../utilities/vector2d.h"
-#include "../utilities/settings.h"
-#include "../messages/playFieldMessage.h"
-#include "../messages/pointerMessage.h"
+#include "../../utilities/vector2d.h"
+#include "../../utilities/settings.h"
+#include "../../messages/playFieldMessage.h"
+#include "../../messages/pointerMessage.h"
 #include "GUIDrawText.h"
 
 class GUIDrawField{

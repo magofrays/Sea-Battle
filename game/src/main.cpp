@@ -1,5 +1,5 @@
-#include "IO/GUIInput.h"
-#include "IO/GUIOutput.h"
+#include "IO/GUI/GUIInput.h"
+#include "IO/GUI/GUIOutput.h"
 #include "states/Game.h"
 #include "IO/gameController.h"
 

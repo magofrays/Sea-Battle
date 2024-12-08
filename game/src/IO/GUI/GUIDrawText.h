@@ -4,9 +4,9 @@
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_ttf.h>
 #include <memory>
-#include "../utilities/vector2d.h"
-#include "../utilities/settings.h"
-#include "../messages/textMessage.h"
+#include "../../utilities/vector2d.h"
+#include "../../utilities/settings.h"
+#include "../../messages/textMessage.h"
 
 class GUIDrawText{
     SDL_Renderer * renderer;

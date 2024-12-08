@@ -1,8 +1,8 @@
 #ifndef SEABATTLE_GUIINPUT_H
 #define SEABATTLE_GUIINPUT_H
 
-#include "../messages/messageHandler.h"
-#include "../messages/keyMessage.h"
+#include "../../messages/messageHandler.h"
+#include "../../messages/keyMessage.h"
 
 #include <SDL2/SDL.h>
 #include <map>

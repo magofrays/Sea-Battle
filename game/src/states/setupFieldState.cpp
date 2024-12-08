@@ -9,8 +9,6 @@
 
 
 setupFieldState::setupFieldState(Game * game, messageHandler * next) : gameState(game), pointer(game->pointer){
-
-
     pointer = point2d(2, 2);
     playField new_field(pointer);
     play_field = new_field;

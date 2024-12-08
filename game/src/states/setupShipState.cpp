@@ -1,7 +1,7 @@
 #include "setupShipState.h"
 
 setupShipState::setupShipState(Game * game, messageHandler * next, bool place_ships) : gameState(game), 
-            field(game->player.play_field), pointer(game->player.pointer), pointer_area(game->player.pointer_area){
+            field(game->player.play_field), pointer(game->pointer), pointer_area(game->pointer_area){
     this->handler = next;
     Handle(textMessage("Add ships!", textColor::yellow, textPosition::title).clone());
     if(place_ships){
@@ -9,7 +9,6 @@ setupShipState::setupShipState(Game * game, messageHandler * next, bool place_sh
         game->player.callculateShips(ships);    
         game->bot.placeShipsRandomly(ships);
     }
-    Handle(pointerMessage(pointer_area, pointer).clone());
     Handle(playFieldMessage("Your field", field, fieldPosition::center, false, true).clone());
 }
 

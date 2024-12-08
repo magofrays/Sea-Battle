@@ -1,8 +1,8 @@
 #include "GUIInput.h"
-#include "../RW/fileRead.h"
-#include "../utilities/settings.h"
-#include "controlReader.h"
-#include "../messages/textMessage.h"
+#include "../../RW/fileRead.h"
+#include "../../utilities/settings.h"
+#include "../controlReader.h"
+#include "../../messages/textMessage.h"
 
 void GUIInput::setControls(){
     try{

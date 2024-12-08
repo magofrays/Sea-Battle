@@ -5,16 +5,18 @@
 #include "playState.h"
 #include "endGameState.h"
 #include "../messages/textMessage.h"
+#include "../messages/pointerMessage.h"
 #include "../RW/fileRead.h"
 #include "../RW/fileWrite.h"
 #include <iostream>
 
-Game::Game(messageHandler * handler) : pointer(player.pointer){
+Game::Game(messageHandler * handler) : pointer(player.pointer), pointer_area(player.pointer_area){
     this->running = true;
     state = new setupFieldState(this, handler); 
     player.setNext(handler);
     bot.setNext(handler);
     setNext(state);
+    Handle(pointerMessage(pointer_area, pointer).clone());
 }
 
 void Game::setState(gameState * state){
