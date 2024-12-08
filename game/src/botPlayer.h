@@ -8,7 +8,6 @@ class botPlayer: public Player{
     void Attack();
     void setField(playField play_field);
     void getOpponent(Player * player);
-    
 };
 
 #endif

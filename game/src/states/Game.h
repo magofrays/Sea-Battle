@@ -4,23 +4,31 @@
 #include "gameState.h"
 #include "../messages/messageHandler.h"
 #include "../messages/keyMessage.h"
-#include "../IO/GUIInput.h"
-#include "../IO/GUIOutput.h"
 
 class Game: public messageHandler{
     gameState * state;
     messageHandler * handler;
     public:
         bool running;
+        point2d & pointer;
+        box2d & pointer_area;
         humanPlayer player;
         botPlayer bot;
         
-        Game(messageHandler * handler);     
+        Game();     
+        void setupGame(messageHandler * handler);
         void setState(gameState * state);
-        void execute();
+        
+        void update();
+        void main_action();
+        void extra_action_0();
+        void extra_action_1();
+        
         ~Game();
         
-        void Handle(std::unique_ptr<Message> message);
+        void Handle(std::unique_ptr<Message> message){
+            handler->Handle(std::move(message));
+        }
         void setNext(messageHandler * handler);
 
         void save();

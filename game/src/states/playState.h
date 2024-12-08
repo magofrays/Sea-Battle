@@ -8,11 +8,13 @@ class playState: public gameState{
     public:
         bool input = false;
         playState(Game * game, messageHandler * next, int round_number = 0);
-        void execute();
-        void usingAbility();
+
+        void update();
+        void main_action();
+        void extra_action_0();
+        void extra_action_1();
+
         void end(bool lost);
-        void lose();
-        void win();
         void Handle(std::unique_ptr<Message> message);
         friend json & operator << (json & data, playState & game_state);
         friend json & operator >> (json & data, playState & game_state);

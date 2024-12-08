@@ -5,67 +5,61 @@
 #include "../messages/playFieldMessage.h"
 #include "errors/errors.h"
 #include "../utilities/settings.h"
+#include <iostream>
 
-void setupFieldState::execute(){
+
+setupFieldState::setupFieldState(Game * game, messageHandler * next) : gameState(game), pointer(game->pointer){
+    pointer = point2d(2, 2);
+    playField new_field(pointer);
+    play_field = new_field;
+    this->handler = next;
+    Handle(textMessage("Create your field!", textColor::yellow, textPosition::title).clone());
+    Handle(playFieldMessage().clone());
+    Handle(playFieldMessage("Your field", play_field, fieldPosition::center, false).clone());
+}
+
+
+
+void setupFieldState::update(){
 
     try{
-        playField new_field(size_x, size_y);
+        playField new_field(pointer);
         play_field = new_field;
     }catch(invalidFieldSize & e){
-        Handle(textMessage(e.what(), {255, 0, 0, 255}, textPosition::log).clone());
-        if(size_x < 2){
-            size_x = 2;
+        Handle(textMessage(e.what(), textColor::red, textPosition::log).clone());
+        if(pointer.x < 1){
+            pointer.x = 1;
         }
-        if(size_y < 2){
-            size_y = 2;
+        if(pointer.y < 1){
+            pointer.y = 1;
         }
-        if(size_x > seabattle::MAX_FIELD_SIZE){
-            size_x = seabattle::MAX_FIELD_SIZE;
+        if(pointer.x > seabattle::MAX_FIELD_SIZE-1){
+            pointer.x = seabattle::MAX_FIELD_SIZE-1;
         }
-        if(size_y > seabattle::MAX_FIELD_SIZE){
-            size_y = seabattle::MAX_FIELD_SIZE;
+        if(pointer.y > seabattle::MAX_FIELD_SIZE-1){
+            pointer.y = seabattle::MAX_FIELD_SIZE-1;
         }
     }
-    Handle(playFieldMessage("Your field", play_field, fieldPosition::center, false).clone());
     
 }
+
+void setupFieldState::main_action(){
+    this->end();
+}
+
+void setupFieldState::extra_action_0(){
+    int temp = pointer.x;
+    pointer.x = pointer.y;
+    pointer.y = temp;
+}
+
+void setupFieldState::extra_action_1(){
+    pointer.x = 8;
+    pointer.y = 8;
+}
+
 void setupFieldState::Handle(std::unique_ptr<Message> message){
-    
-    if(typeid(*message) == typeid(keyMessage)){
-        Message * msg = &(*message);
-        keyMessage * key_msg = dynamic_cast<keyMessage*>(msg);
-        int temp;
-        switch(key_msg->info){
-            case Key::pointer_up:
-                size_y++;
-                return;
-            case Key::pointer_down:
-                size_y--;
-                return;
-            case Key::pointer_right:
-                size_x++;
-                return;
-            case Key::pointer_left:
-                size_x--;
-                return;
-            case Key::main_action:
-                this->end();
-                return;
-            case Key::extra_action_0:
-                temp = size_x;
-                size_x = size_y;
-                size_y = temp;
-                return;
-            case Key::extra_action_1:
-                size_x = 8;
-                size_y = 8;
-            default:
-                return;
-        }
-    }
-    else{
-        handler->Handle(std::move(message));
-    }
+    handler->Handle(std::move(message));
 }
 
 void setupFieldState::end(){
@@ -75,13 +69,11 @@ void setupFieldState::end(){
 }
 
 json & operator << (json & data, setupFieldState & game_state){
-    data["size_x"] = game_state.size_x;
-    data["size_y"] = game_state.size_y;
+    data["pointer"] = game_state.pointer.toJson();
     return data;
 }
 
 json & operator >> (json & data, setupFieldState & game_state){
-    game_state.size_x = data["size_x"];
-    game_state.size_y = data["size_y"];
+    game_state.pointer = point2d(data["pointer"]);
     return data;
 }

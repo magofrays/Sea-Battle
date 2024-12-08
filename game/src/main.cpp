@@ -1,17 +1,18 @@
-#include "IO/GUIInput.h"
-#include "IO/GUIOutput.h"
+#include "IO/GUI/GUIInput.h"
+#include "IO/GUI/GUIOutput.h"
+#include "IO/TUI/TUIInput.h"
 #include "states/Game.h"
+#include "IO/gameController.h"
+#include "IO/gameTracker.h"
 
-int main(){
-    GUIInput input;
-    GUIOutput output;
-    Game game(&output);
-    input.setNext(&game);
-
+int main(int argc, char *argv[]){
+    Game game;
+    gameTracker<GUIOutput> tracker(game);
+    gameController<GUIInput> controller(game);
     while(game.running){
-        game.execute();
-        input.update();
-        output.update();
+        controller.update();
+        game.update();
+        tracker.update();
     }
     return 0;
 }

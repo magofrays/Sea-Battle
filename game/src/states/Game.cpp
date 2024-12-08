@@ -5,16 +5,21 @@
 #include "playState.h"
 #include "endGameState.h"
 #include "../messages/textMessage.h"
+#include "../messages/pointerMessage.h"
 #include "../RW/fileRead.h"
 #include "../RW/fileWrite.h"
 #include <iostream>
 
-Game::Game(messageHandler * handler){
+Game::Game() : pointer(player.pointer), pointer_area(player.pointer_area){
     this->running = true;
+}
+
+void Game::setupGame(messageHandler * handler){
     state = new setupFieldState(this, handler); 
     player.setNext(handler);
     bot.setNext(handler);
     setNext(state);
+    Handle(pointerMessage(pointer_area, pointer).clone());
 }
 
 void Game::setState(gameState * state){
@@ -23,44 +28,21 @@ void Game::setState(gameState * state){
     setNext(state);
 }
 
-void Game::execute(){
-    state->execute();
+void Game::update(){
+    state->update();
 }
 
-void Game::Handle(std::unique_ptr<Message> message){
-    if(typeid(*message) == typeid(keyMessage)){
-        
-        Message * msg = &(*message);
-        keyMessage * key_msg = dynamic_cast<keyMessage*>(msg);
-        if(key_msg->info == Key::quit){
-            running = false;
-            return;
-        }
-        if(key_msg->info == Key::save_action){
-            this->save();
-            handler->Handle(textMessage("You saved!", {255, 255, 0, 255}, textPosition::log).clone());
-        }
-        if(key_msg->info == Key::load_action){
-            try{
-                this->load();
-                handler->Handle(textMessage("You loaded!", {255, 255, 0, 255}, textPosition::log).clone());
-            }catch(std::runtime_error & e){
-                handler->Handle(textMessage(e.what(), {255, 0, 0, 255}, textPosition::log).clone());
-            }
-            catch(nlohmann::json_abi_v3_11_3::detail::parse_error & e){
-                handler->Handle(textMessage("Error: Save data is corrupted! Create new save!", {255, 0, 0, 255}, textPosition::log).clone());
-            }
-            
-        }
-    }
-    handler->Handle(std::move(message));
+void Game::main_action(){
+    state->main_action();
 }
 
-void Game::setNext(messageHandler * handler){
-    this->handler = handler;
+void Game::extra_action_0(){
+    state->extra_action_0();
 }
 
-
+void Game::extra_action_1(){
+    state->extra_action_1();
+}
 
 void Game::save(){
     fileWrite save(seabattle::SAVE_DIR);
@@ -136,6 +118,11 @@ void Game::load(){
         this->setState(new_state);
     }
 }
+
+void Game::setNext(messageHandler * handler){
+    this->handler = handler;
+}
+
 
 Game::~Game(){
     delete state;

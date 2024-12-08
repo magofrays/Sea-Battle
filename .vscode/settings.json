@@ -149,7 +149,8 @@
     "valarray": "cpp",
     "variant": "cpp",
     "*.clang-uml": "cpp",
-    "queue": "cpp"
+    "queue": "cpp",
+    "filesystem": "cpp"
   },
   "C_Cpp.errorSquiggles": "disabled",
   "cmake.sourceDirectory": "/home/magofrays/Desktop/OOP/Sea-Battle/game"

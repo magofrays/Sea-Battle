@@ -1,14 +1,15 @@
 #include "setupShipState.h"
 
 setupShipState::setupShipState(Game * game, messageHandler * next, bool place_ships) : gameState(game), 
-            field(game->player.play_field), pointer(game->player.pointer), pointer_area(game->player.pointer_area){
+            field(game->player.play_field), pointer(game->pointer), pointer_area(game->pointer_area){
     this->handler = next;
-    Handle(textMessage("Add ships!", {255, 255, 0, 255}, textPosition::title).clone());
+    Handle(textMessage("Add ships!", textColor::yellow, textPosition::title).clone());
     if(place_ships){
         pointer = point2d(0, 0);
         game->player.callculateShips(ships);    
         game->bot.placeShipsRandomly(ships);
     }
+    Handle(playFieldMessage("Your field", field, fieldPosition::center, false, true).clone());
 }
 
 
@@ -16,7 +17,7 @@ bool setupShipState::enoughShips(){
     return !(ships[0] || ships[1] || ships[2] || ships[3]);
 }
 
-void setupShipState::execute(){
+void setupShipState::update(){
     if(!enoughShips()){
         if(ships[3]){
             pointer_area.max_point = point2d(0, 3);
@@ -40,18 +41,15 @@ void setupShipState::execute(){
         if(!game->player.areaInField(pointer_area, pointer)){
             is_vertical = !is_vertical;
         }
-        Handle(pointerMessage(pointer_area, pointer).clone());
-        Handle(playFieldMessage("Your field", field, fieldPosition::center, false, true).clone());
+        
     }
     else{
         this->end();
         
     }
-    
-    
 }
 
-void setupShipState::placeShip(){
+void setupShipState::main_action(){
     try{
         game->player.placeShip(std::make_shared<Ship>(length, pointer, is_vertical));
         switch(length){
@@ -71,11 +69,22 @@ void setupShipState::placeShip(){
             this->end();
         }
     }catch(invalidShipPosition & e){
-        Handle(textMessage(e.what(), {255, 0, 0}, textPosition::log).clone());
+        Handle(textMessage(e.what(), textColor::red, textPosition::log).clone());
     }
     catch(objectOutOfBounds & e){
-        Handle(textMessage(e.what(), {255, 0, 0}, textPosition::log).clone());
+        Handle(textMessage(e.what(), textColor::red, textPosition::log).clone());
     }
+}
+
+void setupShipState::extra_action_0(){
+    if(game->player.areaInField(box2d(pointer_area.max_point, point2d(pointer_area.max_point.y, pointer_area.max_point.x)), pointer)){
+        is_vertical = !is_vertical;
+    }
+}
+
+void setupShipState::extra_action_1(){
+    game->player.placeShipsRandomly(ships);
+    this->end();
 }
 
 void setupShipState::end(){
@@ -84,49 +93,7 @@ void setupShipState::end(){
 
 
 void setupShipState::Handle(std::unique_ptr<Message> message){
-    
-    if(typeid(*message) == typeid(keyMessage)){
-        Message * msg = &(*message);
-        keyMessage * key_msg = dynamic_cast<keyMessage*>(msg);
-        switch(key_msg->info){
-            case Key::pointer_up:
-                if(game->player.areaInField(pointer_area, pointer + point2d(0, 1)))
-                    pointer += point2d(0, 1);
-                    break;
-
-            case Key::pointer_down:
-                if(game->player.areaInField(pointer_area, pointer - point2d(0, 1)))
-                    pointer -= point2d(0, 1);
-                    break;
-            case Key::pointer_right:
-                if(game->player.areaInField(pointer_area, pointer + point2d(1, 0)))
-                    pointer += point2d(1, 0);
-                    break;
-                
-            case Key::pointer_left:
-                if(game->player.areaInField(pointer_area, pointer - point2d(1, 0)))
-                    pointer -= point2d(1, 0);
-                    return;
-                
-            case Key::main_action:
-                this->placeShip();
-                return;
-            case Key::extra_action_0:
-                if(game->player.areaInField(box2d(pointer_area.max_point, point2d(pointer_area.max_point.y, pointer_area.max_point.x)), pointer))
-                    is_vertical = !is_vertical;
-                return;
-            case Key::extra_action_1:
-                game->player.placeShipsRandomly(ships);
-                this->end();
-                return;
-                
-            default:
-                return;
-        }
-    }
-    else{
-        handler->Handle(std::move(message));
-    }
+    handler->Handle(std::move(message));
 }
 
 

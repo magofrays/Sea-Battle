@@ -12,9 +12,13 @@ class setupShipState: public gameState{
     int length;
     public:
         setupShipState(Game * game, messageHandler * next, bool place_ships = true);
-        void execute();
+        
+        void update();
+        void main_action();
+        void extra_action_0();
+        void extra_action_1();
+        
         bool enoughShips();
-        void placeShip();
         void end();
         friend json & operator << (json & data, setupShipState & game_state);
         friend json & operator >> (json & data, setupShipState & game_state);

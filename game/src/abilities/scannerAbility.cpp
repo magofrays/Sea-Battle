@@ -26,14 +26,14 @@ void scannerAbility::apply(humanPlayer * player){
         }
     }
     if(count == 0){
-        player->Handle(textMessage("No segments in the area were found!", {255, 0, 255}, textPosition::log).clone());
+        player->Handle(textMessage("No segments in the area were found!", textColor::yellow, textPosition::log).clone());
     }
     else{
         if(count == 1){
-            player->Handle(textMessage("1 segment in the area was found!", {255, 0, 255}, textPosition::log).clone());
+            player->Handle(textMessage("1 segment in the area was found!", textColor::yellow, textPosition::log).clone());
         }
         else{
-            player->Handle(textMessage("2 segments in the area were found!", {255, 0, 255}, textPosition::log).clone());
+            player->Handle(textMessage("2 segments in the area were found!", textColor::yellow, textPosition::log).clone());
             }
     }
 }
