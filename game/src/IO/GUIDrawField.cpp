@@ -8,7 +8,7 @@ void GUIDrawField::operator()(){
     for(auto & field: fields){
         if(field){
             point2d top_indent(0, 60);
-            int field_size = std::max(seabattle::WIDTH/2, seabattle::HEIGHT/2)*(seabattle::PLAY_FIELD_SIZE);
+            constexpr int field_size = std::max(seabattle::WIDTH/2, seabattle::HEIGHT/2)*(seabattle::PLAY_FIELD_SIZE);
             point2d coordinates;
             switch(field->position){
                 case fieldPosition::center:
@@ -20,10 +20,6 @@ void GUIDrawField::operator()(){
                 case fieldPosition::right:
                     coordinates = point2d(seabattle::WIDTH/2+10, 0) + top_indent;
             }
-            SDL_Color color = seabattle::BACKGROUND_COLOR;
-            SDL_SetRenderDrawColor(renderer, color.r, color.g, color.b, color.a);
-            SDL_Rect rect = {.x = coordinates.x, .y = coordinates.y, .w=field_size, .h = field_size};
-            SDL_RenderFillRect(renderer, &rect);
             point2d size = field->field.getArea().max_point + point2d(1, 1);
             int size_cell = std::min(
                 (field_size)/size.x,
@@ -38,39 +34,30 @@ void GUIDrawField::operator()(){
                     SDL_Rect cell = {.x = coordinates.x + x*size_cell, .y = coordinates.y + y*size_cell, .w = size_cell, .h = size_cell};
                     SDL_Rect outline = {.x = coordinates.x-1 + x*size_cell, .y = coordinates.y-1 + y*size_cell, .w = size_cell+2, .h = size_cell+2};
                     SDL_Color color;
-                    if(field->fog){
-                        if(field->field.getCell(x, y).state == playField::Cell::unknown){
-                                color = seabattle::CELL_UNKNOWN;
-                        }
-                        else if(field->field.getCell(x, y).state == playField::Cell::empty){
-                                color = seabattle::CELL_EMPTY;
-                        }
-                        else if (field->field.getCell(x, y).state ==  playField::Cell::ship){
-                            switch(field->field.getCell(x, y).segment->state){
-                                case Ship::Segment::normal:
-                                    color = seabattle::SHIP_SEGMENT_NORMAL;
-                                    break;
-                                case Ship::Segment::damaged:
-                                    color = seabattle::SHIP_SEGMENT_DAMAGED;
-                                    break;
-                                case Ship::Segment::destroyed:
-                                    color = seabattle::SHIP_SEGMENT_DESTROYED;
-                                    break;
-                                }
-                        }    
-                    }
-                    else{
-                        if(!(field->field.getCell(x, y).segment)){
+                    auto& cell = field->field.getCell(x, y);
+                    if (field->fog) {
+                        if (cell.state == playField::Cell::unknown) {
+                            color = seabattle::CELL_UNKNOWN;
+                        } else if (cell.state == playField::Cell::empty) {
                             color = seabattle::CELL_EMPTY;
-                            if(field->field.getCell(x, y).state == playField::Cell::unknown){
-                                color = seabattle::CELL_EMPTY;
-                            }
-                            else if(field->field.getCell(x, y).state == playField::Cell::empty){
-                                color = seabattle::CELL_ATTACKED;
+                        } else if (cell.state == playField::Cell::ship) {
+                            switch (cell.segment->state) {
+                                case Ship::Segment::normal:
+                                    color = seabattle::SHIP_SEGMENT_NORMAL;
+                                    break;
+                                case Ship::Segment::damaged:
+                                    color = seabattle::SHIP_SEGMENT_DAMAGED;
+                                    break;
+                                case Ship::Segment::destroyed:
+                                    color = seabattle::SHIP_SEGMENT_DESTROYED;
+                                    break;
                             }
                         }
-                        else{
-                            switch(field->field.getCell(x, y).segment->state){
+                    } else {
+                        if (!cell.segment) {
+                            color = (cell.state == playField::Cell::unknown) ? seabattle::CELL_EMPTY : seabattle::CELL_ATTACKED;
+                        } else {
+                            switch (cell.segment->state) {
                                 case Ship::Segment::normal:
                                     color = seabattle::SHIP_SEGMENT_NORMAL;
                                     break;
@@ -83,6 +70,7 @@ void GUIDrawField::operator()(){
                             }
                         }
                     }
+
                     SDL_SetRenderDrawColor(renderer, color.r, color.g, color.b, color.a);
                     SDL_RenderFillRect(renderer, &cell);
                     SDL_SetRenderDrawColor(renderer, 32, 32, 32, 255);
