@@ -4,8 +4,8 @@
 #include <SDL2/SDL.h>
 
 namespace seabattle{
-    constexpr int WIDTH = 1600;
-    constexpr int HEIGHT = 900;
+    constexpr int WIDTH = 1000;
+    constexpr int HEIGHT = 800;
     constexpr float PLAY_FIELD_SIZE = 0.7;
     constexpr int BIG_FONT_SIZE = 35;
     constexpr int MEDIUM_FONT_SIZE = 27;

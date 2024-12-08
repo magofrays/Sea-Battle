@@ -1,54 +1,67 @@
 {
-    "hash_code": 16577958606874095392,
+    "hash_code": 10894500378181023710,
     "seabattle": {
-        "9playState": {
-            "input": false,
+        "12endGameState": {
+            "lost": false,
             "round_number": 0
         },
         "botPlayer": {
             "play_field": {
-                "height": 5,
+                "height": 6,
                 "playField": [
                     [
-                        0,
-                        0,
-                        0,
-                        0,
-                        0
-                    ],
-                    [
-                        0,
-                        0,
-                        0,
-                        0,
-                        0
-                    ],
-                    [
+                        1,
                         2,
                         0,
-                        0,
-                        0,
+                        1,
+                        1,
                         0
                     ],
                     [
                         1,
+                        2,
+                        0,
                         1,
-                        0,
-                        0,
-                        0
+                        1,
+                        1
                     ],
                     [
+                        1,
+                        2,
                         0,
                         2,
                         1,
-                        0,
+                        2
+                    ],
+                    [
+                        1,
+                        1,
+                        1,
+                        1,
+                        1,
+                        1
+                    ],
+                    [
+                        1,
+                        1,
+                        1,
+                        2,
+                        1,
+                        2
+                    ],
+                    [
+                        1,
+                        1,
+                        1,
+                        2,
+                        1,
                         1
                     ]
                 ],
-                "width": 5
+                "width": 6
             },
             "ship_manager": {
-                "destroyed_ships": 0,
+                "destroyed_ships": 5,
                 "ships": [
                     {
                         "area": {
@@ -57,125 +70,159 @@
                                 "y": 2
                             },
                             "min_point": {
-                                "x": 0,
+                                "x": 1,
+                                "y": 0
+                            }
+                        },
+                        "is_vertical": true,
+                        "length": 3,
+                        "segments": [
+                            2,
+                            2,
+                            2
+                        ]
+                    },
+                    {
+                        "area": {
+                            "max_point": {
+                                "x": 3,
+                                "y": 5
+                            },
+                            "min_point": {
+                                "x": 3,
+                                "y": 4
+                            }
+                        },
+                        "is_vertical": true,
+                        "length": 2,
+                        "segments": [
+                            2,
+                            2
+                        ]
+                    },
+                    {
+                        "area": {
+                            "max_point": {
+                                "x": 5,
+                                "y": 4
+                            },
+                            "min_point": {
+                                "x": 5,
+                                "y": 4
+                            }
+                        },
+                        "is_vertical": false,
+                        "length": 1,
+                        "segments": [
+                            2
+                        ]
+                    },
+                    {
+                        "area": {
+                            "max_point": {
+                                "x": 5,
+                                "y": 2
+                            },
+                            "min_point": {
+                                "x": 5,
+                                "y": 2
+                            }
+                        },
+                        "is_vertical": true,
+                        "length": 1,
+                        "segments": [
+                            2
+                        ]
+                    },
+                    {
+                        "area": {
+                            "max_point": {
+                                "x": 3,
+                                "y": 2
+                            },
+                            "min_point": {
+                                "x": 3,
                                 "y": 2
                             }
                         },
                         "is_vertical": false,
-                        "length": 2,
-                        "segments": [
-                            1,
-                            0
-                        ]
-                    },
-                    {
-                        "area": {
-                            "max_point": {
-                                "x": 1,
-                                "y": 4
-                            },
-                            "min_point": {
-                                "x": 1,
-                                "y": 4
-                            }
-                        },
-                        "is_vertical": true,
                         "length": 1,
                         "segments": [
-                            1
-                        ]
-                    },
-                    {
-                        "area": {
-                            "max_point": {
-                                "x": 2,
-                                "y": 0
-                            },
-                            "min_point": {
-                                "x": 2,
-                                "y": 0
-                            }
-                        },
-                        "is_vertical": true,
-                        "length": 1,
-                        "segments": [
-                            0
-                        ]
-                    },
-                    {
-                        "area": {
-                            "max_point": {
-                                "x": 0,
-                                "y": 0
-                            },
-                            "min_point": {
-                                "x": 0,
-                                "y": 0
-                            }
-                        },
-                        "is_vertical": true,
-                        "length": 1,
-                        "segments": [
-                            0
+                            2
                         ]
                     }
                 ],
-                "size": 4
+                "size": 5
             }
         },
         "humanPlayer": {
             "abilities_manager": {
                 "abilities": [
+                    "19doubleDamageAbility",
                     "15shellingAbility",
-                    "14scannerAbility",
-                    "19doubleDamageAbility"
+                    "15shellingAbility",
+                    "15shellingAbility",
+                    "14scannerAbility"
                 ],
-                "size": 3
+                "size": 5
             },
             "play_field": {
-                "height": 5,
+                "height": 6,
                 "playField": [
                     [
+                        2,
+                        1,
+                        1,
                         0,
-                        0,
-                        0,
-                        0,
+                        2,
+                        2
+                    ],
+                    [
+                        1,
+                        1,
+                        1,
+                        1,
+                        1,
                         0
                     ],
                     [
-                        0,
-                        0,
+                        1,
+                        1,
                         0,
                         1,
+                        1,
+                        0
+                    ],
+                    [
+                        1,
+                        0,
+                        1,
+                        0,
+                        0,
                         0
                     ],
                     [
                         2,
                         0,
+                        0,
                         1,
                         0,
+                        0
+                    ],
+                    [
+                        1,
+                        1,
+                        1,
+                        2,
+                        1,
                         1
-                    ],
-                    [
-                        0,
-                        0,
-                        1,
-                        0,
-                        0
-                    ],
-                    [
-                        1,
-                        0,
-                        0,
-                        0,
-                        0
                     ]
                 ],
-                "width": 5
+                "width": 6
             },
             "pointer": {
-                "x": 0,
-                "y": 1
+                "x": 2,
+                "y": 2
             },
             "pointer_area": {
                 "max_point": {
@@ -193,53 +240,55 @@
                     {
                         "area": {
                             "max_point": {
+                                "x": 5,
+                                "y": 0
+                            },
+                            "min_point": {
+                                "x": 3,
+                                "y": 0
+                            }
+                        },
+                        "is_vertical": false,
+                        "length": 3,
+                        "segments": [
+                            0,
+                            1,
+                            2
+                        ]
+                    },
+                    {
+                        "area": {
+                            "max_point": {
                                 "x": 1,
-                                "y": 2
+                                "y": 4
                             },
                             "min_point": {
                                 "x": 0,
-                                "y": 2
+                                "y": 4
                             }
                         },
                         "is_vertical": false,
                         "length": 2,
                         "segments": [
-                            2,
+                            1,
                             0
                         ]
                     },
                     {
                         "area": {
                             "max_point": {
-                                "x": 1,
-                                "y": 4
-                            },
-                            "min_point": {
-                                "x": 1,
-                                "y": 4
-                            }
-                        },
-                        "is_vertical": false,
-                        "length": 1,
-                        "segments": [
-                            0
-                        ]
-                    },
-                    {
-                        "area": {
-                            "max_point": {
-                                "x": 1,
+                                "x": 0,
                                 "y": 0
                             },
                             "min_point": {
-                                "x": 1,
+                                "x": 0,
                                 "y": 0
                             }
                         },
                         "is_vertical": false,
                         "length": 1,
                         "segments": [
-                            0
+                            1
                         ]
                     },
                     {
@@ -257,12 +306,29 @@
                         "length": 1,
                         "segments": [
                             0
+                        ]
+                    },
+                    {
+                        "area": {
+                            "max_point": {
+                                "x": 3,
+                                "y": 5
+                            },
+                            "min_point": {
+                                "x": 3,
+                                "y": 5
+                            }
+                        },
+                        "is_vertical": false,
+                        "length": 1,
+                        "segments": [
+                            1
                         ]
                     }
                 ],
-                "size": 4
+                "size": 5
             }
         },
-        "state_name": "9playState"
+        "state_name": "12endGameState"
     }
 }

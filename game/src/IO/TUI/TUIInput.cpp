@@ -3,7 +3,6 @@
 #include "../../RW/controlReader.h"
 #include "../../messages/textMessage.h"
 #include <iostream>
-#include <unistd.h>
 
 void TUIInput::setControls(){
     try{
@@ -25,17 +24,7 @@ void TUIInput::setControls(){
     Handle(textMessage("Default controls initialized!", textColor::red, textPosition::log).clone());
 }
 
-void TUIInput::update(){
-    struct timeval tv;
-    fd_set fds;
-    tv.tv_sec = 0;
-    tv.tv_usec = 0;
-    FD_ZERO(&fds);
-    FD_SET(STDIN_FILENO, &fds);
-    select(STDIN_FILENO+1, &fds, NULL, NULL, &tv);
-    if (!FD_ISSET(0, &fds)) {
-        return;                                                 
-    }                                                                                                                                                                             
+void TUIInput::update(){                                                                                                                                                                           
     std::string input;
     std::getline(std::cin, input);
     if(controls.contains(input)){
