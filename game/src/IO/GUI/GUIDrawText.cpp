@@ -5,7 +5,6 @@ GUIDrawText::GUIDrawText(){
     if (TTF_Init() == -1) {
         std::cerr << "TTF_Init: " << TTF_GetError() << std::endl;
     }
-    std::cout << "Created TTF\n";
     big_font = TTF_OpenFont(seabattle::FONT_DIR, seabattle::BIG_FONT_SIZE);
     if (big_font == nullptr) {
         std::cerr << TTF_GetError() << std::endl;

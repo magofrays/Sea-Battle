@@ -1,265 +1,2123 @@
 {
-    "hash_code": 5361672103701364095,
+    "hash_code": 13580133285536615249,
     "seabattle": {
-        "12endGameState": {
-            "lost": false,
-            "round_number": 0
+        "14setupShipState": {
+            "is_vertical": false,
+            "length": 3,
+            "ships": [
+                24,
+                19,
+                10,
+                0
+            ]
         },
         "botPlayer": {
             "play_field": {
-                "height": 7,
+                "height": 26,
                 "playField": [
                     [
-                        1,
-                        1,
-                        2,
                         0,
-                        2,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
                         0
                     ],
                     [
-                        1,
-                        1,
                         0,
                         0,
-                        2,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
                         0
                     ],
                     [
-                        1,
-                        1,
-                        1,
                         0,
-                        2,
-                        1
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0
                     ],
                     [
-                        1,
-                        1,
-                        1,
-                        1,
-                        1,
-                        1
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0
                     ],
                     [
-                        1,
-                        2,
-                        2,
-                        1,
-                        2,
-                        1
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0
                     ],
                     [
-                        1,
-                        1,
-                        1,
-                        1,
-                        1,
-                        1
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0
                     ],
                     [
-                        1,
-                        1,
-                        1,
-                        2,
-                        1,
-                        2
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0
+                    ],
+                    [
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0
+                    ],
+                    [
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0
+                    ],
+                    [
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0
+                    ],
+                    [
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0
+                    ],
+                    [
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0
+                    ],
+                    [
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0
+                    ],
+                    [
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0
+                    ],
+                    [
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0
+                    ],
+                    [
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0
+                    ],
+                    [
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0
+                    ],
+                    [
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0
+                    ],
+                    [
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0
+                    ],
+                    [
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0
+                    ],
+                    [
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0
+                    ],
+                    [
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0
+                    ],
+                    [
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0
+                    ],
+                    [
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0
+                    ],
+                    [
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0
+                    ],
+                    [
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0
                     ]
                 ],
-                "width": 6
+                "width": 19
             },
             "ship_manager": {
-                "destroyed_ships": 6,
+                "destroyed_ships": 0,
                 "ships": [
                     {
                         "area": {
                             "max_point": {
-                                "x": 4,
+                                "x": 3,
+                                "y": 13
+                            },
+                            "min_point": {
+                                "x": 0,
+                                "y": 13
+                            }
+                        },
+                        "is_vertical": false,
+                        "length": 4,
+                        "segments": [
+                            0,
+                            0,
+                            0,
+                            0
+                        ]
+                    },
+                    {
+                        "area": {
+                            "max_point": {
+                                "x": 18,
                                 "y": 2
                             },
                             "min_point": {
-                                "x": 4,
+                                "x": 18,
                                 "y": 0
                             }
                         },
                         "is_vertical": true,
                         "length": 3,
                         "segments": [
-                            2,
-                            2,
-                            2
+                            0,
+                            0,
+                            0
+                        ]
+                    },
+                    {
+                        "area": {
+                            "max_point": {
+                                "x": 13,
+                                "y": 4
+                            },
+                            "min_point": {
+                                "x": 11,
+                                "y": 4
+                            }
+                        },
+                        "is_vertical": false,
+                        "length": 3,
+                        "segments": [
+                            0,
+                            0,
+                            0
                         ]
                     },
                     {
                         "area": {
                             "max_point": {
                                 "x": 2,
-                                "y": 4
+                                "y": 9
+                            },
+                            "min_point": {
+                                "x": 0,
+                                "y": 9
+                            }
+                        },
+                        "is_vertical": false,
+                        "length": 3,
+                        "segments": [
+                            0,
+                            0,
+                            0
+                        ]
+                    },
+                    {
+                        "area": {
+                            "max_point": {
+                                "x": 16,
+                                "y": 15
+                            },
+                            "min_point": {
+                                "x": 14,
+                                "y": 15
+                            }
+                        },
+                        "is_vertical": false,
+                        "length": 3,
+                        "segments": [
+                            0,
+                            0,
+                            0
+                        ]
+                    },
+                    {
+                        "area": {
+                            "max_point": {
+                                "x": 9,
+                                "y": 6
+                            },
+                            "min_point": {
+                                "x": 7,
+                                "y": 6
+                            }
+                        },
+                        "is_vertical": false,
+                        "length": 3,
+                        "segments": [
+                            0,
+                            0,
+                            0
+                        ]
+                    },
+                    {
+                        "area": {
+                            "max_point": {
+                                "x": 13,
+                                "y": 21
+                            },
+                            "min_point": {
+                                "x": 13,
+                                "y": 19
+                            }
+                        },
+                        "is_vertical": true,
+                        "length": 3,
+                        "segments": [
+                            0,
+                            0,
+                            0
+                        ]
+                    },
+                    {
+                        "area": {
+                            "max_point": {
+                                "x": 13,
+                                "y": 10
+                            },
+                            "min_point": {
+                                "x": 11,
+                                "y": 10
+                            }
+                        },
+                        "is_vertical": false,
+                        "length": 3,
+                        "segments": [
+                            0,
+                            0,
+                            0
+                        ]
+                    },
+                    {
+                        "area": {
+                            "max_point": {
+                                "x": 6,
+                                "y": 20
+                            },
+                            "min_point": {
+                                "x": 4,
+                                "y": 20
+                            }
+                        },
+                        "is_vertical": false,
+                        "length": 3,
+                        "segments": [
+                            0,
+                            0,
+                            0
+                        ]
+                    },
+                    {
+                        "area": {
+                            "max_point": {
+                                "x": 6,
+                                "y": 12
+                            },
+                            "min_point": {
+                                "x": 6,
+                                "y": 10
+                            }
+                        },
+                        "is_vertical": true,
+                        "length": 3,
+                        "segments": [
+                            0,
+                            0,
+                            0
+                        ]
+                    },
+                    {
+                        "area": {
+                            "max_point": {
+                                "x": 11,
+                                "y": 24
+                            },
+                            "min_point": {
+                                "x": 9,
+                                "y": 24
+                            }
+                        },
+                        "is_vertical": false,
+                        "length": 3,
+                        "segments": [
+                            0,
+                            0,
+                            0
+                        ]
+                    },
+                    {
+                        "area": {
+                            "max_point": {
+                                "x": 3,
+                                "y": 5
                             },
                             "min_point": {
                                 "x": 1,
+                                "y": 5
+                            }
+                        },
+                        "is_vertical": false,
+                        "length": 3,
+                        "segments": [
+                            0,
+                            0,
+                            0
+                        ]
+                    },
+                    {
+                        "area": {
+                            "max_point": {
+                                "x": 9,
+                                "y": 15
+                            },
+                            "min_point": {
+                                "x": 9,
+                                "y": 14
+                            }
+                        },
+                        "is_vertical": true,
+                        "length": 2,
+                        "segments": [
+                            0,
+                            0
+                        ]
+                    },
+                    {
+                        "area": {
+                            "max_point": {
+                                "x": 15,
+                                "y": 5
+                            },
+                            "min_point": {
+                                "x": 15,
+                                "y": 4
+                            }
+                        },
+                        "is_vertical": true,
+                        "length": 2,
+                        "segments": [
+                            0,
+                            0
+                        ]
+                    },
+                    {
+                        "area": {
+                            "max_point": {
+                                "x": 12,
+                                "y": 1
+                            },
+                            "min_point": {
+                                "x": 11,
+                                "y": 1
+                            }
+                        },
+                        "is_vertical": false,
+                        "length": 2,
+                        "segments": [
+                            0,
+                            0
+                        ]
+                    },
+                    {
+                        "area": {
+                            "max_point": {
+                                "x": 17,
+                                "y": 13
+                            },
+                            "min_point": {
+                                "x": 17,
+                                "y": 12
+                            }
+                        },
+                        "is_vertical": true,
+                        "length": 2,
+                        "segments": [
+                            0,
+                            0
+                        ]
+                    },
+                    {
+                        "area": {
+                            "max_point": {
+                                "x": 7,
+                                "y": 23
+                            },
+                            "min_point": {
+                                "x": 7,
+                                "y": 22
+                            }
+                        },
+                        "is_vertical": true,
+                        "length": 2,
+                        "segments": [
+                            0,
+                            0
+                        ]
+                    },
+                    {
+                        "area": {
+                            "max_point": {
+                                "x": 18,
+                                "y": 4
+                            },
+                            "min_point": {
+                                "x": 17,
                                 "y": 4
                             }
                         },
                         "is_vertical": false,
                         "length": 2,
                         "segments": [
-                            2,
-                            2
+                            0,
+                            0
                         ]
                     },
                     {
                         "area": {
                             "max_point": {
-                                "x": 4,
-                                "y": 4
+                                "x": 15,
+                                "y": 25
                             },
                             "min_point": {
-                                "x": 4,
-                                "y": 4
+                                "x": 14,
+                                "y": 25
                             }
                         },
                         "is_vertical": false,
-                        "length": 1,
+                        "length": 2,
                         "segments": [
-                            2
+                            0,
+                            0
                         ]
                     },
                     {
                         "area": {
                             "max_point": {
-                                "x": 3,
-                                "y": 6
+                                "x": 18,
+                                "y": 24
                             },
                             "min_point": {
-                                "x": 3,
+                                "x": 18,
+                                "y": 23
+                            }
+                        },
+                        "is_vertical": true,
+                        "length": 2,
+                        "segments": [
+                            0,
+                            0
+                        ]
+                    },
+                    {
+                        "area": {
+                            "max_point": {
+                                "x": 8,
+                                "y": 18
+                            },
+                            "min_point": {
+                                "x": 8,
+                                "y": 17
+                            }
+                        },
+                        "is_vertical": true,
+                        "length": 2,
+                        "segments": [
+                            0,
+                            0
+                        ]
+                    },
+                    {
+                        "area": {
+                            "max_point": {
+                                "x": 13,
+                                "y": 7
+                            },
+                            "min_point": {
+                                "x": 13,
                                 "y": 6
                             }
                         },
-                        "is_vertical": false,
-                        "length": 1,
+                        "is_vertical": true,
+                        "length": 2,
                         "segments": [
-                            2
+                            0,
+                            0
+                        ]
+                    },
+                    {
+                        "area": {
+                            "max_point": {
+                                "x": 9,
+                                "y": 21
+                            },
+                            "min_point": {
+                                "x": 9,
+                                "y": 20
+                            }
+                        },
+                        "is_vertical": true,
+                        "length": 2,
+                        "segments": [
+                            0,
+                            0
+                        ]
+                    },
+                    {
+                        "area": {
+                            "max_point": {
+                                "x": 1,
+                                "y": 11
+                            },
+                            "min_point": {
+                                "x": 0,
+                                "y": 11
+                            }
+                        },
+                        "is_vertical": false,
+                        "length": 2,
+                        "segments": [
+                            0,
+                            0
+                        ]
+                    },
+                    {
+                        "area": {
+                            "max_point": {
+                                "x": 8,
+                                "y": 12
+                            },
+                            "min_point": {
+                                "x": 8,
+                                "y": 11
+                            }
+                        },
+                        "is_vertical": true,
+                        "length": 2,
+                        "segments": [
+                            0,
+                            0
+                        ]
+                    },
+                    {
+                        "area": {
+                            "max_point": {
+                                "x": 1,
+                                "y": 0
+                            },
+                            "min_point": {
+                                "x": 0,
+                                "y": 0
+                            }
+                        },
+                        "is_vertical": false,
+                        "length": 2,
+                        "segments": [
+                            0,
+                            0
+                        ]
+                    },
+                    {
+                        "area": {
+                            "max_point": {
+                                "x": 14,
+                                "y": 1
+                            },
+                            "min_point": {
+                                "x": 14,
+                                "y": 0
+                            }
+                        },
+                        "is_vertical": true,
+                        "length": 2,
+                        "segments": [
+                            0,
+                            0
+                        ]
+                    },
+                    {
+                        "area": {
+                            "max_point": {
+                                "x": 1,
+                                "y": 16
+                            },
+                            "min_point": {
+                                "x": 1,
+                                "y": 15
+                            }
+                        },
+                        "is_vertical": true,
+                        "length": 2,
+                        "segments": [
+                            0,
+                            0
+                        ]
+                    },
+                    {
+                        "area": {
+                            "max_point": {
+                                "x": 13,
+                                "y": 13
+                            },
+                            "min_point": {
+                                "x": 12,
+                                "y": 13
+                            }
+                        },
+                        "is_vertical": false,
+                        "length": 2,
+                        "segments": [
+                            0,
+                            0
+                        ]
+                    },
+                    {
+                        "area": {
+                            "max_point": {
+                                "x": 7,
+                                "y": 14
+                            },
+                            "min_point": {
+                                "x": 6,
+                                "y": 14
+                            }
+                        },
+                        "is_vertical": false,
+                        "length": 2,
+                        "segments": [
+                            0,
+                            0
+                        ]
+                    },
+                    {
+                        "area": {
+                            "max_point": {
+                                "x": 8,
+                                "y": 1
+                            },
+                            "min_point": {
+                                "x": 8,
+                                "y": 0
+                            }
+                        },
+                        "is_vertical": true,
+                        "length": 2,
+                        "segments": [
+                            0,
+                            0
                         ]
                     },
                     {
                         "area": {
                             "max_point": {
                                 "x": 2,
-                                "y": 0
+                                "y": 25
                             },
                             "min_point": {
                                 "x": 2,
-                                "y": 0
+                                "y": 25
+                            }
+                        },
+                        "is_vertical": true,
+                        "length": 1,
+                        "segments": [
+                            0
+                        ]
+                    },
+                    {
+                        "area": {
+                            "max_point": {
+                                "x": 6,
+                                "y": 18
+                            },
+                            "min_point": {
+                                "x": 6,
+                                "y": 18
+                            }
+                        },
+                        "is_vertical": true,
+                        "length": 1,
+                        "segments": [
+                            0
+                        ]
+                    },
+                    {
+                        "area": {
+                            "max_point": {
+                                "x": 6,
+                                "y": 4
+                            },
+                            "min_point": {
+                                "x": 6,
+                                "y": 4
                             }
                         },
                         "is_vertical": false,
                         "length": 1,
                         "segments": [
-                            2
+                            0
                         ]
                     },
                     {
                         "area": {
                             "max_point": {
                                 "x": 5,
-                                "y": 6
+                                "y": 1
                             },
                             "min_point": {
                                 "x": 5,
-                                "y": 6
+                                "y": 1
                             }
                         },
                         "is_vertical": false,
                         "length": 1,
                         "segments": [
-                            2
+                            0
+                        ]
+                    },
+                    {
+                        "area": {
+                            "max_point": {
+                                "x": 13,
+                                "y": 23
+                            },
+                            "min_point": {
+                                "x": 13,
+                                "y": 23
+                            }
+                        },
+                        "is_vertical": true,
+                        "length": 1,
+                        "segments": [
+                            0
+                        ]
+                    },
+                    {
+                        "area": {
+                            "max_point": {
+                                "x": 5,
+                                "y": 7
+                            },
+                            "min_point": {
+                                "x": 5,
+                                "y": 7
+                            }
+                        },
+                        "is_vertical": false,
+                        "length": 1,
+                        "segments": [
+                            0
+                        ]
+                    },
+                    {
+                        "area": {
+                            "max_point": {
+                                "x": 8,
+                                "y": 3
+                            },
+                            "min_point": {
+                                "x": 8,
+                                "y": 3
+                            }
+                        },
+                        "is_vertical": false,
+                        "length": 1,
+                        "segments": [
+                            0
+                        ]
+                    },
+                    {
+                        "area": {
+                            "max_point": {
+                                "x": 13,
+                                "y": 17
+                            },
+                            "min_point": {
+                                "x": 13,
+                                "y": 17
+                            }
+                        },
+                        "is_vertical": true,
+                        "length": 1,
+                        "segments": [
+                            0
+                        ]
+                    },
+                    {
+                        "area": {
+                            "max_point": {
+                                "x": 12,
+                                "y": 15
+                            },
+                            "min_point": {
+                                "x": 12,
+                                "y": 15
+                            }
+                        },
+                        "is_vertical": false,
+                        "length": 1,
+                        "segments": [
+                            0
+                        ]
+                    },
+                    {
+                        "area": {
+                            "max_point": {
+                                "x": 8,
+                                "y": 8
+                            },
+                            "min_point": {
+                                "x": 8,
+                                "y": 8
+                            }
+                        },
+                        "is_vertical": true,
+                        "length": 1,
+                        "segments": [
+                            0
+                        ]
+                    },
+                    {
+                        "area": {
+                            "max_point": {
+                                "x": 18,
+                                "y": 20
+                            },
+                            "min_point": {
+                                "x": 18,
+                                "y": 20
+                            }
+                        },
+                        "is_vertical": true,
+                        "length": 1,
+                        "segments": [
+                            0
+                        ]
+                    },
+                    {
+                        "area": {
+                            "max_point": {
+                                "x": 7,
+                                "y": 25
+                            },
+                            "min_point": {
+                                "x": 7,
+                                "y": 25
+                            }
+                        },
+                        "is_vertical": true,
+                        "length": 1,
+                        "segments": [
+                            0
+                        ]
+                    },
+                    {
+                        "area": {
+                            "max_point": {
+                                "x": 1,
+                                "y": 18
+                            },
+                            "min_point": {
+                                "x": 1,
+                                "y": 18
+                            }
+                        },
+                        "is_vertical": false,
+                        "length": 1,
+                        "segments": [
+                            0
+                        ]
+                    },
+                    {
+                        "area": {
+                            "max_point": {
+                                "x": 10,
+                                "y": 17
+                            },
+                            "min_point": {
+                                "x": 10,
+                                "y": 17
+                            }
+                        },
+                        "is_vertical": true,
+                        "length": 1,
+                        "segments": [
+                            0
+                        ]
+                    },
+                    {
+                        "area": {
+                            "max_point": {
+                                "x": 16,
+                                "y": 9
+                            },
+                            "min_point": {
+                                "x": 16,
+                                "y": 9
+                            }
+                        },
+                        "is_vertical": false,
+                        "length": 1,
+                        "segments": [
+                            0
+                        ]
+                    },
+                    {
+                        "area": {
+                            "max_point": {
+                                "x": 6,
+                                "y": 16
+                            },
+                            "min_point": {
+                                "x": 6,
+                                "y": 16
+                            }
+                        },
+                        "is_vertical": false,
+                        "length": 1,
+                        "segments": [
+                            0
+                        ]
+                    },
+                    {
+                        "area": {
+                            "max_point": {
+                                "x": 3,
+                                "y": 18
+                            },
+                            "min_point": {
+                                "x": 3,
+                                "y": 18
+                            }
+                        },
+                        "is_vertical": true,
+                        "length": 1,
+                        "segments": [
+                            0
+                        ]
+                    },
+                    {
+                        "area": {
+                            "max_point": {
+                                "x": 15,
+                                "y": 17
+                            },
+                            "min_point": {
+                                "x": 15,
+                                "y": 17
+                            }
+                        },
+                        "is_vertical": true,
+                        "length": 1,
+                        "segments": [
+                            0
+                        ]
+                    },
+                    {
+                        "area": {
+                            "max_point": {
+                                "x": 4,
+                                "y": 9
+                            },
+                            "min_point": {
+                                "x": 4,
+                                "y": 9
+                            }
+                        },
+                        "is_vertical": false,
+                        "length": 1,
+                        "segments": [
+                            0
+                        ]
+                    },
+                    {
+                        "area": {
+                            "max_point": {
+                                "x": 15,
+                                "y": 19
+                            },
+                            "min_point": {
+                                "x": 15,
+                                "y": 19
+                            }
+                        },
+                        "is_vertical": true,
+                        "length": 1,
+                        "segments": [
+                            0
+                        ]
+                    },
+                    {
+                        "area": {
+                            "max_point": {
+                                "x": 11,
+                                "y": 6
+                            },
+                            "min_point": {
+                                "x": 11,
+                                "y": 6
+                            }
+                        },
+                        "is_vertical": true,
+                        "length": 1,
+                        "segments": [
+                            0
+                        ]
+                    },
+                    {
+                        "area": {
+                            "max_point": {
+                                "x": 4,
+                                "y": 11
+                            },
+                            "min_point": {
+                                "x": 4,
+                                "y": 11
+                            }
+                        },
+                        "is_vertical": false,
+                        "length": 1,
+                        "segments": [
+                            0
+                        ]
+                    },
+                    {
+                        "area": {
+                            "max_point": {
+                                "x": 3,
+                                "y": 15
+                            },
+                            "min_point": {
+                                "x": 3,
+                                "y": 15
+                            }
+                        },
+                        "is_vertical": false,
+                        "length": 1,
+                        "segments": [
+                            0
+                        ]
+                    },
+                    {
+                        "area": {
+                            "max_point": {
+                                "x": 10,
+                                "y": 8
+                            },
+                            "min_point": {
+                                "x": 10,
+                                "y": 8
+                            }
+                        },
+                        "is_vertical": false,
+                        "length": 1,
+                        "segments": [
+                            0
                         ]
                     }
                 ],
-                "size": 6
+                "size": 55
             }
         },
         "humanPlayer": {
             "abilities_manager": {
                 "abilities": [
-                    "19doubleDamageAbility",
                     "15shellingAbility",
-                    "14scannerAbility",
-                    "14scannerAbility",
+                    "19doubleDamageAbility",
                     "14scannerAbility"
                 ],
-                "size": 5
+                "size": 3
             },
             "play_field": {
-                "height": 7,
+                "height": 26,
                 "playField": [
                     [
                         0,
                         0,
-                        1,
-                        1,
-                        2,
-                        1
-                    ],
-                    [
                         0,
-                        1,
-                        1,
                         0,
-                        1,
-                        1
-                    ],
-                    [
-                        1,
-                        1,
-                        1,
-                        1,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
                         0,
                         0
                     ],
                     [
                         0,
-                        1,
-                        1,
-                        1,
-                        1,
-                        1
-                    ],
-                    [
                         0,
                         0,
                         0,
-                        2,
-                        1,
-                        1
-                    ],
-                    [
-                        1,
-                        1,
                         0,
-                        1,
-                        1,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
                         0
                     ],
                     [
-                        1,
-                        2,
-                        1,
-                        1,
                         0,
-                        1
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0
+                    ],
+                    [
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0
+                    ],
+                    [
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0
+                    ],
+                    [
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0
+                    ],
+                    [
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0
+                    ],
+                    [
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0
+                    ],
+                    [
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0
+                    ],
+                    [
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0
+                    ],
+                    [
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0
+                    ],
+                    [
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0
+                    ],
+                    [
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0
+                    ],
+                    [
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0
+                    ],
+                    [
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0
+                    ],
+                    [
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0
+                    ],
+                    [
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0
+                    ],
+                    [
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0
+                    ],
+                    [
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0
+                    ],
+                    [
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0
+                    ],
+                    [
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0
+                    ],
+                    [
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0
+                    ],
+                    [
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0
+                    ],
+                    [
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0
+                    ],
+                    [
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0
+                    ],
+                    [
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0,
+                        0
                     ]
                 ],
-                "width": 6
+                "width": 19
             },
             "pointer": {
-                "x": 3,
-                "y": 0
+                "x": 5,
+                "y": 17
             },
             "pointer_area": {
                 "max_point": {
-                    "x": 0,
+                    "x": 2,
                     "y": 0
                 },
                 "min_point": {
@@ -268,17 +2126,37 @@
                 }
             },
             "ship_manager": {
-                "destroyed_ships": 2,
+                "destroyed_ships": 0,
                 "ships": [
                     {
                         "area": {
                             "max_point": {
-                                "x": 3,
-                                "y": 4
+                                "x": 1,
+                                "y": 3
                             },
                             "min_point": {
                                 "x": 1,
-                                "y": 4
+                                "y": 0
+                            }
+                        },
+                        "is_vertical": true,
+                        "length": 4,
+                        "segments": [
+                            0,
+                            0,
+                            0,
+                            0
+                        ]
+                    },
+                    {
+                        "area": {
+                            "max_point": {
+                                "x": 4,
+                                "y": 14
+                            },
+                            "min_point": {
+                                "x": 2,
+                                "y": 14
                             }
                         },
                         "is_vertical": false,
@@ -286,99 +2164,13 @@
                         "segments": [
                             0,
                             0,
-                            1
-                        ]
-                    },
-                    {
-                        "area": {
-                            "max_point": {
-                                "x": 5,
-                                "y": 2
-                            },
-                            "min_point": {
-                                "x": 4,
-                                "y": 2
-                            }
-                        },
-                        "is_vertical": false,
-                        "length": 2,
-                        "segments": [
-                            0,
-                            0
-                        ]
-                    },
-                    {
-                        "area": {
-                            "max_point": {
-                                "x": 4,
-                                "y": 6
-                            },
-                            "min_point": {
-                                "x": 4,
-                                "y": 6
-                            }
-                        },
-                        "is_vertical": false,
-                        "length": 1,
-                        "segments": [
-                            0
-                        ]
-                    },
-                    {
-                        "area": {
-                            "max_point": {
-                                "x": 4,
-                                "y": 0
-                            },
-                            "min_point": {
-                                "x": 4,
-                                "y": 0
-                            }
-                        },
-                        "is_vertical": false,
-                        "length": 1,
-                        "segments": [
-                            2
-                        ]
-                    },
-                    {
-                        "area": {
-                            "max_point": {
-                                "x": 1,
-                                "y": 6
-                            },
-                            "min_point": {
-                                "x": 1,
-                                "y": 6
-                            }
-                        },
-                        "is_vertical": true,
-                        "length": 1,
-                        "segments": [
-                            2
-                        ]
-                    },
-                    {
-                        "area": {
-                            "max_point": {
-                                "x": 0,
-                                "y": 0
-                            },
-                            "min_point": {
-                                "x": 0,
-                                "y": 0
-                            }
-                        },
-                        "is_vertical": false,
-                        "length": 1,
-                        "segments": [
                             0
                         ]
                     }
                 ],
-                "size": 6
+                "size": 2
             }
         },
-        "state_name": "12endGameState"
+        "state_name": "14setupShipState"
     }
 }

@@ -5,7 +5,6 @@ GUIOutput::GUIOutput(){
     if (SDL_Init(SDL_INIT_VIDEO) != 0) {
         std::cerr << "SDL_Init Error: " << SDL_GetError() << std::endl;
     }
-    std::cout << "Created SDL\n";
     window = SDL_CreateWindow("Sea Battle",
                                     SDL_WINDOWPOS_UNDEFINED,
                                     SDL_WINDOWPOS_UNDEFINED,
