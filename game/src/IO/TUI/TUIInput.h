@@ -3,6 +3,7 @@
 
 #include "../../messages/messageHandler.h"
 #include "../../messages/keyMessage.h"
+#include "../../RW/controlReader.h"
 
 #include <map>
 

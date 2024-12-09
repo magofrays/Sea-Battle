@@ -1,6 +1,6 @@
 #include "GUIInput.h"
 #include "../../utilities/settings.h"
-#include "../../RW/controlReader.h"
+
 #include "../../messages/textMessage.h"
 
 void GUIInput::setControls(){

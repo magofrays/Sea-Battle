@@ -33,7 +33,7 @@ void GUIDrawField::drawOutline(point2d coordinates, point2d size, int size_cell,
     SDL_SetRenderDrawColor(renderer, 200, 200, 200, 255);
     SDL_RenderFillRect(renderer, &field_outline);
     point2d name_coordinates = point2d(field_outline.w/2+field_outline.x, field_outline.h+field_outline.y) + point2d(10, 0);
-    textDrawer->drawText(field_name, name_coordinates, {255, 255, 255}, GUIDrawText::medium, true);
+    textDrawer->drawText(field_name, name_coordinates, {255, 255, 255}, medium, true);
 }
 
 

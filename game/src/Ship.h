@@ -37,8 +37,6 @@ class Ship{
         bool IsVertical() const;
         std::vector<std::shared_ptr<Segment>> & getSegments();
         bool isDestroyed();
-        friend class inputManager;
-        
         json toJson();
 };
 

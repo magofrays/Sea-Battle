@@ -1,0 +1,176 @@
+@startuml
+abstract "gameState" as C_0016367574639074044496
+abstract C_0016367574639074044496 {
++gameState(Game * game) : void
++~gameState() : void
+..
+{abstract} +Handle(std::unique_ptr<Message> message) = 0 : void
+{abstract} +extra_action_0() = 0 : void
+{abstract} +extra_action_1() = 0 : void
+{abstract} +main_action() = 0 : void
++setGame(Game * game) : void
++setNext(messageHandler * handler) : void
+{abstract} +update() = 0 : void
+__
+#game : Game *
+#handler : messageHandler *
+}
+class "Game" as C_0017470460303031448044
+class C_0017470460303031448044 {
++Game() : void
++~Game() : void
+..
++Handle(std::unique_ptr<Message> message) : void
++extra_action_0() : void
++extra_action_1() : void
++load() : void
++main_action() : void
++save() : void
++setNext(messageHandler * handler) : void
++setState(gameState * state) : void
++setupGame(messageHandler * handler) : void
++update() : void
+__
++bot : botPlayer
+-handler : messageHandler *
++player : humanPlayer
++pointer : point2d &
++pointer_area : box2d &
++running : bool
+-state : gameState *
+}
+class "gameController<gameInput>" as C_0017812530320315147529
+class C_0017812530320315147529 {
++gameController(Game & game) : void
+..
++Handle(std::unique_ptr<Message> message) : void
++setNext(messageHandler * handler) : void
++update() : void
+__
+-game : Game &
+-handler : messageHandler *
+-input : gameInput
+}
+class "gameTracker<gameOutput>" as C_0010725248600373414914
+class C_0010725248600373414914 {
++gameTracker(Game & game) : void
+..
++Handle(std::unique_ptr<Message> message) : void
++setNext(messageHandler * handler) : void
++update() : void
+__
+-game : Game &
+-handler : messageHandler *
+-output : gameOutput
+}
+class "SeaBattle<gameInput,gameOutput>" as C_0017548353771026760600
+class C_0017548353771026760600 {
++SeaBattle() : void
+..
++run() : void
+__
+-controller : gameController<gameInput>
+-game : Game
+-tracker : gameTracker<gameOutput>
+}
+class "controlReader" as C_0004242457928003609482
+class C_0004242457928003609482 {
++controlReader() : void
+..
++operator()() : std::map<std::string,Key>
+..
++getDefaultControls() : std::map<std::string,Key>
++getKeyFromString(const std::string & keyStr) : Key
+__
+-default_controls : std::map<std::string,Key>
+}
+class "GUIInput" as C_0011262253915482236085
+class C_0011262253915482236085 {
++Handle(std::unique_ptr<Message> message) : void
++setControls() : void
++setNext(messageHandler * handler) : void
++update() : void
+__
+-controls : std::map<std::string,Key>
+-handler : messageHandler *
+}
+class "GUIDrawText" as C_0009326881491595242490
+class C_0009326881491595242490 {
++GUIDrawText() : void
++~GUIDrawText() : void
+..
++operator()() : void
+..
++drawLog() : void
++drawText(std::string text, point2d coordinates, SDL_Color color, fontSize font_size, bool is_centered = false) : SDL_Rect
++drawTitle() : void
++enumToColor(textColor color) : SDL_Color
++redirectText(textMessage text) : void
++setRenderer(SDL_Renderer * renderer) : void
+__
+-big_font : TTF_Font *
+-log : textMessage[7]
+-medium_font : TTF_Font *
+-renderer : SDL_Renderer *
+-small_font : TTF_Font *
+-title : textMessage
+}
+class "GUIDrawField" as C_0017628940661173144221
+class C_0017628940661173144221 {
++GUIDrawField() = default : void
+..
++operator()() : void
+..
++drawField(point2d coordinates, point2d size, int size_cell, playField * field, bool fog) : void
++drawOutline(point2d coordinates, point2d size, int size_cell, std::string field_name) : void
++drawPointer(point2d coordinates, int size_cell) : void
++setField(std::unique_ptr<playFieldMessage> field) : void
++setPointer(std::unique_ptr<pointerMessage> pointer) : void
++setRenderer(SDL_Renderer * renderer) : void
++setTextDrawer(GUIDrawText * textDrawer) : void
+__
++fields : std::unique_ptr<playFieldMessage>[2]
++pointer : std::unique_ptr<pointerMessage>
+-renderer : SDL_Renderer *
+-textDrawer : GUIDrawText *
+}
+class "GUIOutput" as C_0017586470103200854466
+class C_0017586470103200854466 {
++GUIOutput() : void
++~GUIOutput() : void
+..
++sendField(std::unique_ptr<playFieldMessage> field) : void
++sendPointer(std::unique_ptr<pointerMessage> pointer) : void
++sendText(std::unique_ptr<textMessage> text) : void
++update() : void
+__
+-fieldDrawer : GUIDrawField
+-renderer : SDL_Renderer *
+-textDrawer : GUIDrawText
+-window : SDL_Window *
+}
+class "TUIInput" as C_0014616419239086645160
+class C_0014616419239086645160 {
++Handle(std::unique_ptr<Message> message) : void
++setControls() : void
++setNext(messageHandler * handler) : void
++update() : void
+__
+-controls : std::map<std::string,Key>
+-handler : messageHandler *
+}
+C_0016367574639074044496 --> C_0017470460303031448044 : #game
+C_0016367574639074044496 <.. C_0017470460303031448044 : +<<friend>>
+C_0017470460303031448044 --> C_0016367574639074044496 : -state
+C_0017812530320315147529 --> C_0017470460303031448044 : -game
+C_0010725248600373414914 --> C_0017470460303031448044 : -game
+C_0017548353771026760600 o-- C_0017470460303031448044 : -game
+C_0017548353771026760600 o-- C_0010725248600373414914 : -tracker
+C_0017548353771026760600 o-- C_0017812530320315147529 : -controller
+C_0017628940661173144221 --> C_0009326881491595242490 : -textDrawer
+C_0017586470103200854466 o-- C_0009326881491595242490 : -textDrawer
+C_0017586470103200854466 o-- C_0017628940661173144221 : -fieldDrawer
+
+'Generated with clang-uml, version 0.5.6
+'LLVM version Ubuntu clang version 18.1.3 (1ubuntu1)
+@enduml
