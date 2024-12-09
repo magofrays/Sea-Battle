@@ -106,7 +106,4 @@ void gameController<gameInput>::setNext(messageHandler * handler){
     this->handler = handler;
 }
 
-
-
-
 #endif

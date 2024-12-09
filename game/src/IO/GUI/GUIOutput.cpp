@@ -28,7 +28,6 @@ void GUIOutput::update(){
     this->textDrawer();
     this->fieldDrawer();
     SDL_RenderPresent(renderer);
-    
 }
 
 void GUIOutput::sendText(std::unique_ptr<textMessage> text){
