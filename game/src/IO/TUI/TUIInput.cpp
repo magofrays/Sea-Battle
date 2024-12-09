@@ -1,6 +1,5 @@
 #include "TUIInput.h"
 #include "../../utilities/settings.h"
-#include "../../RW/controlReader.h"
 #include "../../messages/textMessage.h"
 #include <iostream>
 #include <unistd.h>

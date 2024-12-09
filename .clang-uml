@@ -1,42 +1,22 @@
 diagrams:
-    lab3_diagram:
+    lab4_diagram:
       type: class
       glob:
-        - game/src/messages/*.h
-        - game/src/states/*.h
-        - game/src/states/*.cpp
-        - game/src/IO/*.h
-        - game/src/IO/*.cpp
-        - game/src/utilities/*.h
-        - game/src/RW/*.h
-        - game/src/RW/*.cpp
-        - game/src/*.cpp
-        - game/src/*.h
-      generate_template_argument_dependencies: false
+        - game/src/main.cpp
       include:
-        elements:
-          - Game
-          - keyMessage
-          - Message
-          - messageHandler
-          - playFieldMessage
-          - pointerMessage
-          - textMessage
-          - GUIInput
-          - GUIOutput
-          - endGameState
-          - gameState
-          - playState
-          - setupFieldState
-          - setupShipState
-          - Player
-          - humanPlayer
-          - botPlayer
-          - fileRead
-          - fileWrite
+        paths:
+          - game/src/IO/gameController.h
+          - game/src/IO/gameTracker.h
+          - game/src/SeaBattle.h
+          - game/src/states/Game.h
+          - game/src/IO/GUI/*.h
+          - game/src/IO/TUI/*.h
+          - game/src/RW/controlReader.h
+          - game/src/states/*.h
+
       exclude:
-        relationships:
-          - dependency
+        elements:
+          - fontSize
         namespaces:
           - std
 compilation_database_dir: build

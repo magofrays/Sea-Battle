@@ -4,6 +4,7 @@
 #include <map>
 #include "../messages/keyMessage.h"
 #include "fileRead.h"
+#include "../utilities/settings.h"
 
 class controlReader{
     std::map<std::string, Key> default_controls;

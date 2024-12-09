@@ -1,7 +1,6 @@
 #ifndef SEABATTLE_GAMECONTROLLER_H
 #define SEABATTLE_GAMECONTROLLER_H
 
-#include <concepts>
 #include <type_traits>
 #include "../messages/messageHandler.h"
 #include "../messages/textMessage.h"
@@ -9,7 +8,6 @@
 #include "../states/Game.h"
 
 class Game;
-
 
 template<typename gameInput>
 class gameController : public messageHandler {
