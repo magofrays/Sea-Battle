@@ -17,3 +17,4 @@ make
 #### if you want to use TUI change in main.cpp to SeaBattle<TUIInput, TUIOutput> and recompile project
 #### if you want to change setting of game go to game/src/utilities/settings.h change and recompile project.
 ##### also i like my log chat
+![seabattle](https://github.com/user-attachments/assets/2beabe5a-c49e-41f5-9ebd-a955ccba3b17)
