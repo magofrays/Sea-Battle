@@ -150,8 +150,9 @@
     "variant": "cpp",
     "*.clang-uml": "cpp",
     "queue": "cpp",
-    "filesystem": "cpp"
-  },
+    "filesystem": "cpp",
+    "__nullptr": "cpp"
+},
   "C_Cpp.errorSquiggles": "disabled",
   "cmake.sourceDirectory": "/home/magofrays/Desktop/second course/OOP/Sea-Battle/game"
 }

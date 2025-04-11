@@ -8,27 +8,33 @@
 #include "../../utilities/settings.h"
 #include "../../messages/textMessage.h"
 
-enum fontSize {big, medium, small};
+enum fontSize
+{
+    big,
+    medium,
+    small
+};
 
-class GUIDrawText{
-    SDL_Renderer * renderer;
-    TTF_Font * big_font;
-    TTF_Font * medium_font;
-    TTF_Font * small_font;
+class GUIDrawText
+{
+    SDL_Renderer *renderer;
+    TTF_Font *big_font;
+    TTF_Font *medium_font;
+    TTF_Font *small_font;
     textMessage title;
     textMessage log[seabattle::LOG_LENGTH];
-    public:
-        
-        GUIDrawText();
-        SDL_Color enumToColor(textColor color);
-        SDL_Rect drawText(std::string text, point2d coordinates, SDL_Color color, fontSize font_size, bool is_centered = false);
-        void redirectText(textMessage text);
-        void drawTitle();
-        void drawLog();
-        void operator()();
 
-        void setRenderer(SDL_Renderer * renderer);
-        ~GUIDrawText();
+public:
+    GUIDrawText();
+    SDL_Color enumToColor(textColor color);
+    SDL_Rect drawText(std::string text, point2d coordinates, SDL_Color color, fontSize font_size, bool is_centered = false);
+    void redirectText(textMessage text);
+    void drawTitle();
+    void drawLog();
+    void operator()();
+
+    void setRenderer(SDL_Renderer *renderer);
+    ~GUIDrawText();
 };
 
 #endif

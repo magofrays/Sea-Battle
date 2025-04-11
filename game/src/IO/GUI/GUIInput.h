@@ -8,17 +8,17 @@
 #include <SDL2/SDL.h>
 #include <map>
 
+class GUIInput : public messageHandler
+{
 
-class GUIInput: public messageHandler{
-    
-    messageHandler * handler = nullptr;
+    messageHandler *handler = nullptr;
     std::map<std::string, Key> controls;
 
-    public:
-        void setControls();
-        void update();
-        void Handle(std::unique_ptr<Message> message);
-        void setNext(messageHandler * handler);
+public:
+    void setControls();
+    void update();
+    void Handle(std::unique_ptr<Message> message);
+    void setNext(messageHandler *handler);
 };
 
 #endif

@@ -2,7 +2,8 @@
 #include "../utilities/vector2d.h"
 #include "Message.h"
 
-enum class Key {
+enum class Key
+{
     pointer_left,
     pointer_right,
     pointer_up,
@@ -15,10 +16,12 @@ enum class Key {
     load_action,
 };
 
-struct keyMessage: public Message{
-    Key info;   
-    keyMessage(Key info): info(info){}
-    std::unique_ptr<Message> clone(){
+struct keyMessage : public Message
+{
+    Key info;
+    keyMessage(Key info) : info(info) {}
+    std::unique_ptr<Message> clone()
+    {
         return std::make_unique<keyMessage>(*this);
     }
 };

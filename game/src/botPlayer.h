@@ -3,11 +3,12 @@
 
 #include "Player.h"
 
-class botPlayer: public Player{
-    public:
+class botPlayer : public Player
+{
+public:
     void Attack();
     void setField(playField play_field);
-    void getOpponent(Player * player);
+    void getOpponent(Player *player);
 };
 
 #endif
