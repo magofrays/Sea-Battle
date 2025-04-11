@@ -60,6 +60,7 @@ json & operator << (json & data, humanPlayer & player){
     data["pointer"] = player.pointer.toJson();
     data["pointer_area"] = player.pointer_area.toJson();
     data["abilities_manager"] = player.abilities_manager.toJson();
+    data["double_damage"] = player.double_damage;
     return data;
 }
 
@@ -70,6 +71,6 @@ json & operator >> (json & data, humanPlayer & player){
     player.pointer = point2d(data.at("pointer"));
     player.pointer_area = box2d(data.at("pointer_area"));
     player.abilities_manager = abilitiesManager(data.at("abilities_manager"));
-
+    player.double_damage = data["double_damage"];
     return data;
 }

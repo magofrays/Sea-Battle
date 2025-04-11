@@ -1,5 +1,0 @@
--make output, inpuy
--finish Player class
--finsh Game class
-
--redo input, output by chain-of-responsibility

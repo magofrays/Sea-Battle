@@ -1,0 +1,180 @@
+@startuml
+abstract "Message" as C_0014824791405600746196
+abstract C_0014824791405600746196 {
++~Message() : void
+..
+{abstract} +clone() = 0 : std::unique_ptr<Message>
+__
+}
+class "textMessage" as C_0009406025119082287104
+class C_0009406025119082287104 {
++textMessage() = default : void
++textMessage(std::string msg, SDL_Color color, textPosition position) : void
+..
++clone() : std::unique_ptr<Message>
+__
++color : SDL_Color
++msg : std::string
++position : textPosition
+}
+abstract "messageHandler" as C_0002868671723931243272
+abstract C_0002868671723931243272 {
+{abstract} +Handle(std::unique_ptr<Message> message) = 0 : void
+{abstract} +setNext(messageHandler * handler) = 0 : void
+__
+}
+class "pointerMessage" as C_0001120067731908979986
+class C_0001120067731908979986 {
++pointerMessage() = default : void
++pointerMessage(box2d area, point2d coordinates) : void
+..
++clone() : std::unique_ptr<Message>
+__
++area : box2d
++coordinates : point2d
+}
+class "playFieldMessage" as C_0014967218307194513248
+class C_0014967218307194513248 {
++playFieldMessage(std::string field_name, playField & info, fieldPosition position, bool fog, bool draw_pointer = false) : void
+..
++clone() : std::unique_ptr<Message>
+__
++draw_pointer : bool
++field_name : std::string
++fog : bool
++info : playField &
++position : fieldPosition
+}
+class "keyMessage" as C_0005309857014136436063
+class C_0005309857014136436063 {
++keyMessage(Key info) : void
+..
++clone() : std::unique_ptr<Message>
+__
++info : Key
+}
+abstract "gameState" as C_0016367574639074044496
+abstract C_0016367574639074044496 {
++gameState(Game * game) : void
++~gameState() : void
+..
+{abstract} +Handle(std::unique_ptr<Message> message) = 0 : void
+{abstract} +execute() = 0 : void
++setGame(Game * game) : void
++setNext(messageHandler * handler) : void
+__
+#game : Game *
+#handler : messageHandler *
+}
+class "playState" as C_0006481857000056373223
+class C_0006481857000056373223 {
++playState(Game * game, messageHandler * next, int round_number = 0) : void
+..
++Handle(std::unique_ptr<Message> message) : void
++end(bool lost) : void
++execute() : void
++lose() : void
++usingAbility() : void
++win() : void
+__
++input : bool
+-pointer : point2d &
+-pointer_area : box2d &
+-round_number : int
+}
+class "Game" as C_0017470460303031448044
+class C_0017470460303031448044 {
+__
+}
+class "endGameState" as C_0004412720201669573347
+class C_0004412720201669573347 {
++endGameState(Game * game, messageHandler * next, bool lost, int round_number) : void
+..
++Handle(std::unique_ptr<Message> message) : void
++end() : void
++execute() : void
+__
+-lost : bool
+-round_number : int
+}
+class "GUIInput" as C_0011262253915482236085
+class C_0011262253915482236085 {
++Handle(std::unique_ptr<Message> message) : void
++setNext(messageHandler * handler) : void
++transformKey(SDL_Keycode key) : Key
++update() : void
+__
+-handler : messageHandler *
+}
+class "setupShipState" as C_0007711833425777125767
+class C_0007711833425777125767 {
++setupShipState(Game * game, messageHandler * next, bool place_ships = true) : void
+..
++Handle(std::unique_ptr<Message> message) : void
++end() : void
++enoughShips() : bool
++execute() : void
++placeShip() : void
+__
+-field : playField &
+-is_vertical : bool
+-length : int
+-pointer : point2d &
+-pointer_area : box2d &
+-ships : int[4]
+}
+class "setupFieldState" as C_0000578552989571253838
+class C_0000578552989571253838 {
++setupFieldState(Game * game, messageHandler * next) : void
+..
++Handle(std::unique_ptr<Message> message) : void
++end() : void
++execute() : void
+__
+-play_field : playField
+-size_x : int
+-size_y : int
+}
+C_0014824791405600746196 <|-- C_0009406025119082287104
+
+C_0002868671723931243272 ..> C_0014824791405600746196
+C_0014824791405600746196 <|-- C_0001120067731908979986
+
+C_0014824791405600746196 <|-- C_0014967218307194513248
+
+C_0014824791405600746196 <|-- C_0005309857014136436063
+
+C_0016367574639074044496 ..> C_0014824791405600746196
+C_0016367574639074044496 --> C_0002868671723931243272 : #handler
+C_0016367574639074044496 --> C_0017470460303031448044 : #game
+C_0016367574639074044496 <.. C_0017470460303031448044 : +<<friend>>
+C_0002868671723931243272 <|-- C_0016367574639074044496
+
+C_0006481857000056373223 ..> C_0017470460303031448044
+C_0006481857000056373223 ..> C_0002868671723931243272
+C_0006481857000056373223 ..> C_0014824791405600746196
+C_0016367574639074044496 <|-- C_0006481857000056373223
+
+C_0004412720201669573347 ..> C_0017470460303031448044
+C_0004412720201669573347 ..> C_0002868671723931243272
+C_0004412720201669573347 ..> C_0014824791405600746196
+C_0016367574639074044496 <|-- C_0004412720201669573347
+
+C_0011262253915482236085 ..> C_0014824791405600746196
+C_0011262253915482236085 --> C_0002868671723931243272 : -handler
+C_0002868671723931243272 <|-- C_0011262253915482236085
+
+C_0007711833425777125767 ..> C_0002868671723931243272
+C_0007711833425777125767 ..> C_0014824791405600746196
+C_0007711833425777125767 <.. C_0017470460303031448044 : +<<friend>>
+C_0016367574639074044496 <|-- C_0007711833425777125767
+
+C_0000578552989571253838 ..> C_0002868671723931243272
+C_0000578552989571253838 ..> C_0014824791405600746196
+C_0000578552989571253838 <.. C_0017470460303031448044 : +<<friend>>
+C_0016367574639074044496 <|-- C_0000578552989571253838
+
+
+'Generated with clang-uml, version 0.5.6
+'LLVM version Ubuntu clang version 18.1.3 (1ubuntu1)
+@enduml
