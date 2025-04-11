@@ -6,15 +6,15 @@
 #include <nlohmann/json.hpp>
 using json = nlohmann::json;
 
-class fileWrite{
+class fileWrite
+{
 private:
     std::ofstream writer;
-
 
 public:
     fileWrite(std::string fname);
 
-    void write(const json& j);
+    void write(const json &j);
 
     ~fileWrite();
 };

@@ -6,15 +6,15 @@
 #include <nlohmann/json.hpp>
 using json = nlohmann::json;
 
-class fileRead{
+class fileRead
+{
 private:
     std::ifstream reader;
-
 
 public:
     fileRead(std::string fname);
 
-    void read(json& j);
+    void read(json &j);
 
     ~fileRead();
 };
